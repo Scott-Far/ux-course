@@ -33,7 +33,6 @@
 
 body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; overflow-x: hidden; }
 
-/* ── LAYOUT ─────────────────────────────── */
 .app { display: grid; grid-template-columns: 260px 1fr; grid-template-rows: 56px 1fr; min-height: 100vh; }
 .topbar { grid-column: 1/-1; background: var(--ink); display: flex; align-items: center; padding: 0 1.5rem; gap: 1.5rem; position: sticky; top: 0; z-index: 100; }
 .topbar-logo { font-family: 'DM Serif Display', serif; color: #fff; font-size: 1.1rem; letter-spacing: -0.01em; flex-shrink: 0; }
@@ -48,7 +47,6 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
 .topbar-btn.primary { background: var(--accent-2); }
 .avatar { width: 30px; height: 30px; background: #3a7bd5; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: #fff; cursor: pointer; flex-shrink: 0; }
 
-/* ── SIDEBAR ─────────────────────────────── */
 .sidebar { background: var(--surface); border-right: 1px solid var(--rule); overflow-y: auto; position: sticky; top: 56px; height: calc(100vh - 56px); }
 .sidebar-section { padding: 1rem 0; border-bottom: 1px solid var(--rule); }
 .sidebar-section:last-child { border-bottom: none; }
@@ -59,8 +57,6 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
 .module-item.active .module-name { color: var(--accent); font-weight: 500; }
 .module-name { font-size: 13px; color: var(--ink-2); line-height: 1.4; }
 .module-meta { font-size: 11px; color: var(--ink-3); margin-top: 1px; }
-.module-item.completed .module-name::after { content: ' ✓'; color: var(--green); font-size: 11px; }
-
 .lesson-item { padding: 0.25rem 1.25rem 0.25rem 2rem; cursor: pointer; transition: background 0.12s; display: flex; align-items: center; gap: 8px; }
 .lesson-item:hover { background: var(--bg); }
 .lesson-item.active { background: var(--accent-light); }
@@ -71,15 +67,11 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
 .lesson-name { font-size: 12px; color: var(--ink-3); line-height: 1.4; }
 .lesson-name.active { color: var(--accent); }
 
-/* ── MAIN CONTENT ────────────────────────── */
 .main { overflow-y: auto; }
 .content-area { max-width: 860px; margin: 0 auto; padding: 2rem 2.5rem 4rem; }
-
-/* tabs */
 .page { display: none; }
 .page.active { display: block; }
 
-/* ── VIDEO LESSON ────────────────────────── */
 .video-stage { background: var(--ink); border-radius: var(--radius-lg); overflow: hidden; position: relative; aspect-ratio: 16/9; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center; }
 .video-placeholder { text-align: center; color: rgba(255,255,255,0.6); }
 .video-placeholder .play-btn { width: 64px; height: 64px; background: rgba(255,255,255,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; cursor: pointer; transition: background 0.2s; border: 2px solid rgba(255,255,255,0.3); }
@@ -99,11 +91,9 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
 .tab-btn { font-family: 'DM Sans', sans-serif; background: none; border: none; padding: 0.6rem 1.1rem; font-size: 13px; color: var(--ink-3); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all 0.15s; }
 .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 500; }
 .tab-btn:hover:not(.active) { color: var(--ink); }
-
 .tab-panel { display: none; }
 .tab-panel.active { display: block; }
 
-/* reading content */
 .reading-content h3 { font-family: 'DM Serif Display', serif; font-size: 1.2rem; margin: 1.5rem 0 0.6rem; color: var(--ink); }
 .reading-content h3:first-child { margin-top: 0; }
 .reading-content p { font-size: 14px; line-height: 1.75; color: var(--ink-2); margin-bottom: 0.9rem; }
@@ -113,7 +103,6 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
 .callout { background: var(--amber-light); border: 1px solid rgba(176,104,32,0.2); border-radius: var(--radius); padding: 1rem 1.1rem; margin: 1rem 0; font-size: 13px; color: var(--amber); }
 .callout strong { display: block; margin-bottom: 0.25rem; font-weight: 600; }
 
-/* resources */
 .resource-list { display: flex; flex-direction: column; gap: 0.75rem; }
 .resource-card { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); padding: 0.85rem 1rem; display: flex; align-items: center; gap: 0.75rem; cursor: pointer; transition: box-shadow 0.15s, border-color 0.15s; text-decoration: none; }
 .resource-card:hover { border-color: var(--accent-2); box-shadow: var(--shadow); }
@@ -126,7 +115,6 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
 .resource-meta { font-size: 11px; color: var(--ink-3); }
 .resource-arrow { font-size: 16px; color: var(--ink-3); }
 
-/* ── FEEDBACK ────────────────────────────── */
 .feedback-area { display: flex; flex-direction: column; gap: 1rem; }
 .feedback-thread { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1rem; }
 .msg { display: flex; gap: 0.75rem; align-items: flex-start; }
@@ -142,14 +130,6 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
 .msg-time { font-size: 10px; color: var(--ink-3); margin-top: 3px; }
 .msg.instructor .msg-time { text-align: right; }
 
-.feedback-composer { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius-lg); overflow: hidden; }
-.composer-textarea { width: 100%; border: none; outline: none; padding: 0.9rem 1rem; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--ink); resize: none; min-height: 80px; background: transparent; }
-.composer-footer { padding: 0.6rem 1rem; border-top: 1px solid var(--rule); display: flex; justify-content: space-between; align-items: center; }
-.composer-hint { font-size: 11px; color: var(--ink-3); }
-.send-btn { background: var(--accent); color: #fff; border: none; border-radius: 6px; padding: 6px 16px; font-size: 13px; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background 0.15s; }
-.send-btn:hover { background: var(--accent-2); }
-
-/* ── SCHEDULE ────────────────────────────── */
 .schedule-intro { font-size: 14px; color: var(--ink-2); margin-bottom: 1.25rem; line-height: 1.6; }
 .time-slots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-bottom: 1.5rem; }
 .slot { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); padding: 0.85rem; cursor: pointer; transition: all 0.15s; text-align: center; }
@@ -169,7 +149,6 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
 .booked-meta { font-size: 12px; color: var(--ink-3); margin-top: 2px; }
 .join-btn { background: var(--green); color: #fff; border: none; border-radius: 6px; padding: 5px 14px; font-size: 12px; cursor: pointer; font-family: 'DM Sans', sans-serif; }
 
-/* ── DASHBOARD ───────────────────────────── */
 .dash-welcome { margin-bottom: 2rem; }
 .dash-welcome h1 { font-family: 'DM Serif Display', serif; font-size: 2rem; margin-bottom: 0.3rem; color: var(--ink); }
 .dash-welcome p { font-size: 14px; color: var(--ink-2); }
@@ -190,26 +169,21 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
 .activity-text { font-size: 13px; color: var(--ink-2); line-height: 1.5; }
 .activity-time { font-size: 11px; color: var(--ink-3); }
 
-/* ── UTIL ────────────────────────────────── */
-.badge { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 4px; }
-.badge.new { background: var(--amber-light); color: var(--amber); }
-.badge.done { background: var(--green-light); color: var(--green); }
 .lesson-nav { display: flex; justify-content: space-between; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); }
 .nav-btn { background: none; border: 1px solid var(--rule-2); border-radius: var(--radius); padding: 8px 16px; font-size: 13px; cursor: pointer; color: var(--ink-2); font-family: 'DM Sans', sans-serif; transition: all 0.15s; }
 .nav-btn:hover { border-color: var(--accent); color: var(--accent); }
 .nav-btn.next { background: var(--accent); color: #fff; border-color: var(--accent); }
 .nav-btn.next:hover { background: var(--accent-2); }
 .mark-done { background: var(--green); color: #fff; border: none; border-radius: var(--radius); padding: 8px 16px; font-size: 13px; cursor: pointer; font-family: 'DM Sans', sans-serif; }
-
-/* notification dot */
 .notif { position: relative; }
 .notif::after { content: ''; position: absolute; top: -2px; right: -2px; width: 7px; height: 7px; background: #e05252; border-radius: 50%; border: 1.5px solid var(--ink); }
+
+.tally-wrap { border: 1px solid var(--rule); border-radius: var(--radius-lg); overflow: hidden; margin-top: 0.5rem; }
 </style>
 </head>
 <body>
 <div class="app">
 
-  <!-- TOP BAR -->
   <header class="topbar">
     <div class="topbar-logo">UX That <span>Decides</span></div>
     <div class="topbar-progress">
@@ -223,13 +197,11 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
     </div>
   </header>
 
-  <!-- SIDEBAR -->
   <aside class="sidebar">
     <div class="sidebar-section">
       <div class="sidebar-label">Navigation</div>
       <div class="module-item" onclick="showPage('dashboard')"><div class="module-name">📊 My Dashboard</div></div>
     </div>
-
     <div class="sidebar-section">
       <div class="sidebar-label">Module 1 — The mindset</div>
       <div class="lesson-item completed" onclick="openLesson(1,1)"><div class="lesson-dot done"></div><div class="lesson-name">Why deliverables fail</div></div>
@@ -237,7 +209,6 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
       <div class="lesson-item" onclick="openLesson(1,3)"><div class="lesson-dot"></div><div class="lesson-name">Framing as a decision problem</div></div>
       <div class="lesson-item" onclick="openLesson(1,4)"><div class="lesson-dot"></div><div class="lesson-name">Stakeholder alignment from day one</div></div>
     </div>
-
     <div class="sidebar-section">
       <div class="sidebar-label">Module 2 — Research that drives action</div>
       <div class="lesson-item" onclick="openLesson(2,1)"><div class="lesson-dot"></div><div class="lesson-name">Research Q vs. business Q</div></div>
@@ -247,7 +218,6 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
       <div class="lesson-item" onclick="openLesson(2,5)"><div class="lesson-dot"></div><div class="lesson-name">Synthesis: insight → recommendation</div></div>
       <div class="lesson-item" onclick="openLesson(2,6)"><div class="lesson-dot"></div><div class="lesson-name">Research under constraints</div></div>
     </div>
-
     <div class="sidebar-section">
       <div class="sidebar-label">Module 3 — Design with research</div>
       <div class="lesson-item" onclick="openLesson(3,1)"><div class="lesson-dot"></div><div class="lesson-name">How research shapes design decisions</div></div>
@@ -256,7 +226,6 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
       <div class="lesson-item" onclick="openLesson(3,4)"><div class="lesson-dot"></div><div class="lesson-name">IA from mental models</div></div>
       <div class="lesson-item" onclick="openLesson(3,5)"><div class="lesson-dot"></div><div class="lesson-name">Design critique with research</div></div>
     </div>
-
     <div class="sidebar-section">
       <div class="sidebar-label">Modules 4–8</div>
       <div class="module-item"><div class="module-name">Module 4 — Prototyping</div><div class="module-meta">5 lessons · locked</div></div>
@@ -267,11 +236,10 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
     </div>
   </aside>
 
-  <!-- MAIN -->
   <main class="main">
     <div class="content-area">
 
-      <!-- DASHBOARD PAGE -->
+      <!-- DASHBOARD -->
       <div id="page-dashboard" class="page active">
         <div class="dash-welcome">
           <h1>Welcome back, Jamie.</h1>
@@ -317,22 +285,19 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
             <span>Ace Faranello</span>
           </div>
         </div>
-
         <div class="video-stage">
           <div class="video-placeholder">
-            <div class="play-btn" onclick="this.innerHTML='▶ Playing...'"><div class="play-triangle"></div></div>
+            <div class="play-btn"><div class="play-triangle"></div></div>
             <p>Lesson 1.2 — The research–design loop</p>
             <small>Embed your Loom, Vimeo, or YouTube link here</small>
           </div>
         </div>
-        <div class="video-embed-note">💡 <strong>For instructors:</strong> Replace the video stage above with an iframe embed from Loom, Vimeo, or YouTube. Suggested: <code>&lt;iframe src="https://player.vimeo.com/video/YOUR_ID"&gt;</code></div>
-
+        <div class="video-embed-note">💡 <strong>For instructors:</strong> Replace the video stage above with an iframe embed from Loom, Vimeo, or YouTube.</div>
         <div class="tab-nav">
           <button class="tab-btn active" onclick="switchTab(this,'reading')">Reading</button>
           <button class="tab-btn" onclick="switchTab(this,'resources')">Resources</button>
           <button class="tab-btn" onclick="switchTab(this,'discuss')">Feedback</button>
         </div>
-
         <div id="tab-reading" class="tab-panel active">
           <div class="reading-content">
             <h3>The problem with phases</h3>
@@ -346,38 +311,19 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
             <ul>
               <li>You stop producing research reports and start producing decision memos</li>
               <li>You hold design critiques against research evidence, not visual preferences</li>
-              <li>You can answer the question "why did you make this decision?" with evidence, not intuition</li>
+              <li>You can answer "why did you make this decision?" with evidence, not intuition</li>
               <li>Stakeholders stop asking for more data and start trusting your judgment</li>
             </ul>
-            <p>In the next lesson, we'll go deep on how to frame any project — no matter how vague the brief — as a tractable decision problem before you pick up a research method or open Figma.</p>
           </div>
         </div>
-
         <div id="tab-resources" class="tab-panel">
           <div class="resource-list">
-            <a class="resource-card" href="#">
-              <div class="resource-icon pdf">📄</div>
-              <div class="resource-text"><div class="resource-title">The decision memo template</div><div class="resource-meta">PDF · 2 pages · Download and keep</div></div>
-              <div class="resource-arrow">↓</div>
-            </a>
-            <a class="resource-card" href="#">
-              <div class="resource-icon link">🔗</div>
-              <div class="resource-text"><div class="resource-title">IDEO: The field guide to human-centered design</div><div class="resource-meta">External reading · Chapter 2 recommended</div></div>
-              <div class="resource-arrow">↗</div>
-            </a>
-            <a class="resource-card" href="#">
-              <div class="resource-icon video">▶</div>
-              <div class="resource-text"><div class="resource-title">Bonus: Ace's 10-min office hours example</div><div class="resource-meta">Video · 10:22 · Real client example (anonymized)</div></div>
-              <div class="resource-arrow">▶</div>
-            </a>
-            <a class="resource-card" href="#">
-              <div class="resource-icon pdf">📝</div>
-              <div class="resource-text"><div class="resource-title">Reflection worksheet — Lesson 1.2</div><div class="resource-meta">PDF · Fill in, then share with Ace for feedback</div></div>
-              <div class="resource-arrow">↓</div>
-            </a>
+            <a class="resource-card" href="#"><div class="resource-icon pdf">📄</div><div class="resource-text"><div class="resource-title">The decision memo template</div><div class="resource-meta">PDF · 2 pages · Download and keep</div></div><div class="resource-arrow">↓</div></a>
+            <a class="resource-card" href="#"><div class="resource-icon link">🔗</div><div class="resource-text"><div class="resource-title">IDEO: The field guide to human-centered design</div><div class="resource-meta">External reading · Chapter 2 recommended</div></div><div class="resource-arrow">↗</div></a>
+            <a class="resource-card" href="#"><div class="resource-icon video">▶</div><div class="resource-text"><div class="resource-title">Bonus: Ace's 10-min office hours example</div><div class="resource-meta">Video · 10:22 · Real client example (anonymized)</div></div><div class="resource-arrow">▶</div></a>
+            <a class="resource-card" href="#"><div class="resource-icon pdf">📝</div><div class="resource-text"><div class="resource-title">Reflection worksheet — Lesson 1.2</div><div class="resource-meta">PDF · Fill in, then share with Ace for feedback</div></div><div class="resource-arrow">↓</div></a>
           </div>
         </div>
-
         <div id="tab-discuss" class="tab-panel">
           <div class="feedback-area">
             <div class="feedback-thread">
@@ -385,27 +331,17 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
                 <div class="msg-avatar instructor">AF</div>
                 <div class="msg-bubble">
                   <div class="msg-name">Ace Faranello</div>
-                  <div class="msg-text">Great reflection on 1.1 — you nailed the distinction between outputs and outcomes. For 1.2, I want you to try applying the loop model to a real project you've worked on. What would you have done differently? Post it here before our call.</div>
+                  <div class="msg-text">Great reflection on 1.1 — you nailed the distinction between outputs and outcomes. For 1.2, apply the loop model to a real project you've worked on. What would you have done differently?</div>
                   <div class="msg-time">Yesterday, 3:14 PM</div>
                 </div>
               </div>
-              <div class="msg">
-                <div class="msg-avatar student">JS</div>
-                <div class="msg-bubble">
-                  <div class="msg-name">Jamie S.</div>
-                  <div class="msg-text">Working on it! I'm thinking about a healthcare portal project where we ran a usability test but basically ignored the results because the PM was attached to the design. The loop model would have given me language to reopen that conversation.</div>
-                  <div class="msg-time">Today, 9:02 AM</div>
-                </div>
-              </div>
             </div>
-            <div class="feedback-composer">
-              <textarea class="composer-textarea" placeholder="Write your reflection, question, or response to Ace…" id="compose-input"></textarea>
-             <iframe data-tally-src="https://tally.so/embed/1A6XV1?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="714" frameborder="0" marginheight="0" marginwidth="0" title="Student Feedback"></iframe>
-<script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
+            <!-- TALLY FORM — LESSON FEEDBACK -->
+            <div class="tally-wrap">
+              <iframe data-tally-src="https://tally.so/embed/1A6XV1?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="400" frameborder="0" marginheight="0" marginwidth="0" title="Student Feedback"></iframe>
             </div>
           </div>
         </div>
-
         <div class="lesson-nav">
           <button class="nav-btn" onclick="openLesson(1,1)">← Lesson 1.1</button>
           <button class="mark-done" onclick="markDone()">✓ Mark complete</button>
@@ -423,12 +359,12 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
           <strong style="display:block;margin-bottom:2px;">New message from Ace</strong>
           Great reflection on 1.1 — ready for your 1.2 response when you are.
         </div>
-        <div class="feedback-thread" style="margin-bottom:1rem;">
+        <div class="feedback-thread" style="margin-bottom:1.5rem;">
           <div class="msg instructor">
             <div class="msg-avatar instructor">AF</div>
             <div class="msg-bubble">
               <div class="msg-name">Ace Faranello</div>
-              <div class="msg-text">Welcome to the course, Jamie. I read your intro and your background in healthcare IT is going to make Module 5 particularly valuable. Start with Lesson 1.1 and drop any questions here as you go.</div>
+              <div class="msg-text">Welcome to the course. Your background in healthcare IT is going to make Module 5 particularly valuable. Start with Lesson 1.1 and drop any questions here as you go.</div>
               <div class="msg-time">June 1, 10:00 AM</div>
             </div>
           </div>
@@ -436,7 +372,7 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
             <div class="msg-avatar student">JS</div>
             <div class="msg-bubble">
               <div class="msg-name">Jamie S.</div>
-              <div class="msg-text">Thanks Ace! Finished 1.1 — the deliverables vs. decisions framing is already shifting how I'm thinking about a current project. Quick question: how do you handle it when a stakeholder explicitly asks for a deliverable (e.g. "we need personas")?</div>
+              <div class="msg-text">Thanks Ace! Finished 1.1 — the deliverables vs. decisions framing is already shifting how I'm thinking about a current project.</div>
               <div class="msg-time">June 2, 2:45 PM</div>
             </div>
           </div>
@@ -444,17 +380,14 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
             <div class="msg-avatar instructor">AF</div>
             <div class="msg-bubble">
               <div class="msg-name">Ace Faranello</div>
-              <div class="msg-text">That's exactly the right tension to notice. The short answer: give them the persona, but reframe the conversation around what decision the persona is supposed to support. We cover this in Module 6 in depth. Flag it again when you get there — it'll hit differently.</div>
+              <div class="msg-text">That's exactly the right tension to notice. Give them the persona, but reframe the conversation around what decision it's supposed to support. We cover this in Module 6 — flag it again when you get there.</div>
               <div class="msg-time">June 3, 9:17 AM</div>
             </div>
           </div>
         </div>
-        <div class="feedback-composer">
-          <textarea class="composer-textarea" placeholder="Ask a question, share a reflection, or post a work sample…" id="compose-input-2"></textarea>
-          <div class="composer-footer">
-            <span class="composer-hint">Ace responds within 24 hours · All messages saved</span>
-            <button class="send-btn" onclick="sendMsg2()">Send →</button>
-          </div>
+        <!-- TALLY FORM — MAIN FEEDBACK PAGE -->
+        <div class="tally-wrap">
+          <iframe data-tally-src="https://tally.so/embed/1A6XV1?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="400" frameborder="0" marginheight="0" marginwidth="0" title="Student Feedback"></iframe>
         </div>
       </div>
 
@@ -465,7 +398,6 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
           <h1 class="lesson-title">Book a call with Ace</h1>
         </div>
         <p class="schedule-intro">Each call is 30 minutes. Use these for deep dives on a lesson, feedback on your capstone, or anything you'd rather talk through than write. <strong>Cohort students get 2 calls included</strong>; additional sessions available at $75.</p>
-
         <div style="font-size:13px;font-weight:600;color:var(--ink-3);margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.06em;">Available this week</div>
         <div class="time-slots" id="slots">
           <div class="slot" onclick="selectSlot(this)"><div class="slot-day">Mon Jun 2</div><div class="slot-time">10:00 AM</div><div class="slot-tag">Available</div></div>
@@ -476,8 +408,7 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
           <div class="slot booked"><div class="slot-day">Fri Jun 6</div><div class="slot-time">11:00 AM</div><div class="slot-tag">Booked</div></div>
         </div>
         <button class="book-btn" onclick="bookSlot()">Confirm booking</button>
-        <p class="schedule-note">You'll receive a Zoom / Google Meet link by email immediately after booking. Times shown in your local timezone.</p>
-
+        <p class="schedule-note">You'll receive a Zoom / Google Meet link by email immediately after booking.</p>
         <div class="booked-sessions" style="margin-top:2rem;">
           <div style="font-size:13px;font-weight:600;color:var(--ink-3);margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.06em;">Your upcoming sessions</div>
           <div class="booked-item">
@@ -492,56 +423,29 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--i
 </div>
 
 <script>
+var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}
+
 function showPage(name) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page-' + name).classList.add('active');
 }
-
 function openLesson(mod, lesson) {
   showPage('lesson');
   document.querySelectorAll('.lesson-item').forEach(l => l.classList.remove('active'));
   document.querySelectorAll('.lesson-name').forEach(l => l.classList.remove('active'));
 }
-
 function switchTab(btn, panel) {
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
   btn.classList.add('active');
   document.getElementById('tab-' + panel).classList.add('active');
 }
-
-function sendMsg() {
-  const input = document.getElementById('compose-input');
-  const val = input.value.trim();
-  if (!val) return;
-  const thread = document.querySelector('#tab-discuss .feedback-thread');
-  const div = document.createElement('div');
-  div.className = 'msg';
-  div.innerHTML = `<div class="msg-avatar student">JS</div><div class="msg-bubble"><div class="msg-name">Jamie S.</div><div class="msg-text">${val}</div><div class="msg-time">Just now</div></div>`;
-  thread.appendChild(div);
-  input.value = '';
-  input.style.minHeight = '80px';
-}
-
-function sendMsg2() {
-  const input = document.getElementById('compose-input-2');
-  const val = input.value.trim();
-  if (!val) return;
-  const thread = document.querySelector('#page-feedback .feedback-thread');
-  const div = document.createElement('div');
-  div.className = 'msg';
-  div.innerHTML = `<div class="msg-avatar student">JS</div><div class="msg-bubble"><div class="msg-name">Jamie S.</div><div class="msg-text">${val}</div><div class="msg-time">Just now</div></div>`;
-  thread.appendChild(div);
-  input.value = '';
-}
-
 let selected = null;
 function selectSlot(el) {
   document.querySelectorAll('.slot').forEach(s => s.classList.remove('selected'));
   el.classList.add('selected');
   selected = el;
 }
-
 function bookSlot() {
   if (!selected) { alert('Please select a time slot first.'); return; }
   const day = selected.querySelector('.slot-day').textContent;
@@ -558,7 +462,6 @@ function bookSlot() {
   alert('Booked! A Zoom link has been sent to your email.');
   selected = null;
 }
-
 function markDone() {
   document.getElementById('prog-fill').style.width = '21%';
   document.getElementById('pct').textContent = '21% complete';
