@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UX That Decides — Course Platform</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink: #1a1814;
+  --ink-2: #4a4640;
+  --ink-3: #8a8480;
+  --rule: #e8e4de;
+  --rule-2: #d4cfc8;
+  --bg: #faf8f4;
+  --surface: #fff;
+  --accent: #1e4d8c;
+  --accent-2: #2d6bb8;
+  --accent-light: #e8f0fa;
+  --amber: #b06820;
+  --amber-light: #fdf3e5;
+  --green: #2a6642;
+  --green-light: #e8f4ec;
+  --red: #9c2f2f;
+  --red-light: #faeaea;
+  --radius: 8px;
+  --radius-lg: 14px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
+  --shadow-md: 0 2px 8px rgba(0,0,0,0.08), 0 8px 24px rgba(0,0,0,0.06);
+}
+
+body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; overflow-x: hidden; }
+
+/* ── LAYOUT ─────────────────────────────── */
+.app { display: grid; grid-template-columns: 260px 1fr; grid-template-rows: 56px 1fr; min-height: 100vh; }
+.topbar { grid-column: 1/-1; background: var(--ink); display: flex; align-items: center; padding: 0 1.5rem; gap: 1.5rem; position: sticky; top: 0; z-index: 100; }
+.topbar-logo { font-family: 'DM Serif Display', serif; color: #fff; font-size: 1.1rem; letter-spacing: -0.01em; flex-shrink: 0; }
+.topbar-logo span { color: #7eb3f0; font-style: italic; }
+.topbar-progress { flex: 1; max-width: 320px; }
+.progress-label { font-size: 11px; color: rgba(255,255,255,0.5); margin-bottom: 5px; display: flex; justify-content: space-between; }
+.progress-bar { height: 3px; background: rgba(255,255,255,0.15); border-radius: 2px; overflow: hidden; }
+.progress-fill { height: 100%; background: #7eb3f0; border-radius: 2px; transition: width 0.4s; }
+.topbar-actions { margin-left: auto; display: flex; gap: 0.5rem; align-items: center; }
+.topbar-btn { background: rgba(255,255,255,0.1); border: none; color: #fff; padding: 6px 14px; border-radius: 6px; font-size: 12px; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background 0.15s; display: flex; align-items: center; gap: 5px; }
+.topbar-btn:hover { background: rgba(255,255,255,0.18); }
+.topbar-btn.primary { background: var(--accent-2); }
+.avatar { width: 30px; height: 30px; background: #3a7bd5; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: #fff; cursor: pointer; flex-shrink: 0; }
+
+/* ── SIDEBAR ─────────────────────────────── */
+.sidebar { background: var(--surface); border-right: 1px solid var(--rule); overflow-y: auto; position: sticky; top: 56px; height: calc(100vh - 56px); }
+.sidebar-section { padding: 1rem 0; border-bottom: 1px solid var(--rule); }
+.sidebar-section:last-child { border-bottom: none; }
+.sidebar-label { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); padding: 0 1.25rem; margin-bottom: 0.4rem; }
+.module-item { padding: 0.35rem 1.25rem; cursor: pointer; transition: background 0.12s; border-left: 3px solid transparent; }
+.module-item:hover { background: var(--bg); }
+.module-item.active { background: var(--accent-light); border-left-color: var(--accent); }
+.module-item.active .module-name { color: var(--accent); font-weight: 500; }
+.module-name { font-size: 13px; color: var(--ink-2); line-height: 1.4; }
+.module-meta { font-size: 11px; color: var(--ink-3); margin-top: 1px; }
+.module-item.completed .module-name::after { content: ' ✓'; color: var(--green); font-size: 11px; }
+
+.lesson-item { padding: 0.25rem 1.25rem 0.25rem 2rem; cursor: pointer; transition: background 0.12s; display: flex; align-items: center; gap: 8px; }
+.lesson-item:hover { background: var(--bg); }
+.lesson-item.active { background: var(--accent-light); }
+.lesson-item.active .lesson-name { color: var(--accent); font-weight: 500; }
+.lesson-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--rule-2); flex-shrink: 0; }
+.lesson-dot.done { background: var(--green); }
+.lesson-dot.active { background: var(--accent); }
+.lesson-name { font-size: 12px; color: var(--ink-3); line-height: 1.4; }
+.lesson-name.active { color: var(--accent); }
+
+/* ── MAIN CONTENT ────────────────────────── */
+.main { overflow-y: auto; }
+.content-area { max-width: 860px; margin: 0 auto; padding: 2rem 2.5rem 4rem; }
+
+/* tabs */
+.page { display: none; }
+.page.active { display: block; }
+
+/* ── VIDEO LESSON ────────────────────────── */
+.video-stage { background: var(--ink); border-radius: var(--radius-lg); overflow: hidden; position: relative; aspect-ratio: 16/9; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center; }
+.video-placeholder { text-align: center; color: rgba(255,255,255,0.6); }
+.video-placeholder .play-btn { width: 64px; height: 64px; background: rgba(255,255,255,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; cursor: pointer; transition: background 0.2s; border: 2px solid rgba(255,255,255,0.3); }
+.video-placeholder .play-btn:hover { background: rgba(255,255,255,0.25); }
+.play-triangle { width: 0; height: 0; border-style: solid; border-width: 12px 0 12px 22px; border-color: transparent transparent transparent #fff; margin-left: 4px; }
+.video-placeholder p { font-size: 14px; }
+.video-placeholder small { font-size: 12px; opacity: 0.5; }
+.video-embed-note { background: var(--accent-light); border: 1px solid rgba(30,77,140,0.2); border-radius: var(--radius); padding: 0.75rem 1rem; font-size: 13px; color: var(--accent); margin-bottom: 1.5rem; }
+
+.lesson-header { margin-bottom: 1.5rem; }
+.lesson-tag { font-size: 11px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 0.4rem; }
+.lesson-title { font-family: 'DM Serif Display', serif; font-size: 1.8rem; line-height: 1.2; color: var(--ink); margin-bottom: 0.5rem; }
+.lesson-byline { font-size: 13px; color: var(--ink-3); display: flex; gap: 1rem; }
+.lesson-byline span { display: flex; align-items: center; gap: 4px; }
+
+.tab-nav { display: flex; gap: 0; border-bottom: 1px solid var(--rule); margin-bottom: 1.5rem; }
+.tab-btn { font-family: 'DM Sans', sans-serif; background: none; border: none; padding: 0.6rem 1.1rem; font-size: 13px; color: var(--ink-3); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all 0.15s; }
+.tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 500; }
+.tab-btn:hover:not(.active) { color: var(--ink); }
+
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* reading content */
+.reading-content h3 { font-family: 'DM Serif Display', serif; font-size: 1.2rem; margin: 1.5rem 0 0.6rem; color: var(--ink); }
+.reading-content h3:first-child { margin-top: 0; }
+.reading-content p { font-size: 14px; line-height: 1.75; color: var(--ink-2); margin-bottom: 0.9rem; }
+.reading-content ul { padding-left: 1.2rem; margin-bottom: 0.9rem; }
+.reading-content li { font-size: 14px; line-height: 1.7; color: var(--ink-2); margin-bottom: 0.3rem; }
+.reading-content blockquote { border-left: 3px solid var(--accent-2); padding: 0.5rem 1rem; background: var(--accent-light); border-radius: 0 var(--radius) var(--radius) 0; margin: 1rem 0; font-style: italic; font-size: 14px; color: var(--ink-2); }
+.callout { background: var(--amber-light); border: 1px solid rgba(176,104,32,0.2); border-radius: var(--radius); padding: 1rem 1.1rem; margin: 1rem 0; font-size: 13px; color: var(--amber); }
+.callout strong { display: block; margin-bottom: 0.25rem; font-weight: 600; }
+
+/* resources */
+.resource-list { display: flex; flex-direction: column; gap: 0.75rem; }
+.resource-card { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); padding: 0.85rem 1rem; display: flex; align-items: center; gap: 0.75rem; cursor: pointer; transition: box-shadow 0.15s, border-color 0.15s; text-decoration: none; }
+.resource-card:hover { border-color: var(--accent-2); box-shadow: var(--shadow); }
+.resource-icon { width: 38px; height: 38px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+.resource-icon.pdf { background: var(--red-light); }
+.resource-icon.link { background: var(--accent-light); }
+.resource-icon.video { background: var(--amber-light); }
+.resource-text { flex: 1; }
+.resource-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 1px; }
+.resource-meta { font-size: 11px; color: var(--ink-3); }
+.resource-arrow { font-size: 16px; color: var(--ink-3); }
+
+/* ── FEEDBACK ────────────────────────────── */
+.feedback-area { display: flex; flex-direction: column; gap: 1rem; }
+.feedback-thread { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1rem; }
+.msg { display: flex; gap: 0.75rem; align-items: flex-start; }
+.msg.instructor { flex-direction: row-reverse; }
+.msg-avatar { width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; }
+.msg-avatar.student { background: #e0e8f5; color: var(--accent); }
+.msg-avatar.instructor { background: var(--ink); color: #fff; }
+.msg-bubble { max-width: 78%; background: var(--surface); border: 1px solid var(--rule); border-radius: 12px; padding: 0.65rem 0.9rem; }
+.msg.instructor .msg-bubble { background: var(--accent-light); border-color: rgba(30,77,140,0.2); }
+.msg-name { font-size: 11px; font-weight: 600; color: var(--ink-3); margin-bottom: 3px; }
+.msg.instructor .msg-name { text-align: right; color: var(--accent); }
+.msg-text { font-size: 13px; color: var(--ink-2); line-height: 1.55; }
+.msg-time { font-size: 10px; color: var(--ink-3); margin-top: 3px; }
+.msg.instructor .msg-time { text-align: right; }
+
+.feedback-composer { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius-lg); overflow: hidden; }
+.composer-textarea { width: 100%; border: none; outline: none; padding: 0.9rem 1rem; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--ink); resize: none; min-height: 80px; background: transparent; }
+.composer-footer { padding: 0.6rem 1rem; border-top: 1px solid var(--rule); display: flex; justify-content: space-between; align-items: center; }
+.composer-hint { font-size: 11px; color: var(--ink-3); }
+.send-btn { background: var(--accent); color: #fff; border: none; border-radius: 6px; padding: 6px 16px; font-size: 13px; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background 0.15s; }
+.send-btn:hover { background: var(--accent-2); }
+
+/* ── SCHEDULE ────────────────────────────── */
+.schedule-intro { font-size: 14px; color: var(--ink-2); margin-bottom: 1.25rem; line-height: 1.6; }
+.time-slots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-bottom: 1.5rem; }
+.slot { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); padding: 0.85rem; cursor: pointer; transition: all 0.15s; text-align: center; }
+.slot:hover { border-color: var(--accent-2); background: var(--accent-light); }
+.slot.selected { border-color: var(--accent); background: var(--accent-light); }
+.slot.booked { opacity: 0.4; cursor: not-allowed; pointer-events: none; background: var(--bg); }
+.slot-day { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-3); margin-bottom: 3px; }
+.slot-time { font-size: 14px; font-weight: 500; color: var(--ink); }
+.slot-tag { font-size: 10px; margin-top: 3px; color: var(--green); font-weight: 500; }
+.slot.booked .slot-tag { color: var(--ink-3); }
+.book-btn { background: var(--accent); color: #fff; border: none; border-radius: var(--radius); padding: 10px 24px; font-size: 14px; cursor: pointer; font-family: 'DM Sans', sans-serif; font-weight: 500; transition: background 0.15s; }
+.book-btn:hover { background: var(--accent-2); }
+.schedule-note { font-size: 12px; color: var(--ink-3); margin-top: 0.75rem; }
+.booked-sessions { margin-top: 1.5rem; }
+.booked-item { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); padding: 0.85rem 1rem; display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+.booked-info { font-size: 13px; font-weight: 500; }
+.booked-meta { font-size: 12px; color: var(--ink-3); margin-top: 2px; }
+.join-btn { background: var(--green); color: #fff; border: none; border-radius: 6px; padding: 5px 14px; font-size: 12px; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+
+/* ── DASHBOARD ───────────────────────────── */
+.dash-welcome { margin-bottom: 2rem; }
+.dash-welcome h1 { font-family: 'DM Serif Display', serif; font-size: 2rem; margin-bottom: 0.3rem; color: var(--ink); }
+.dash-welcome p { font-size: 14px; color: var(--ink-2); }
+.dash-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
+.stat-card { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: 1.25rem; }
+.stat-num { font-family: 'DM Serif Display', serif; font-size: 2.2rem; color: var(--ink); line-height: 1; margin-bottom: 0.25rem; }
+.stat-label { font-size: 12px; color: var(--ink-3); }
+.continue-card { background: var(--ink); border-radius: var(--radius-lg); padding: 1.5rem; color: #fff; cursor: pointer; grid-column: 1/-1; display: flex; justify-content: space-between; align-items: center; transition: opacity 0.15s; }
+.continue-card:hover { opacity: 0.92; }
+.continue-label { font-size: 11px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.4rem; }
+.continue-title { font-family: 'DM Serif Display', serif; font-size: 1.3rem; margin-bottom: 0.25rem; }
+.continue-meta { font-size: 13px; color: rgba(255,255,255,0.6); }
+.continue-arrow { font-size: 2rem; color: rgba(255,255,255,0.3); }
+.activity-list { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: 1.25rem; }
+.activity-head { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 1rem; }
+.activity-item { display: flex; gap: 0.75rem; align-items: flex-start; margin-bottom: 0.75rem; }
+.activity-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); margin-top: 5px; flex-shrink: 0; }
+.activity-text { font-size: 13px; color: var(--ink-2); line-height: 1.5; }
+.activity-time { font-size: 11px; color: var(--ink-3); }
+
+/* ── UTIL ────────────────────────────────── */
+.badge { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 4px; }
+.badge.new { background: var(--amber-light); color: var(--amber); }
+.badge.done { background: var(--green-light); color: var(--green); }
+.lesson-nav { display: flex; justify-content: space-between; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); }
+.nav-btn { background: none; border: 1px solid var(--rule-2); border-radius: var(--radius); padding: 8px 16px; font-size: 13px; cursor: pointer; color: var(--ink-2); font-family: 'DM Sans', sans-serif; transition: all 0.15s; }
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); }
+.nav-btn.next { background: var(--accent); color: #fff; border-color: var(--accent); }
+.nav-btn.next:hover { background: var(--accent-2); }
+.mark-done { background: var(--green); color: #fff; border: none; border-radius: var(--radius); padding: 8px 16px; font-size: 13px; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+
+/* notification dot */
+.notif { position: relative; }
+.notif::after { content: ''; position: absolute; top: -2px; right: -2px; width: 7px; height: 7px; background: #e05252; border-radius: 50%; border: 1.5px solid var(--ink); }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <div class="topbar-logo">UX That <span>Decides</span></div>
+    <div class="topbar-progress">
+      <div class="progress-label"><span>Course progress</span><span id="pct">18% complete</span></div>
+      <div class="progress-bar"><div class="progress-fill" id="prog-fill" style="width:18%"></div></div>
+    </div>
+    <div class="topbar-actions">
+      <button class="topbar-btn notif" onclick="showPage('feedback')">💬 Feedback</button>
+      <button class="topbar-btn primary" onclick="showPage('schedule')">📅 Book call</button>
+      <div class="avatar" onclick="showPage('dashboard')">JS</div>
+    </div>
+  </header>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-label">Navigation</div>
+      <div class="module-item" onclick="showPage('dashboard')"><div class="module-name">📊 My Dashboard</div></div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Module 1 — The mindset</div>
+      <div class="lesson-item completed" onclick="openLesson(1,1)"><div class="lesson-dot done"></div><div class="lesson-name">Why deliverables fail</div></div>
+      <div class="lesson-item active" onclick="openLesson(1,2)"><div class="lesson-dot active"></div><div class="lesson-name active">The research–design loop</div></div>
+      <div class="lesson-item" onclick="openLesson(1,3)"><div class="lesson-dot"></div><div class="lesson-name">Framing as a decision problem</div></div>
+      <div class="lesson-item" onclick="openLesson(1,4)"><div class="lesson-dot"></div><div class="lesson-name">Stakeholder alignment from day one</div></div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Module 2 — Research that drives action</div>
+      <div class="lesson-item" onclick="openLesson(2,1)"><div class="lesson-dot"></div><div class="lesson-name">Research Q vs. business Q</div></div>
+      <div class="lesson-item" onclick="openLesson(2,2)"><div class="lesson-dot"></div><div class="lesson-name">Choosing the right method</div></div>
+      <div class="lesson-item" onclick="openLesson(2,3)"><div class="lesson-dot"></div><div class="lesson-name">Interviewing for decisions</div></div>
+      <div class="lesson-item" onclick="openLesson(2,4)"><div class="lesson-dot"></div><div class="lesson-name">Survey design that doesn't lie</div></div>
+      <div class="lesson-item" onclick="openLesson(2,5)"><div class="lesson-dot"></div><div class="lesson-name">Synthesis: insight → recommendation</div></div>
+      <div class="lesson-item" onclick="openLesson(2,6)"><div class="lesson-dot"></div><div class="lesson-name">Research under constraints</div></div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Module 3 — Design with research</div>
+      <div class="lesson-item" onclick="openLesson(3,1)"><div class="lesson-dot"></div><div class="lesson-name">How research shapes design decisions</div></div>
+      <div class="lesson-item" onclick="openLesson(3,2)"><div class="lesson-dot"></div><div class="lesson-name">Grounded ideation</div></div>
+      <div class="lesson-item" onclick="openLesson(3,3)"><div class="lesson-dot"></div><div class="lesson-name">Sketching as thinking</div></div>
+      <div class="lesson-item" onclick="openLesson(3,4)"><div class="lesson-dot"></div><div class="lesson-name">IA from mental models</div></div>
+      <div class="lesson-item" onclick="openLesson(3,5)"><div class="lesson-dot"></div><div class="lesson-name">Design critique with research</div></div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Modules 4–8</div>
+      <div class="module-item"><div class="module-name">Module 4 — Prototyping</div><div class="module-meta">5 lessons · locked</div></div>
+      <div class="module-item"><div class="module-name">Module 5 — High-stakes domains</div><div class="module-meta">5 lessons · locked</div></div>
+      <div class="module-item"><div class="module-name">Module 6 — Communicating</div><div class="module-meta">4 lessons · locked</div></div>
+      <div class="module-item"><div class="module-name">Module 7 — Portfolio</div><div class="module-meta">4 lessons · locked</div></div>
+      <div class="module-item"><div class="module-name">Module 8 — Capstone</div><div class="module-meta">4 lessons · locked</div></div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <div class="content-area">
+
+      <!-- DASHBOARD PAGE -->
+      <div id="page-dashboard" class="page active">
+        <div class="dash-welcome">
+          <h1>Welcome back, Jamie.</h1>
+          <p>You're making real progress. Keep the momentum going.</p>
+        </div>
+        <div class="dash-grid">
+          <div class="stat-card"><div class="stat-num">1</div><div class="stat-label">Lessons completed</div></div>
+          <div class="stat-card"><div class="stat-num">37</div><div class="stat-label">Lessons remaining</div></div>
+          <div class="continue-card" onclick="showPage('lesson')">
+            <div>
+              <div class="continue-label">Continue where you left off</div>
+              <div class="continue-title">1.2 — The research–design loop</div>
+              <div class="continue-meta">Module 1 · ~12 min</div>
+            </div>
+            <div class="continue-arrow">→</div>
+          </div>
+        </div>
+        <div class="activity-list">
+          <div class="activity-head">Recent activity</div>
+          <div class="activity-item">
+            <div class="activity-dot"></div>
+            <div><div class="activity-text">Completed Lesson 1.1 — Why deliverables fail</div><div class="activity-time">2 days ago</div></div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-dot" style="background:var(--amber)"></div>
+            <div><div class="activity-text">New feedback from Ace on your reflection exercise</div><div class="activity-time">1 day ago</div></div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-dot" style="background:var(--green)"></div>
+            <div><div class="activity-text">Office hours call confirmed — Fri June 6, 11:00 AM</div><div class="activity-time">Today</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LESSON PAGE -->
+      <div id="page-lesson" class="page">
+        <div class="lesson-header">
+          <div class="lesson-tag">Module 1 · Lesson 2</div>
+          <h1 class="lesson-title">The research–design loop</h1>
+          <div class="lesson-byline">
+            <span>⏱ ~12 min</span>
+            <span>📝 Reading + video</span>
+            <span>Ace Faranello</span>
+          </div>
+        </div>
+
+        <div class="video-stage">
+          <div class="video-placeholder">
+            <div class="play-btn" onclick="this.innerHTML='▶ Playing...'"><div class="play-triangle"></div></div>
+            <p>Lesson 1.2 — The research–design loop</p>
+            <small>Embed your Loom, Vimeo, or YouTube link here</small>
+          </div>
+        </div>
+        <div class="video-embed-note">💡 <strong>For instructors:</strong> Replace the video stage above with an iframe embed from Loom, Vimeo, or YouTube. Suggested: <code>&lt;iframe src="https://player.vimeo.com/video/YOUR_ID"&gt;</code></div>
+
+        <div class="tab-nav">
+          <button class="tab-btn active" onclick="switchTab(this,'reading')">Reading</button>
+          <button class="tab-btn" onclick="switchTab(this,'resources')">Resources</button>
+          <button class="tab-btn" onclick="switchTab(this,'discuss')">Feedback</button>
+        </div>
+
+        <div id="tab-reading" class="tab-panel active">
+          <div class="reading-content">
+            <h3>The problem with phases</h3>
+            <p>Most UX curricula — and most UX teams — treat research and design as sequential phases. First you research, then you design, then you test. The deliverable at each stage signals completion: the research report, the wireframes, the test summary.</p>
+            <p>This model has a fatal flaw: by the time design starts, research is considered done. And by the time testing starts, designers have become attached to their solutions. Evidence from testing gets filtered through confirmation bias rather than used as genuine decision input.</p>
+            <blockquote>"A deliverable marks the end of thinking. A decision marks the beginning of accountability."</blockquote>
+            <h3>The loop model</h3>
+            <p>The research–design loop replaces linear phases with a continuous cycle where every design decision is traceable to a research question, and every research question is triggered by a design uncertainty. There is no "research is done" — there is only "we have enough confidence to decide."</p>
+            <div class="callout"><strong>Key principle</strong>The loop is not a process to follow — it's a mindset to cultivate. You will use it even in 30-minute sprint sessions.</div>
+            <h3>How this changes your practice</h3>
+            <ul>
+              <li>You stop producing research reports and start producing decision memos</li>
+              <li>You hold design critiques against research evidence, not visual preferences</li>
+              <li>You can answer the question "why did you make this decision?" with evidence, not intuition</li>
+              <li>Stakeholders stop asking for more data and start trusting your judgment</li>
+            </ul>
+            <p>In the next lesson, we'll go deep on how to frame any project — no matter how vague the brief — as a tractable decision problem before you pick up a research method or open Figma.</p>
+          </div>
+        </div>
+
+        <div id="tab-resources" class="tab-panel">
+          <div class="resource-list">
+            <a class="resource-card" href="#">
+              <div class="resource-icon pdf">📄</div>
+              <div class="resource-text"><div class="resource-title">The decision memo template</div><div class="resource-meta">PDF · 2 pages · Download and keep</div></div>
+              <div class="resource-arrow">↓</div>
+            </a>
+            <a class="resource-card" href="#">
+              <div class="resource-icon link">🔗</div>
+              <div class="resource-text"><div class="resource-title">IDEO: The field guide to human-centered design</div><div class="resource-meta">External reading · Chapter 2 recommended</div></div>
+              <div class="resource-arrow">↗</div>
+            </a>
+            <a class="resource-card" href="#">
+              <div class="resource-icon video">▶</div>
+              <div class="resource-text"><div class="resource-title">Bonus: Ace's 10-min office hours example</div><div class="resource-meta">Video · 10:22 · Real client example (anonymized)</div></div>
+              <div class="resource-arrow">▶</div>
+            </a>
+            <a class="resource-card" href="#">
+              <div class="resource-icon pdf">📝</div>
+              <div class="resource-text"><div class="resource-title">Reflection worksheet — Lesson 1.2</div><div class="resource-meta">PDF · Fill in, then share with Ace for feedback</div></div>
+              <div class="resource-arrow">↓</div>
+            </a>
+          </div>
+        </div>
+
+        <div id="tab-discuss" class="tab-panel">
+          <div class="feedback-area">
+            <div class="feedback-thread">
+              <div class="msg instructor">
+                <div class="msg-avatar instructor">AF</div>
+                <div class="msg-bubble">
+                  <div class="msg-name">Ace Faranello</div>
+                  <div class="msg-text">Great reflection on 1.1 — you nailed the distinction between outputs and outcomes. For 1.2, I want you to try applying the loop model to a real project you've worked on. What would you have done differently? Post it here before our call.</div>
+                  <div class="msg-time">Yesterday, 3:14 PM</div>
+                </div>
+              </div>
+              <div class="msg">
+                <div class="msg-avatar student">JS</div>
+                <div class="msg-bubble">
+                  <div class="msg-name">Jamie S.</div>
+                  <div class="msg-text">Working on it! I'm thinking about a healthcare portal project where we ran a usability test but basically ignored the results because the PM was attached to the design. The loop model would have given me language to reopen that conversation.</div>
+                  <div class="msg-time">Today, 9:02 AM</div>
+                </div>
+              </div>
+            </div>
+            <div class="feedback-composer">
+              <textarea class="composer-textarea" placeholder="Write your reflection, question, or response to Ace…" id="compose-input"></textarea>
+              <div class="composer-footer">
+                <span class="composer-hint">Ace typically responds within 24 hours</span>
+                <button class="send-btn" onclick="sendMsg()">Send →</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lesson-nav">
+          <button class="nav-btn" onclick="openLesson(1,1)">← Lesson 1.1</button>
+          <button class="mark-done" onclick="markDone()">✓ Mark complete</button>
+          <button class="nav-btn next" onclick="openLesson(1,3)">Lesson 1.3 →</button>
+        </div>
+      </div>
+
+      <!-- FEEDBACK PAGE -->
+      <div id="page-feedback" class="page">
+        <div class="lesson-header">
+          <div class="lesson-tag">Instructor feedback</div>
+          <h1 class="lesson-title">Your feedback thread</h1>
+        </div>
+        <div style="background:var(--amber-light);border:1px solid rgba(176,104,32,0.2);border-radius:var(--radius);padding:0.85rem 1rem;font-size:13px;color:var(--amber);margin-bottom:1.5rem;">
+          <strong style="display:block;margin-bottom:2px;">New message from Ace</strong>
+          Great reflection on 1.1 — ready for your 1.2 response when you are.
+        </div>
+        <div class="feedback-thread" style="margin-bottom:1rem;">
+          <div class="msg instructor">
+            <div class="msg-avatar instructor">AF</div>
+            <div class="msg-bubble">
+              <div class="msg-name">Ace Faranello</div>
+              <div class="msg-text">Welcome to the course, Jamie. I read your intro and your background in healthcare IT is going to make Module 5 particularly valuable. Start with Lesson 1.1 and drop any questions here as you go.</div>
+              <div class="msg-time">June 1, 10:00 AM</div>
+            </div>
+          </div>
+          <div class="msg">
+            <div class="msg-avatar student">JS</div>
+            <div class="msg-bubble">
+              <div class="msg-name">Jamie S.</div>
+              <div class="msg-text">Thanks Ace! Finished 1.1 — the deliverables vs. decisions framing is already shifting how I'm thinking about a current project. Quick question: how do you handle it when a stakeholder explicitly asks for a deliverable (e.g. "we need personas")?</div>
+              <div class="msg-time">June 2, 2:45 PM</div>
+            </div>
+          </div>
+          <div class="msg instructor">
+            <div class="msg-avatar instructor">AF</div>
+            <div class="msg-bubble">
+              <div class="msg-name">Ace Faranello</div>
+              <div class="msg-text">That's exactly the right tension to notice. The short answer: give them the persona, but reframe the conversation around what decision the persona is supposed to support. We cover this in Module 6 in depth. Flag it again when you get there — it'll hit differently.</div>
+              <div class="msg-time">June 3, 9:17 AM</div>
+            </div>
+          </div>
+        </div>
+        <div class="feedback-composer">
+          <textarea class="composer-textarea" placeholder="Ask a question, share a reflection, or post a work sample…" id="compose-input-2"></textarea>
+          <div class="composer-footer">
+            <span class="composer-hint">Ace responds within 24 hours · All messages saved</span>
+            <button class="send-btn" onclick="sendMsg2()">Send →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- SCHEDULE PAGE -->
+      <div id="page-schedule" class="page">
+        <div class="lesson-header">
+          <div class="lesson-tag">Office hours & video calls</div>
+          <h1 class="lesson-title">Book a call with Ace</h1>
+        </div>
+        <p class="schedule-intro">Each call is 30 minutes. Use these for deep dives on a lesson, feedback on your capstone, or anything you'd rather talk through than write. <strong>Cohort students get 2 calls included</strong>; additional sessions available at $75.</p>
+
+        <div style="font-size:13px;font-weight:600;color:var(--ink-3);margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.06em;">Available this week</div>
+        <div class="time-slots" id="slots">
+          <div class="slot" onclick="selectSlot(this)"><div class="slot-day">Mon Jun 2</div><div class="slot-time">10:00 AM</div><div class="slot-tag">Available</div></div>
+          <div class="slot" onclick="selectSlot(this)"><div class="slot-day">Mon Jun 2</div><div class="slot-time">11:00 AM</div><div class="slot-tag">Available</div></div>
+          <div class="slot booked"><div class="slot-day">Tue Jun 3</div><div class="slot-time">9:00 AM</div><div class="slot-tag">Booked</div></div>
+          <div class="slot" onclick="selectSlot(this)"><div class="slot-day">Wed Jun 4</div><div class="slot-time">2:00 PM</div><div class="slot-tag">Available</div></div>
+          <div class="slot" onclick="selectSlot(this)"><div class="slot-day">Thu Jun 5</div><div class="slot-time">10:00 AM</div><div class="slot-tag">Available</div></div>
+          <div class="slot booked"><div class="slot-day">Fri Jun 6</div><div class="slot-time">11:00 AM</div><div class="slot-tag">Booked</div></div>
+        </div>
+        <button class="book-btn" onclick="bookSlot()">Confirm booking</button>
+        <p class="schedule-note">You'll receive a Zoom / Google Meet link by email immediately after booking. Times shown in your local timezone.</p>
+
+        <div class="booked-sessions" style="margin-top:2rem;">
+          <div style="font-size:13px;font-weight:600;color:var(--ink-3);margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.06em;">Your upcoming sessions</div>
+          <div class="booked-item">
+            <div><div class="booked-info">Fri Jun 6 · 11:00 AM</div><div class="booked-meta">30 min · Module 1 check-in + Q&A</div></div>
+            <button class="join-btn">Join Zoom</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script>
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+}
+
+function openLesson(mod, lesson) {
+  showPage('lesson');
+  document.querySelectorAll('.lesson-item').forEach(l => l.classList.remove('active'));
+  document.querySelectorAll('.lesson-name').forEach(l => l.classList.remove('active'));
+}
+
+function switchTab(btn, panel) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-' + panel).classList.add('active');
+}
+
+function sendMsg() {
+  const input = document.getElementById('compose-input');
+  const val = input.value.trim();
+  if (!val) return;
+  const thread = document.querySelector('#tab-discuss .feedback-thread');
+  const div = document.createElement('div');
+  div.className = 'msg';
+  div.innerHTML = `<div class="msg-avatar student">JS</div><div class="msg-bubble"><div class="msg-name">Jamie S.</div><div class="msg-text">${val}</div><div class="msg-time">Just now</div></div>`;
+  thread.appendChild(div);
+  input.value = '';
+  input.style.minHeight = '80px';
+}
+
+function sendMsg2() {
+  const input = document.getElementById('compose-input-2');
+  const val = input.value.trim();
+  if (!val) return;
+  const thread = document.querySelector('#page-feedback .feedback-thread');
+  const div = document.createElement('div');
+  div.className = 'msg';
+  div.innerHTML = `<div class="msg-avatar student">JS</div><div class="msg-bubble"><div class="msg-name">Jamie S.</div><div class="msg-text">${val}</div><div class="msg-time">Just now</div></div>`;
+  thread.appendChild(div);
+  input.value = '';
+}
+
+let selected = null;
+function selectSlot(el) {
+  document.querySelectorAll('.slot').forEach(s => s.classList.remove('selected'));
+  el.classList.add('selected');
+  selected = el;
+}
+
+function bookSlot() {
+  if (!selected) { alert('Please select a time slot first.'); return; }
+  const day = selected.querySelector('.slot-day').textContent;
+  const time = selected.querySelector('.slot-time').textContent;
+  selected.classList.add('booked');
+  selected.classList.remove('selected');
+  selected.querySelector('.slot-tag').textContent = 'Booked';
+  selected.onclick = null;
+  const list = document.querySelector('.booked-sessions');
+  const item = document.createElement('div');
+  item.className = 'booked-item';
+  item.innerHTML = `<div><div class="booked-info">${day} · ${time}</div><div class="booked-meta">30 min · Zoom link sent to your email</div></div><button class="join-btn">Join Zoom</button>`;
+  list.appendChild(item);
+  alert('Booked! A Zoom link has been sent to your email.');
+  selected = null;
+}
+
+function markDone() {
+  document.getElementById('prog-fill').style.width = '21%';
+  document.getElementById('pct').textContent = '21% complete';
+  alert('Lesson marked complete! Moving to Lesson 1.3.');
+  openLesson(1, 3);
+}
+</script>
+</body>
+</html>
