@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feedback | UX That Decides</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app">
+
+  <header class="topbar">
+    <a class="topbar-logo" href="index.html">UX That <span>Decides</span></a>
+    <div class="topbar-progress">
+      <div class="progress-label"><span>Course progress</span><span>3% complete</span></div>
+      <div class="progress-bar"><div class="progress-fill" style="width:3%"></div></div>
+    </div>
+    <div class="topbar-actions">
+      <a class="topbar-btn notif" href="feedback.html">💬 Feedback</a>
+      <a class="topbar-btn primary" href="schedule.html">📅 Book call</a>
+      <a class="avatar" href="index.html">JS</a>
+    </div>
+  </header>
+
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-label">Navigation</div>
+      <a class="module-item" href="index.html"><div class="module-name">📊 My Dashboard</div></a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Module 1 — The mindset</div>
+      <a class="lesson-item" href="lesson-1-1.html"><div class="lesson-dot done"></div><div class="lesson-name">Why deliverables fail</div></a>
+      <a class="lesson-item" href="lesson-1-2.html"><div class="lesson-dot"></div><div class="lesson-name">The research–design loop</div></a>
+      <a class="lesson-item" href="lesson-1-3.html"><div class="lesson-dot"></div><div class="lesson-name">Framing as a decision problem</div></a>
+      <a class="lesson-item" href="lesson-1-4.html"><div class="lesson-dot"></div><div class="lesson-name">Stakeholder alignment from day one</div></a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Modules 2–8</div>
+      <div class="module-item"><div class="module-name">Module 2 — Research</div><div class="module-meta">6 lessons · coming soon</div></div>
+      <div class="module-item"><div class="module-name">Module 3 — Design</div><div class="module-meta">5 lessons · coming soon</div></div>
+      <div class="module-item"><div class="module-name">Modules 4–8</div><div class="module-meta">Coming soon</div></div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="content-area">
+      <div class="lesson-header">
+        <div class="lesson-tag">Instructor feedback</div>
+        <h1 class="lesson-title">Your feedback thread</h1>
+      </div>
+      <div style="background:var(--amber-light);border:1px solid rgba(176,104,32,0.2);border-radius:var(--radius);padding:0.85rem 1rem;font-size:13px;color:var(--amber);margin-bottom:1.5rem;">
+        <strong style="display:block;margin-bottom:2px;">New message from Ace</strong>
+        Welcome — drop your first reflection here after Lesson 1.1.
+      </div>
+      <!-- TALLY FORM -->
+      <div class="tally-wrap">
+        <iframe data-tally-src="https://tally.so/embed/1A6XV1?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0" title="Student Feedback"></iframe>
+      </div>
+    </div>
+  </main>
+
+</div>
+<script>
+var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}
+</script>
+</body>
+</html>

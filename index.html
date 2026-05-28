@@ -3,465 +3,101 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UX That Decides — Course Platform</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-  --ink: #1a1814;
-  --ink-2: #4a4640;
-  --ink-3: #8a8480;
-  --rule: #e8e4de;
-  --rule-2: #d4cfc8;
-  --bg: #faf8f4;
-  --surface: #fff;
-  --accent: #1e4d8c;
-  --accent-2: #2d6bb8;
-  --accent-light: #e8f0fa;
-  --amber: #b06820;
-  --amber-light: #fdf3e5;
-  --green: #2a6642;
-  --green-light: #e8f4ec;
-  --red: #9c2f2f;
-  --red-light: #faeaea;
-  --radius: 8px;
-  --radius-lg: 14px;
-  --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
-  --shadow-md: 0 2px 8px rgba(0,0,0,0.08), 0 8px 24px rgba(0,0,0,0.06);
-}
-
-body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; overflow-x: hidden; }
-
-.app { display: grid; grid-template-columns: 260px 1fr; grid-template-rows: 56px 1fr; min-height: 100vh; }
-.topbar { grid-column: 1/-1; background: var(--ink); display: flex; align-items: center; padding: 0 1.5rem; gap: 1.5rem; position: sticky; top: 0; z-index: 100; }
-.topbar-logo { font-family: 'DM Serif Display', serif; color: #fff; font-size: 1.1rem; letter-spacing: -0.01em; flex-shrink: 0; }
-.topbar-logo span { color: #7eb3f0; font-style: italic; }
-.topbar-progress { flex: 1; max-width: 320px; }
-.progress-label { font-size: 11px; color: rgba(255,255,255,0.5); margin-bottom: 5px; display: flex; justify-content: space-between; }
-.progress-bar { height: 3px; background: rgba(255,255,255,0.15); border-radius: 2px; overflow: hidden; }
-.progress-fill { height: 100%; background: #7eb3f0; border-radius: 2px; transition: width 0.4s; }
-.topbar-actions { margin-left: auto; display: flex; gap: 0.5rem; align-items: center; }
-.topbar-btn { background: rgba(255,255,255,0.1); border: none; color: #fff; padding: 6px 14px; border-radius: 6px; font-size: 12px; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background 0.15s; display: flex; align-items: center; gap: 5px; }
-.topbar-btn:hover { background: rgba(255,255,255,0.18); }
-.topbar-btn.primary { background: var(--accent-2); }
-.avatar { width: 30px; height: 30px; background: #3a7bd5; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: #fff; cursor: pointer; flex-shrink: 0; }
-
-.sidebar { background: var(--surface); border-right: 1px solid var(--rule); overflow-y: auto; position: sticky; top: 56px; height: calc(100vh - 56px); }
-.sidebar-section { padding: 1rem 0; border-bottom: 1px solid var(--rule); }
-.sidebar-section:last-child { border-bottom: none; }
-.sidebar-label { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); padding: 0 1.25rem; margin-bottom: 0.4rem; }
-.module-item { padding: 0.35rem 1.25rem; cursor: pointer; transition: background 0.12s; border-left: 3px solid transparent; }
-.module-item:hover { background: var(--bg); }
-.module-item.active { background: var(--accent-light); border-left-color: var(--accent); }
-.module-item.active .module-name { color: var(--accent); font-weight: 500; }
-.module-name { font-size: 13px; color: var(--ink-2); line-height: 1.4; }
-.module-meta { font-size: 11px; color: var(--ink-3); margin-top: 1px; }
-.lesson-item { padding: 0.25rem 1.25rem 0.25rem 2rem; cursor: pointer; transition: background 0.12s; display: flex; align-items: center; gap: 8px; }
-.lesson-item:hover { background: var(--bg); }
-.lesson-item.active { background: var(--accent-light); }
-.lesson-item.active .lesson-name { color: var(--accent); font-weight: 500; }
-.lesson-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--rule-2); flex-shrink: 0; }
-.lesson-dot.done { background: var(--green); }
-.lesson-dot.active { background: var(--accent); }
-.lesson-name { font-size: 12px; color: var(--ink-3); line-height: 1.4; }
-.lesson-name.active { color: var(--accent); }
-
-.main { overflow-y: auto; }
-.content-area { max-width: 860px; margin: 0 auto; padding: 2rem 2.5rem 4rem; }
-.page { display: none; }
-.page.active { display: block; }
-
-.video-stage { background: var(--ink); border-radius: var(--radius-lg); overflow: hidden; position: relative; aspect-ratio: 16/9; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center; }
-.video-placeholder { text-align: center; color: rgba(255,255,255,0.6); }
-.video-placeholder .play-btn { width: 64px; height: 64px; background: rgba(255,255,255,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; cursor: pointer; transition: background 0.2s; border: 2px solid rgba(255,255,255,0.3); }
-.video-placeholder .play-btn:hover { background: rgba(255,255,255,0.25); }
-.play-triangle { width: 0; height: 0; border-style: solid; border-width: 12px 0 12px 22px; border-color: transparent transparent transparent #fff; margin-left: 4px; }
-.video-placeholder p { font-size: 14px; }
-.video-placeholder small { font-size: 12px; opacity: 0.5; }
-.video-embed-note { background: var(--accent-light); border: 1px solid rgba(30,77,140,0.2); border-radius: var(--radius); padding: 0.75rem 1rem; font-size: 13px; color: var(--accent); margin-bottom: 1.5rem; }
-
-.lesson-header { margin-bottom: 1.5rem; }
-.lesson-tag { font-size: 11px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 0.4rem; }
-.lesson-title { font-family: 'DM Serif Display', serif; font-size: 1.8rem; line-height: 1.2; color: var(--ink); margin-bottom: 0.5rem; }
-.lesson-byline { font-size: 13px; color: var(--ink-3); display: flex; gap: 1rem; }
-.lesson-byline span { display: flex; align-items: center; gap: 4px; }
-
-.tab-nav { display: flex; gap: 0; border-bottom: 1px solid var(--rule); margin-bottom: 1.5rem; }
-.tab-btn { font-family: 'DM Sans', sans-serif; background: none; border: none; padding: 0.6rem 1.1rem; font-size: 13px; color: var(--ink-3); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all 0.15s; }
-.tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 500; }
-.tab-btn:hover:not(.active) { color: var(--ink); }
-.tab-panel { display: none; }
-.tab-panel.active { display: block; }
-
-.reading-content h3 { font-family: 'DM Serif Display', serif; font-size: 1.2rem; margin: 1.5rem 0 0.6rem; color: var(--ink); }
-.reading-content h3:first-child { margin-top: 0; }
-.reading-content p { font-size: 14px; line-height: 1.75; color: var(--ink-2); margin-bottom: 0.9rem; }
-.reading-content ul { padding-left: 1.2rem; margin-bottom: 0.9rem; }
-.reading-content li { font-size: 14px; line-height: 1.7; color: var(--ink-2); margin-bottom: 0.3rem; }
-.reading-content blockquote { border-left: 3px solid var(--accent-2); padding: 0.5rem 1rem; background: var(--accent-light); border-radius: 0 var(--radius) var(--radius) 0; margin: 1rem 0; font-style: italic; font-size: 14px; color: var(--ink-2); }
-.callout { background: var(--amber-light); border: 1px solid rgba(176,104,32,0.2); border-radius: var(--radius); padding: 1rem 1.1rem; margin: 1rem 0; font-size: 13px; color: var(--amber); }
-.callout strong { display: block; margin-bottom: 0.25rem; font-weight: 600; }
-
-.resource-list { display: flex; flex-direction: column; gap: 0.75rem; }
-.resource-card { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); padding: 0.85rem 1rem; display: flex; align-items: center; gap: 0.75rem; cursor: pointer; transition: box-shadow 0.15s, border-color 0.15s; text-decoration: none; }
-.resource-card:hover { border-color: var(--accent-2); box-shadow: var(--shadow); }
-.resource-icon { width: 38px; height: 38px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
-.resource-icon.pdf { background: var(--red-light); }
-.resource-icon.link { background: var(--accent-light); }
-.resource-icon.video { background: var(--amber-light); }
-.resource-text { flex: 1; }
-.resource-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 1px; }
-.resource-meta { font-size: 11px; color: var(--ink-3); }
-.resource-arrow { font-size: 16px; color: var(--ink-3); }
-
-.feedback-area { display: flex; flex-direction: column; gap: 1rem; }
-.feedback-thread { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1rem; }
-.msg { display: flex; gap: 0.75rem; align-items: flex-start; }
-.msg.instructor { flex-direction: row-reverse; }
-.msg-avatar { width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; }
-.msg-avatar.student { background: #e0e8f5; color: var(--accent); }
-.msg-avatar.instructor { background: var(--ink); color: #fff; }
-.msg-bubble { max-width: 78%; background: var(--surface); border: 1px solid var(--rule); border-radius: 12px; padding: 0.65rem 0.9rem; }
-.msg.instructor .msg-bubble { background: var(--accent-light); border-color: rgba(30,77,140,0.2); }
-.msg-name { font-size: 11px; font-weight: 600; color: var(--ink-3); margin-bottom: 3px; }
-.msg.instructor .msg-name { text-align: right; color: var(--accent); }
-.msg-text { font-size: 13px; color: var(--ink-2); line-height: 1.55; }
-.msg-time { font-size: 10px; color: var(--ink-3); margin-top: 3px; }
-.msg.instructor .msg-time { text-align: right; }
-
-.schedule-intro { font-size: 14px; color: var(--ink-2); margin-bottom: 1.25rem; line-height: 1.6; }
-.time-slots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-bottom: 1.5rem; }
-.slot { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); padding: 0.85rem; cursor: pointer; transition: all 0.15s; text-align: center; }
-.slot:hover { border-color: var(--accent-2); background: var(--accent-light); }
-.slot.selected { border-color: var(--accent); background: var(--accent-light); }
-.slot.booked { opacity: 0.4; cursor: not-allowed; pointer-events: none; background: var(--bg); }
-.slot-day { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-3); margin-bottom: 3px; }
-.slot-time { font-size: 14px; font-weight: 500; color: var(--ink); }
-.slot-tag { font-size: 10px; margin-top: 3px; color: var(--green); font-weight: 500; }
-.slot.booked .slot-tag { color: var(--ink-3); }
-.book-btn { background: var(--accent); color: #fff; border: none; border-radius: var(--radius); padding: 10px 24px; font-size: 14px; cursor: pointer; font-family: 'DM Sans', sans-serif; font-weight: 500; transition: background 0.15s; }
-.book-btn:hover { background: var(--accent-2); }
-.schedule-note { font-size: 12px; color: var(--ink-3); margin-top: 0.75rem; }
-.booked-sessions { margin-top: 1.5rem; }
-.booked-item { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); padding: 0.85rem 1rem; display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
-.booked-info { font-size: 13px; font-weight: 500; }
-.booked-meta { font-size: 12px; color: var(--ink-3); margin-top: 2px; }
-.join-btn { background: var(--green); color: #fff; border: none; border-radius: 6px; padding: 5px 14px; font-size: 12px; cursor: pointer; font-family: 'DM Sans', sans-serif; }
-
-.dash-welcome { margin-bottom: 2rem; }
-.dash-welcome h1 { font-family: 'DM Serif Display', serif; font-size: 2rem; margin-bottom: 0.3rem; color: var(--ink); }
-.dash-welcome p { font-size: 14px; color: var(--ink-2); }
-.dash-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
-.stat-card { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: 1.25rem; }
-.stat-num { font-family: 'DM Serif Display', serif; font-size: 2.2rem; color: var(--ink); line-height: 1; margin-bottom: 0.25rem; }
-.stat-label { font-size: 12px; color: var(--ink-3); }
-.continue-card { background: var(--ink); border-radius: var(--radius-lg); padding: 1.5rem; color: #fff; cursor: pointer; grid-column: 1/-1; display: flex; justify-content: space-between; align-items: center; transition: opacity 0.15s; }
-.continue-card:hover { opacity: 0.92; }
-.continue-label { font-size: 11px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.4rem; }
-.continue-title { font-family: 'DM Serif Display', serif; font-size: 1.3rem; margin-bottom: 0.25rem; }
-.continue-meta { font-size: 13px; color: rgba(255,255,255,0.6); }
-.continue-arrow { font-size: 2rem; color: rgba(255,255,255,0.3); }
-.activity-list { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: 1.25rem; }
-.activity-head { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 1rem; }
-.activity-item { display: flex; gap: 0.75rem; align-items: flex-start; margin-bottom: 0.75rem; }
-.activity-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); margin-top: 5px; flex-shrink: 0; }
-.activity-text { font-size: 13px; color: var(--ink-2); line-height: 1.5; }
-.activity-time { font-size: 11px; color: var(--ink-3); }
-
-.lesson-nav { display: flex; justify-content: space-between; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); }
-.nav-btn { background: none; border: 1px solid var(--rule-2); border-radius: var(--radius); padding: 8px 16px; font-size: 13px; cursor: pointer; color: var(--ink-2); font-family: 'DM Sans', sans-serif; transition: all 0.15s; }
-.nav-btn:hover { border-color: var(--accent); color: var(--accent); }
-.nav-btn.next { background: var(--accent); color: #fff; border-color: var(--accent); }
-.nav-btn.next:hover { background: var(--accent-2); }
-.mark-done { background: var(--green); color: #fff; border: none; border-radius: var(--radius); padding: 8px 16px; font-size: 13px; cursor: pointer; font-family: 'DM Sans', sans-serif; }
-.notif { position: relative; }
-.notif::after { content: ''; position: absolute; top: -2px; right: -2px; width: 7px; height: 7px; background: #e05252; border-radius: 50%; border: 1.5px solid var(--ink); }
-
-.tally-wrap { border: 1px solid var(--rule); border-radius: var(--radius-lg); overflow: hidden; margin-top: 0.5rem; }
-</style>
+<title>UX That Decides — Dashboard</title>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div class="app">
 
   <header class="topbar">
-    <div class="topbar-logo">UX That <span>Decides</span></div>
+    <a class="topbar-logo" href="index.html">UX That <span>Decides</span></a>
     <div class="topbar-progress">
-      <div class="progress-label"><span>Course progress</span><span id="pct">18% complete</span></div>
-      <div class="progress-bar"><div class="progress-fill" id="prog-fill" style="width:18%"></div></div>
+      <div class="progress-label"><span>Course progress</span><span>3% complete</span></div>
+      <div class="progress-bar"><div class="progress-fill" style="width:3%"></div></div>
     </div>
     <div class="topbar-actions">
-      <button class="topbar-btn notif" onclick="showPage('feedback')">💬 Feedback</button>
-      <button class="topbar-btn primary" onclick="showPage('schedule')">📅 Book call</button>
-      <div class="avatar" onclick="showPage('dashboard')">JS</div>
+      <a class="topbar-btn notif" href="feedback.html">💬 Feedback</a>
+      <a class="topbar-btn primary" href="schedule.html">📅 Book call</a>
+      <a class="avatar" href="index.html">JS</a>
     </div>
   </header>
 
   <aside class="sidebar">
     <div class="sidebar-section">
       <div class="sidebar-label">Navigation</div>
-      <div class="module-item" onclick="showPage('dashboard')"><div class="module-name">📊 My Dashboard</div></div>
+      <a class="module-item" href="index.html"><div class="module-name">📊 My Dashboard</div></a>
     </div>
     <div class="sidebar-section">
       <div class="sidebar-label">Module 1 — The mindset</div>
-      <div class="lesson-item completed" onclick="openLesson(1,1)"><div class="lesson-dot done"></div><div class="lesson-name">Why deliverables fail</div></div>
-      <div class="lesson-item active" onclick="openLesson(1,2)"><div class="lesson-dot active"></div><div class="lesson-name active">The research–design loop</div></div>
-      <div class="lesson-item" onclick="openLesson(1,3)"><div class="lesson-dot"></div><div class="lesson-name">Framing as a decision problem</div></div>
-      <div class="lesson-item" onclick="openLesson(1,4)"><div class="lesson-dot"></div><div class="lesson-name">Stakeholder alignment from day one</div></div>
+      <a class="lesson-item" href="lesson-1-1.html" data-page="lesson-1-1.html"><div class="lesson-dot done"></div><div class="lesson-name">Why deliverables fail</div></a>
+      <a class="lesson-item" href="lesson-1-2.html" data-page="lesson-1-2.html"><div class="lesson-dot"></div><div class="lesson-name">The research–design loop</div></a>
+      <a class="lesson-item" href="lesson-1-3.html" data-page="lesson-1-3.html"><div class="lesson-dot"></div><div class="lesson-name">Framing as a decision problem</div></a>
+      <a class="lesson-item" href="lesson-1-4.html" data-page="lesson-1-4.html"><div class="lesson-dot"></div><div class="lesson-name">Stakeholder alignment from day one</div></a>
     </div>
     <div class="sidebar-section">
       <div class="sidebar-label">Module 2 — Research that drives action</div>
-      <div class="lesson-item" onclick="openLesson(2,1)"><div class="lesson-dot"></div><div class="lesson-name">Research Q vs. business Q</div></div>
-      <div class="lesson-item" onclick="openLesson(2,2)"><div class="lesson-dot"></div><div class="lesson-name">Choosing the right method</div></div>
-      <div class="lesson-item" onclick="openLesson(2,3)"><div class="lesson-dot"></div><div class="lesson-name">Interviewing for decisions</div></div>
-      <div class="lesson-item" onclick="openLesson(2,4)"><div class="lesson-dot"></div><div class="lesson-name">Survey design that doesn't lie</div></div>
-      <div class="lesson-item" onclick="openLesson(2,5)"><div class="lesson-dot"></div><div class="lesson-name">Synthesis: insight → recommendation</div></div>
-      <div class="lesson-item" onclick="openLesson(2,6)"><div class="lesson-dot"></div><div class="lesson-name">Research under constraints</div></div>
+      <a class="lesson-item" href="lesson-2-1.html" data-page="lesson-2-1.html"><div class="lesson-dot"></div><div class="lesson-name">Research Q vs. business Q</div></a>
+      <a class="lesson-item" href="lesson-2-2.html" data-page="lesson-2-2.html"><div class="lesson-dot"></div><div class="lesson-name">Choosing the right method</div></a>
+      <a class="lesson-item" href="lesson-2-3.html" data-page="lesson-2-3.html"><div class="lesson-dot"></div><div class="lesson-name">Interviewing for decisions</div></a>
+      <a class="lesson-item" href="lesson-2-4.html" data-page="lesson-2-4.html"><div class="lesson-dot"></div><div class="lesson-name">Survey design that doesn't lie</div></a>
+      <a class="lesson-item" href="lesson-2-5.html" data-page="lesson-2-5.html"><div class="lesson-dot"></div><div class="lesson-name">Synthesis: insight → recommendation</div></a>
+      <a class="lesson-item" href="lesson-2-6.html" data-page="lesson-2-6.html"><div class="lesson-dot"></div><div class="lesson-name">Research under constraints</div></a>
     </div>
     <div class="sidebar-section">
       <div class="sidebar-label">Module 3 — Design with research</div>
-      <div class="lesson-item" onclick="openLesson(3,1)"><div class="lesson-dot"></div><div class="lesson-name">How research shapes design decisions</div></div>
-      <div class="lesson-item" onclick="openLesson(3,2)"><div class="lesson-dot"></div><div class="lesson-name">Grounded ideation</div></div>
-      <div class="lesson-item" onclick="openLesson(3,3)"><div class="lesson-dot"></div><div class="lesson-name">Sketching as thinking</div></div>
-      <div class="lesson-item" onclick="openLesson(3,4)"><div class="lesson-dot"></div><div class="lesson-name">IA from mental models</div></div>
-      <div class="lesson-item" onclick="openLesson(3,5)"><div class="lesson-dot"></div><div class="lesson-name">Design critique with research</div></div>
+      <a class="lesson-item" href="lesson-3-1.html" data-page="lesson-3-1.html"><div class="lesson-dot"></div><div class="lesson-name">How research shapes design decisions</div></a>
+      <a class="lesson-item" href="lesson-3-2.html" data-page="lesson-3-2.html"><div class="lesson-dot"></div><div class="lesson-name">Grounded ideation</div></a>
+      <a class="lesson-item" href="lesson-3-3.html" data-page="lesson-3-3.html"><div class="lesson-dot"></div><div class="lesson-name">Sketching as thinking</div></a>
+      <a class="lesson-item" href="lesson-3-4.html" data-page="lesson-3-4.html"><div class="lesson-dot"></div><div class="lesson-name">IA from mental models</div></a>
+      <a class="lesson-item" href="lesson-3-5.html" data-page="lesson-3-5.html"><div class="lesson-dot"></div><div class="lesson-name">Design critique with research</div></a>
     </div>
     <div class="sidebar-section">
       <div class="sidebar-label">Modules 4–8</div>
-      <div class="module-item"><div class="module-name">Module 4 — Prototyping</div><div class="module-meta">5 lessons · locked</div></div>
-      <div class="module-item"><div class="module-name">Module 5 — High-stakes domains</div><div class="module-meta">5 lessons · locked</div></div>
-      <div class="module-item"><div class="module-name">Module 6 — Communicating</div><div class="module-meta">4 lessons · locked</div></div>
-      <div class="module-item"><div class="module-name">Module 7 — Portfolio</div><div class="module-meta">4 lessons · locked</div></div>
-      <div class="module-item"><div class="module-name">Module 8 — Capstone</div><div class="module-meta">4 lessons · locked</div></div>
+      <div class="module-item"><div class="module-name">Module 4 — Prototyping</div><div class="module-meta">5 lessons · coming soon</div></div>
+      <div class="module-item"><div class="module-name">Module 5 — High-stakes domains</div><div class="module-meta">5 lessons · coming soon</div></div>
+      <div class="module-item"><div class="module-name">Module 6 — Communicating</div><div class="module-meta">4 lessons · coming soon</div></div>
+      <div class="module-item"><div class="module-name">Module 7 — Portfolio</div><div class="module-meta">4 lessons · coming soon</div></div>
+      <div class="module-item"><div class="module-name">Module 8 — Capstone</div><div class="module-meta">4 lessons · coming soon</div></div>
     </div>
   </aside>
 
   <main class="main">
     <div class="content-area">
-
-      <!-- DASHBOARD -->
-      <div id="page-dashboard" class="page active">
-        <div class="dash-welcome">
-          <h1>Welcome back, Jamie.</h1>
-          <p>You're making real progress. Keep the momentum going.</p>
+      <div class="dash-welcome">
+        <h1>Welcome back, Jamie.</h1>
+        <p>You're making real progress. Keep the momentum going.</p>
+      </div>
+      <div class="dash-grid">
+        <div class="stat-card"><div class="stat-num">1</div><div class="stat-label">Lessons completed</div></div>
+        <div class="stat-card"><div class="stat-num">37</div><div class="stat-label">Lessons remaining</div></div>
+        <a class="continue-card" href="lesson-1-2.html">
+          <div>
+            <div class="continue-label">Continue where you left off</div>
+            <div class="continue-title">1.2 — The research–design loop</div>
+            <div class="continue-meta">Module 1 · ~12 min</div>
+          </div>
+          <div class="continue-arrow">→</div>
+        </a>
+      </div>
+      <div class="activity-list">
+        <div class="activity-head">Recent activity</div>
+        <div class="activity-item">
+          <div class="activity-dot"></div>
+          <div><div class="activity-text">Completed Lesson 1.1 — Why deliverables fail</div><div class="activity-time">2 days ago</div></div>
         </div>
-        <div class="dash-grid">
-          <div class="stat-card"><div class="stat-num">1</div><div class="stat-label">Lessons completed</div></div>
-          <div class="stat-card"><div class="stat-num">37</div><div class="stat-label">Lessons remaining</div></div>
-          <div class="continue-card" onclick="showPage('lesson')">
-            <div>
-              <div class="continue-label">Continue where you left off</div>
-              <div class="continue-title">1.2 — The research–design loop</div>
-              <div class="continue-meta">Module 1 · ~12 min</div>
-            </div>
-            <div class="continue-arrow">→</div>
-          </div>
+        <div class="activity-item">
+          <div class="activity-dot" style="background:var(--amber)"></div>
+          <div><div class="activity-text">New feedback from Ace on your reflection exercise</div><div class="activity-time">1 day ago</div></div>
         </div>
-        <div class="activity-list">
-          <div class="activity-head">Recent activity</div>
-          <div class="activity-item">
-            <div class="activity-dot"></div>
-            <div><div class="activity-text">Completed Lesson 1.1 — Why deliverables fail</div><div class="activity-time">2 days ago</div></div>
-          </div>
-          <div class="activity-item">
-            <div class="activity-dot" style="background:var(--amber)"></div>
-            <div><div class="activity-text">New feedback from Ace on your reflection exercise</div><div class="activity-time">1 day ago</div></div>
-          </div>
-          <div class="activity-item">
-            <div class="activity-dot" style="background:var(--green)"></div>
-            <div><div class="activity-text">Office hours call confirmed — Fri June 6, 11:00 AM</div><div class="activity-time">Today</div></div>
-          </div>
+        <div class="activity-item">
+          <div class="activity-dot" style="background:var(--green)"></div>
+          <div><div class="activity-text">Office hours call confirmed — Fri June 6, 11:00 AM</div><div class="activity-time">Today</div></div>
         </div>
       </div>
-
-      <!-- LESSON PAGE -->
-      <div id="page-lesson" class="page">
-        <div class="lesson-header">
-          <div class="lesson-tag">Module 1 · Lesson 1</div>
-          <h1 class="lesson-title">Why deliverables fail and decisions succeed</h1>
-          <div class="lesson-byline">
-            <span>⏱ ~15 min</span>
-            <span>📝 Reading + video</span>
-            <span>Ace Faranello</span>
-          </div>
-        </div>
-        <div class="video-stage">
-          <div class="video-placeholder">
-            <div class="play-btn"><div class="play-triangle"></div></div>
-            <p>Lesson 1.2 — The research–design loop</p>
-            <small>Embed your Loom, Vimeo, or YouTube link here</small>
-          </div>
-        </div>
-        <div class="video-embed-note">💡 <strong>For instructors:</strong> Replace the video stage above with an iframe embed from Loom, Vimeo, or YouTube.</div>
-        <div class="tab-nav">
-          <button class="tab-btn active" onclick="switchTab(this,'reading')">Reading</button>
-          <button class="tab-btn" onclick="switchTab(this,'resources')">Resources</button>
-          <button class="tab-btn" onclick="switchTab(this,'discuss')">Feedback</button>
-        </div>
-        <div id="tab-reading" class="tab-panel active">
-          <div class="reading-content">
-            <h3>The problem isn't the solution — it's how we think about the problem</h3>
-            <p>There's a quote often attributed to Henry Ford: "If I had asked people what they wanted, they would have said faster horses." It gets repeated endlessly in product and design circles as a justification for ignoring users and trusting gut instinct over research. The only problem? Ford almost certainly never said it.</p>
-            <p>But here's what's more interesting than the fact-check: even if he had said it, he would have been wrong. By 1908, the streets of London had over 50,000 horses producing mountains of waste daily. People weren't asking for faster horses — they were living in a public health crisis. The real need was obvious to anyone willing to look. Ford didn't succeed by ignoring his users. He succeeded by researching their actual conditions, understanding what they could afford, and engineering a solution that addressed the real problem at scale.</p>
-            <blockquote>"The problem is we don't understand the problem." — Paul MacCready</blockquote>
-            <h3>What UX people actually get wrong</h3>
-            <p>Most UX failures aren't failures of craft — they're failures of framing. Teams rush to solutions before they've accurately defined the problem. They build beautiful wireframes, run usability tests, and deliver polished reports. And then nothing changes, because the work was solving the wrong problem elegantly.</p>
-            <p>Consider how most technology projects fail. Research by Human Factors International estimates that 15% of IT projects worldwide are abandoned every year — representing roughly $150 billion wasted annually. The cause isn't bad engineering or poor visual design. It's teams that never properly understood what they were building or why.</p>
-            <div class="callout"><strong>The real cost of "faster horses" thinking</strong>When teams skip genuine user engagement, they don't just build the wrong thing — they build the wrong thing confidently, expensively, and at scale. The UX mindset is the antidote.</div>
-            <h3>A better model: MacCready's lesson</h3>
-            <p>In 1977, an aeronautical engineer named Paul MacCready won the Kremer Prize for human-powered flight — a challenge that had stumped design teams for 20 years. What did he do differently? He didn't build a better plane. He reframed the problem entirely.</p>
-            <p>Every team before him had been trying to build a plane that wouldn't crash. MacCready asked a different question: what if we built a plane that could crash and be rebuilt in hours instead of months? That single reframe changed everything. Where other teams iterated once a year, MacCready's team iterated daily. They failed faster, learned faster, and won.</p>
-            <p>This is the core of the UX mindset — and it's what this course is built around. Not just the methods and tools, but the thinking that makes them work: deep engagement with real users, honest diagnosis of real problems, and a willingness to test and revise rather than defend assumptions.</p>
-            <h3>The deliverable trap</h3>
-            <p>Here's where most UX education goes wrong, including most bootcamps: they teach you to produce deliverables. Personas. Wireframes. Journey maps. Usability reports. These artifacts aren't bad — but they're not the goal. They're evidence of thinking, not thinking itself.</p>
-            <p>When a deliverable becomes the goal, something dangerous happens: the work stops when the document is finished. Research is "done" when the report is written. Design is "done" when the wireframes are approved. Testing is "done" when the summary is emailed.</p>
-            <p>Real UX work is never done in that sense. It's a continuous loop of questioning, learning, deciding, and testing. The question this course will train you to ask — at every stage, about every piece of work — is not "what should I produce?" but "what decision does this work need to support?"</p>
-            <ul>
-              <li>A persona isn't a deliverable — it's a decision tool. It exists to answer: who are we designing for, and what do they need?</li>
-              <li>A wireframe isn't a deliverable — it's a hypothesis. It exists to be tested, revised, or discarded.</li>
-              <li>A usability test isn't a deliverable — it's a decision input. It exists to reduce uncertainty before committing to a direction.</li>
-            </ul>
-            <h3>What you'll be able to do differently</h3>
-            <p>By the end of this course, you won't just know more methods. You'll think differently about what your work is for. You'll be able to walk into any project — no matter how vague the brief or how much "faster horses" thinking is in the room — and reframe it as a tractable decision problem. You'll know how to gather the right evidence, translate it into recommendations stakeholders can act on, and defend your decisions with something better than intuition.</p>
-            <p>That's the UX mindset. And it starts here.</p>
-          </div>
-        </div>
-        <div id="tab-resources" class="tab-panel">
-          <div class="resource-list">
-            <a class="resource-card" href="#"><div class="resource-icon pdf">📄</div><div class="resource-text"><div class="resource-title">The decision memo template</div><div class="resource-meta">PDF · 2 pages · Download and keep</div></div><div class="resource-arrow">↓</div></a>
-            <a class="resource-card" href="#"><div class="resource-icon link">🔗</div><div class="resource-text"><div class="resource-title">IDEO: The field guide to human-centered design</div><div class="resource-meta">External reading · Chapter 2 recommended</div></div><div class="resource-arrow">↗</div></a>
-            <a class="resource-card" href="#"><div class="resource-icon video">▶</div><div class="resource-text"><div class="resource-title">Bonus: Ace's 10-min office hours example</div><div class="resource-meta">Video · 10:22 · Real client example (anonymized)</div></div><div class="resource-arrow">▶</div></a>
-            <a class="resource-card" href="#"><div class="resource-icon pdf">📝</div><div class="resource-text"><div class="resource-title">Reflection worksheet — Lesson 1.2</div><div class="resource-meta">PDF · Fill in, then share with Ace for feedback</div></div><div class="resource-arrow">↓</div></a>
-          </div>
-        </div>
-        <div id="tab-discuss" class="tab-panel">
-          <div class="feedback-area">
-            <div class="feedback-thread">
-              <div class="msg instructor">
-                <div class="msg-avatar instructor">AF</div>
-                <div class="msg-bubble">
-                  <div class="msg-name">Ace Faranello</div>
-                  <div class="msg-text">Great reflection on 1.1 — you nailed the distinction between outputs and outcomes. For 1.2, apply the loop model to a real project you've worked on. What would you have done differently?</div>
-                  <div class="msg-time">Yesterday, 3:14 PM</div>
-                </div>
-              </div>
-            </div>
-            <!-- TALLY FORM — LESSON FEEDBACK -->
-            <div class="tally-wrap">
-              <iframe data-tally-src="https://tally.so/embed/1A6XV1?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="400" frameborder="0" marginheight="0" marginwidth="0" title="Student Feedback"></iframe>
-            </div>
-          </div>
-        </div>
-        <div class="lesson-nav">
-          <button class="nav-btn" onclick="openLesson(1,1)">← Lesson 1.1</button>
-          <button class="mark-done" onclick="markDone()">✓ Mark complete</button>
-          <button class="nav-btn next" onclick="openLesson(1,3)">Lesson 1.3 →</button>
-        </div>
-      </div>
-
-      <!-- FEEDBACK PAGE -->
-      <div id="page-feedback" class="page">
-        <div class="lesson-header">
-          <div class="lesson-tag">Instructor feedback</div>
-          <h1 class="lesson-title">Your feedback thread</h1>
-        </div>
-        <div style="background:var(--amber-light);border:1px solid rgba(176,104,32,0.2);border-radius:var(--radius);padding:0.85rem 1rem;font-size:13px;color:var(--amber);margin-bottom:1.5rem;">
-          <strong style="display:block;margin-bottom:2px;">New message from Ace</strong>
-          Great reflection on 1.1 — ready for your 1.2 response when you are.
-        </div>
-        <div class="feedback-thread" style="margin-bottom:1.5rem;">
-          <div class="msg instructor">
-            <div class="msg-avatar instructor">AF</div>
-            <div class="msg-bubble">
-              <div class="msg-name">Ace Faranello</div>
-              <div class="msg-text">Welcome to the course. Your background in healthcare IT is going to make Module 5 particularly valuable. Start with Lesson 1.1 and drop any questions here as you go.</div>
-              <div class="msg-time">June 1, 10:00 AM</div>
-            </div>
-          </div>
-          <div class="msg">
-            <div class="msg-avatar student">JS</div>
-            <div class="msg-bubble">
-              <div class="msg-name">Jamie S.</div>
-              <div class="msg-text">Thanks Ace! Finished 1.1 — the deliverables vs. decisions framing is already shifting how I'm thinking about a current project.</div>
-              <div class="msg-time">June 2, 2:45 PM</div>
-            </div>
-          </div>
-          <div class="msg instructor">
-            <div class="msg-avatar instructor">AF</div>
-            <div class="msg-bubble">
-              <div class="msg-name">Ace Faranello</div>
-              <div class="msg-text">That's exactly the right tension to notice. Give them the persona, but reframe the conversation around what decision it's supposed to support. We cover this in Module 6 — flag it again when you get there.</div>
-              <div class="msg-time">June 3, 9:17 AM</div>
-            </div>
-          </div>
-        </div>
-        <!-- TALLY FORM — MAIN FEEDBACK PAGE -->
-        <div class="tally-wrap">
-          <iframe data-tally-src="https://tally.so/embed/1A6XV1?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="400" frameborder="0" marginheight="0" marginwidth="0" title="Student Feedback"></iframe>
-        </div>
-      </div>
-
-      <!-- SCHEDULE PAGE -->
-      <div id="page-schedule" class="page">
-        <div class="lesson-header">
-          <div class="lesson-tag">Office hours & video calls</div>
-          <h1 class="lesson-title">Book a call with Ace</h1>
-        </div>
-        <p class="schedule-intro">Each call is 60 minutes. Use these for deep dives on a lesson, feedback on your capstone, or anything you'd rather talk through than write. <strong>Cohort students get 2 calls included</strong>; additional sessions available at $75.</p>
-        <!-- CAL.COM EMBED -->
-        <iframe src="https://cal.com/scott-f-ij403c/60min?embed=true" width="100%" height="700" frameborder="0" style="border:1px solid var(--rule);border-radius:var(--radius-lg);margin-top:0.5rem;"></iframe>
-      </div>
-
     </div>
   </main>
+
 </div>
-
-<script>
-var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}
-
-function showPage(name) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById('page-' + name).classList.add('active');
-}
-function openLesson(mod, lesson) {
-  showPage('lesson');
-  document.querySelectorAll('.lesson-item').forEach(l => l.classList.remove('active'));
-  document.querySelectorAll('.lesson-name').forEach(l => l.classList.remove('active'));
-}
-function switchTab(btn, panel) {
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById('tab-' + panel).classList.add('active');
-}
-let selected = null;
-function selectSlot(el) {
-  document.querySelectorAll('.slot').forEach(s => s.classList.remove('selected'));
-  el.classList.add('selected');
-  selected = el;
-}
-function bookSlot() {
-  if (!selected) { alert('Please select a time slot first.'); return; }
-  const day = selected.querySelector('.slot-day').textContent;
-  const time = selected.querySelector('.slot-time').textContent;
-  selected.classList.add('booked');
-  selected.classList.remove('selected');
-  selected.querySelector('.slot-tag').textContent = 'Booked';
-  selected.onclick = null;
-  const list = document.querySelector('.booked-sessions');
-  const item = document.createElement('div');
-  item.className = 'booked-item';
-  item.innerHTML = `<div><div class="booked-info">${day} · ${time}</div><div class="booked-meta">30 min · Zoom link sent to your email</div></div><button class="join-btn">Join Zoom</button>`;
-  list.appendChild(item);
-  alert('Booked! A Zoom link has been sent to your email.');
-  selected = null;
-}
-function markDone() {
-  document.getElementById('prog-fill').style.width = '21%';
-  document.getElementById('pct').textContent = '21% complete';
-  alert('Lesson marked complete! Moving to Lesson 1.3.');
-  openLesson(1, 3);
-}
-</script>
+<script src="shell.js"></script>
 </body>
 </html>
