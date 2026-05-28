@@ -6,43 +6,30 @@
 <title>1.1 — The UX Mindset | UX That Decides</title>
 <link rel="stylesheet" href="styles.css">
 <style>
-/* ── LESSON-SPECIFIC STYLES ── */
 .unit-meta { display: flex; gap: 1rem; align-items: center; font-size: 13px; color: var(--ink-3); margin-bottom: 1.75rem; flex-wrap: wrap; }
-.unit-meta span { display: flex; align-items: center; gap: 4px; }
-
 .learning-goals { background: var(--accent-light); border-left: 4px solid var(--accent); border-radius: 0 var(--radius-lg) var(--radius-lg) 0; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
 .learning-goals h4 { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.6rem; }
 .learning-goals ul { padding-left: 1.2rem; }
 .learning-goals li { font-size: 14px; color: var(--ink-2); line-height: 1.7; margin-bottom: 0.2rem; }
-
 .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); margin: 2.5rem 0 0.75rem; display: flex; align-items: center; gap: 0.75rem; }
 .section-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
 
-/* Reflection — amber */
 .block-reflection { background: var(--amber-light); border: 1px solid rgba(176,104,32,0.2); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; margin: 1.75rem 0; }
 .block-reflection .block-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--amber); margin-bottom: 0.4rem; }
 .block-reflection h3 { font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: var(--ink); margin-bottom: 0.5rem; }
 .block-reflection p { font-size: 14px; color: var(--ink-2); line-height: 1.65; margin-bottom: 0.75rem; }
 .block-reflection textarea { width: 100%; border: 1px solid rgba(176,104,32,0.3); border-radius: var(--radius); padding: 0.75rem; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--ink); resize: vertical; min-height: 90px; background: #fff; outline: none; }
 .block-reflection textarea:focus { border-color: var(--amber); }
-.block-reflection .block-btn { background: var(--amber); color: #fff; border: none; border-radius: var(--radius); padding: 7px 16px; font-size: 13px; cursor: pointer; font-family: 'DM Sans', sans-serif; margin-top: 0.5rem; }
+.block-reflection .block-btn { background: var(--amber); color: #fff; border: none; border-radius: var(--radius); padding: 7px 16px; font-size: 13px; cursor: pointer; font-family: 'DM Sans', sans-serif; margin-top: 0.5rem; transition: background 0.15s; }
 
-/* Exercise — green */
 .block-exercise { background: var(--green-light); border: 1px solid rgba(42,102,66,0.2); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; margin: 1.75rem 0; }
 .block-exercise .block-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--green); margin-bottom: 0.4rem; }
 .block-exercise h3 { font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: var(--ink); margin-bottom: 0.5rem; }
 .block-exercise p { font-size: 14px; color: var(--ink-2); line-height: 1.65; margin-bottom: 0.75rem; }
 .block-exercise textarea { width: 100%; border: 1px solid rgba(42,102,66,0.3); border-radius: var(--radius); padding: 0.75rem; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--ink); resize: vertical; min-height: 90px; background: #fff; outline: none; }
 .block-exercise textarea:focus { border-color: var(--green); }
-.block-exercise .block-btn { background: var(--green); color: #fff; border: none; border-radius: var(--radius); padding: 7px 16px; font-size: 13px; cursor: pointer; font-family: 'DM Sans', sans-serif; margin-top: 0.5rem; }
+.block-exercise .block-btn { background: var(--green); color: #fff; border: none; border-radius: var(--radius); padding: 7px 16px; font-size: 13px; cursor: pointer; font-family: 'DM Sans', sans-serif; margin-top: 0.5rem; transition: background 0.15s; }
 
-/* Discussion — blue */
-.block-discussion { background: var(--accent-light); border: 1px solid rgba(30,77,140,0.15); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; margin: 1.75rem 0; }
-.block-discussion .block-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.4rem; }
-.block-discussion h3 { font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: var(--ink); margin-bottom: 0.5rem; }
-.block-discussion p { font-size: 14px; color: var(--ink-2); line-height: 1.65; }
-
-/* Checklist */
 .block-checklist { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; margin: 2rem 0; }
 .block-checklist h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 0.85rem; }
 .check-item { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.6rem; cursor: pointer; padding: 0.4rem 0; border-bottom: 1px solid var(--rule); }
@@ -50,6 +37,9 @@
 .check-item input[type="checkbox"] { margin-top: 2px; flex-shrink: 0; width: 16px; height: 16px; accent-color: var(--accent); cursor: pointer; }
 .check-item label { font-size: 14px; color: var(--ink-2); line-height: 1.5; cursor: pointer; }
 .check-item.checked label { color: var(--ink-3); text-decoration: line-through; }
+
+.student-bar { background: var(--accent-light); border-radius: var(--radius); padding: 0.5rem 1rem; font-size: 12px; color: var(--accent); margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+.student-bar a { color: var(--accent); font-size: 11px; cursor: pointer; }
 </style>
 </head>
 <body>
@@ -64,7 +54,7 @@
     <div class="topbar-actions">
       <a class="topbar-btn notif" href="feedback.html">💬 Feedback</a>
       <a class="topbar-btn primary" href="schedule.html">📅 Book call</a>
-      <a class="avatar" href="index.html">JS</a>
+      <a class="avatar" href="index.html" id="avatar-initials">?</a>
     </div>
   </header>
 
@@ -86,7 +76,7 @@
       <a class="lesson-item" href="lesson-2-2.html"><div class="lesson-dot"></div><div class="lesson-name">Choosing the right method</div></a>
       <a class="lesson-item" href="lesson-2-3.html"><div class="lesson-dot"></div><div class="lesson-name">Interviewing for decisions</div></a>
       <a class="lesson-item" href="lesson-2-4.html"><div class="lesson-dot"></div><div class="lesson-name">Survey design that doesn't lie</div></a>
-      <a class="lesson-item" href="lesson-2-5.html"><div class="lesson-dot"></div><div class="lesson-name">Synthesis: insight → recommendation</div></a>
+      <a class="lesson-item" href="lesson-2-5.html"><div class="lesson-dot"></div><div class="lesson-name">Synthesis: insight to recommendation</div></a>
       <a class="lesson-item" href="lesson-2-6.html"><div class="lesson-dot"></div><div class="lesson-name">Research under constraints</div></a>
     </div>
     <div class="sidebar-section">
@@ -101,7 +91,7 @@
       <div class="sidebar-label">Modules 4–8</div>
       <div class="module-item"><div class="module-name">Module 4 — Prototyping</div><div class="module-meta">coming soon</div></div>
       <div class="module-item"><div class="module-name">Module 5 — High-stakes domains</div><div class="module-meta">coming soon</div></div>
-      <div class="module-item"><div class="module-name">Module 6 — Communicating to stakeholders</div><div class="module-meta">coming soon</div></div>
+      <div class="module-item"><div class="module-name">Module 6 — Communicating</div><div class="module-meta">coming soon</div></div>
       <div class="module-item"><div class="module-name">Module 7 — Portfolio</div><div class="module-meta">coming soon</div></div>
       <div class="module-item"><div class="module-name">Module 8 — Capstone</div><div class="module-meta">coming soon</div></div>
     </div>
@@ -110,11 +100,17 @@
   <main class="main">
     <div class="content-area">
 
+      <!-- STUDENT BAR -->
+      <div class="student-bar">
+        <span id="student-greeting">Loading...</span>
+        <a onclick="resetStudent()">Not you? Click here</a>
+      </div>
+
       <!-- UNIT META -->
       <div class="unit-meta">
         <span>⏱ ~20 min</span>
         <span>📖 Reading</span>
-        <span>💬 3 activities</span>
+        <span>✏️ 2 activities</span>
         <span>Module 1 · Lesson 1 of 4</span>
       </div>
 
@@ -138,60 +134,58 @@
       <div class="learning-goals">
         <h4>By the end of this lesson you will be able to</h4>
         <ul>
-          <li>Explain what the UX mindset actually means — beyond tools and methods</li>
+          <li>Explain what the UX mindset means beyond tools and methods</li>
           <li>Describe why "faster horses" thinking limits good UX work</li>
-          <li>Apply the MacCready problem-reframing model to your own practice</li>
-          <li>Articulate the difference between producing deliverables and driving decisions</li>
+          <li>Begin seeing everyday problems the way a UX practitioner does</li>
         </ul>
       </div>
 
       <!-- READING -->
       <div class="reading-content">
 
-        <p>"Silicon Valley is a mindset, not a location." — Reid Hoffman</p>
-
         <p>Let's begin with what every UX practitioner needs to understand deeply before anything else: how to think like one.</p>
 
-        <p>UX is a skill. It's also a science. It's also a way of seeing the world. It includes deciding where to place a button, understanding why people interact with that button the way they do, recognizing patterns and knowing why they work or don't. It includes the things most people entering the field already expect — interviewing, surveys, usability studies, wireframes.</p>
+        <p>UX is a skill. It is also a science. It is also a way of seeing the world. It includes deciding where to place a button on a screen and understanding why people interact with that button the way they do. It includes recognizing patterns, knowing why they work, and knowing why they fail. It includes the things most people entering this field already expect: interviewing, surveys, usability studies, wireframes.</p>
 
         <p>But those are only one part of a much larger understanding of why this work exists at all.</p>
 
-        <p>When people new to UX say what draws them to it, they often talk about solving problems and creating experiences that feel wonderful. Many bootcamps are happy to oblige that framing — offering plenty of opportunity to design things and call it UX.</p>
+        <p>When people new to UX describe what draws them to it, they often talk about solving problems and creating experiences that feel intuitive or wonderful. Many bootcamps are happy to support that framing, offering plenty of opportunity to design things and call it UX.</p>
 
-        <p>But this is where UX branches off from designing things to truly understanding why you're designing anything at all.</p>
+        <p>But this is where UX branches off from designing things to truly understanding why you are designing anything at all.</p>
 
-        <p>Becoming a UX practitioner requires identifying the right problems and their underlying causes. That's not something you can simply decide to do. It requires a way of thinking that allows you to see clearly enough to know what actually needs to be solved.</p>
+        <p>Becoming a UX practitioner requires identifying the right problems and understanding their underlying causes. That is not something you can simply decide to do. It requires a way of thinking that allows you to see clearly enough to know what actually needs to be solved.</p>
 
         <div class="callout">
           <strong>What this course goes after</strong>
-          We will look not only at what is right in front of you, but at what might be there that a UX mindset allows you to see. Throughout this course, you will be challenged to look at the world from both perspectives.
+          We will look not only at what is right in front of you, but at what a UX mindset allows you to see that others cannot. Throughout this course, you will be challenged to look at the world from both perspectives.
         </div>
 
         <div class="section-label">A myth worth dispelling</div>
 
         <h3>The "faster horses" problem</h3>
 
-        <p>If you've spent any time in tech or business, you've probably heard this quote:</p>
+        <p>If you have spent any time in technology or business, you have probably encountered this quote:</p>
 
         <blockquote>"If I had asked people what they wanted, they would have said faster horses." — attributed to Henry Ford</blockquote>
 
-        <p>It implies that engaging with users to understand their needs is unnecessary — that people don't really know what they want. When I first heard it, something felt off. Henry Ford changed how human beings moved through the world. It seemed like there had to be more to the story.</p>
+        <p>It implies that engaging with users is unnecessary because people do not know what they want. When I first heard it, something felt off. Ford changed how human beings moved through the world. It seemed like there had to be more to this story.</p>
 
-        <p>There was. The quote appears to have first surfaced around 2001 in a letter to a UK marketing publication. The Henry Ford Museum investigated and found no evidence it ever appeared in Ford's letters, writings, or verified interviews. It is, in all likelihood, a fabrication — one that has been repeated so often it's become received wisdom.</p>
+        <p>There was. The quote appears to have first surfaced around 2001, in a letter sent to a UK marketing publication. The Henry Ford Museum investigated and found no evidence it appeared anywhere in Ford's letters, writings, or verified interviews. It is, in all likelihood, not something Ford ever said.</p>
 
-        <p>More importantly, it turns out the quote originated in a marketing context. And marketing and UX look at customers very differently. Marketing views customers from the inside out — focused on acquisition and retention. UX views them from the outside in — focused on understanding the problems they face and finding solutions to address them.</p>
+        <p>More importantly, the quote originated in a marketing context. And marketing and UX view customers very differently. Marketing views customers from the inside out, focused on acquisition and retention. UX views them from the outside in, focused on understanding the problems people face and finding solutions to address them.</p>
 
-        <p>"Faster horses" thinking undervalues the research, iteration, and trial and error that real solutions require. It also suggests that great design can happen in isolation, without ever engaging the people it's meant to serve.</p>
+        <p>"Faster horses" thinking undervalues the research, iteration, and trial and error that real solutions require. It also implies that great design can happen in isolation, without ever engaging the people it is meant to serve.</p>
 
       </div>
 
-      <!-- REFLECTION 1 -->
+      <!-- ACTIVITY 1 -->
       <div class="block-reflection">
-        <div class="block-label">Reflection</div>
-        <h3>Where have you seen this before?</h3>
-        <p>Think about a product, project, or team decision — one where someone assumed they already knew what users needed without asking. What happened? What was missed?</p>
-        <textarea placeholder="Write your reflection here. You can share this with Ace via the Feedback tab when you're ready."></textarea>
-        <button class="block-btn" onclick="this.textContent='Saved ✓'">Save reflection</button>
+        <div class="block-label">Activity 1 — Noticing</div>
+        <h3>Find a moment of friction in your own life</h3>
+        <p>Think about something you use regularly. An app, a household appliance, a door, a form you filled out recently — anything at all. Is there anything about using it that requires more thought than it should? A moment of hesitation, a small workaround you have gotten used to, or something that has always felt slightly off?</p>
+        <p>Write down what you noticed. Do not try to solve it yet. Just describe what happens and how it makes you feel when it does. This is where the UX mindset begins: learning to notice before you interpret, and to observe before you solve.</p>
+        <textarea id="activity1-text" placeholder="Describe what you noticed and how it makes you feel when it happens..."></textarea>
+        <button class="block-btn" id="activity1-btn" onclick="saveActivity(this, 'Lesson 1.1', 'Activity 1 — Noticing', 'activity1-text')">Save response</button>
       </div>
 
       <div class="reading-content">
@@ -200,34 +194,24 @@
 
         <h3>What was really happening in 1908</h3>
 
-        <p>Let's take the quote at face value for a moment. If Ford really had said it, would it even hold up?</p>
+        <p>Let's take the quote seriously for a moment. If Ford had actually said it, would it even hold up?</p>
 
-        <p>By 1908, hundreds of thousands of horses crowded city streets worldwide — and the problems they caused were well known and widely discussed. By 1894, London alone had over 50,000 horses in active daily use. The streets were dangerous, filthy, and difficult to move through. One reporter famously wrote that within fifty years, every street in London would be buried under nine feet of manure.</p>
+        <p>Ford introduced the Model T in 1908. Were people really looking for faster horses at the time? By 1894, London alone had over 50,000 horses in active daily use. City streets around the world were crowded, dangerous, and genuinely difficult to navigate. The problems caused by horse-powered transportation were not invisible. They were widely discussed, publicly documented, and impossible to ignore.</p>
 
-        <p>Horses were also deadly. By 1916, horse-related fatalities ran at nearly 17 per 10,000 horse-drawn vehicles — reportedly seven times Chicago's automobile fatality rate in 1997. City-dwelling horses collapsed on average once every hundred miles. When a 1,300-pound animal went down badly injured, it was shot on the spot and left in the street until the body rotted enough to be sawed apart and removed.</p>
+        <p>Horses were also extremely dangerous. According to researcher Eric Morris, horse-related fatalities in Chicago in 1916 ran at nearly 17 per 10,000 horse-drawn vehicles — nearly seven times the city's automobile fatality rate in 1997. City-dwelling horses collapsed on average once every hundred miles of travel. The conditions in these cities were a documented public health crisis.</p>
 
         <blockquote>"The skittishness of horses added a dangerous level of unpredictability to nineteenth-century transportation. Horses often stampeded, but a more common danger came from horses kicking, biting, or trampling bystanders. Children were particularly at risk." — Eric Morris, From Horse Power to Horsepower</blockquote>
 
-        <p>Given all of this, would Ford — a man immersed in these conditions — have assumed people simply wanted faster horses? Of course not. These problems were impossible to ignore.</p>
+        <p>Now place yourself in that world as a researcher and inventor. Would you look at all of that and conclude that people simply wanted faster horses? Of course not.</p>
 
-        <p>And Ford didn't invent the automobile. That had been done a decade earlier by Daimler and Benz. What Ford did was look at the conditions people actually lived under — including wages of roughly 22 cents an hour — and design a manufacturing process that made a solution affordable at scale. The Model T outsold all other cars combined within six years of its introduction.</p>
+        <p>Ford did not invent the automobile. That had been done a decade earlier. What Ford did was study the real conditions people lived under, including wages of roughly 22 cents an hour, and design a manufacturing process that made a solution affordable and accessible at scale. The Model T outsold every other automobile combined within six years of its introduction.</p>
 
-        <p>That's not ignoring users. That's deep, context-aware problem solving.</p>
+        <p>That is not ignoring users. That is context-aware, research-informed problem solving.</p>
 
-        <p>Despite all of this, the "faster horses" myth persists. It may be convenient — a way to rationalize skipping user engagement because it takes time and costs money. It may also reflect cultures where siloed teams find it easier to place blame than to confront what they didn't bother to learn.</p>
-
-      </div>
-
-      <!-- EXERCISE -->
-      <div class="block-exercise">
-        <div class="block-label">Exercise</div>
-        <h3>Find a real "faster horses" moment</h3>
-        <p>Find one example — from a product you've used, a company you've followed, or your own experience — where a team made decisions without properly engaging users. It could be a failed launch, a confusing redesign, or a feature nobody uses. Write a brief description below, then answer: what would have changed if the team had approached it differently?</p>
-        <textarea placeholder="Describe the example and your analysis..."></textarea>
-        <button class="block-btn" onclick="this.textContent='Saved ✓'">Save exercise</button>
-      </div>
-
-      <div class="reading-content">
+        <div class="callout">
+          <strong>"Faster horses" thinking does not just produce the wrong solution</strong>
+          It produces the wrong solution with confidence, at scale, and at great expense. The UX mindset is the antidote.
+        </div>
 
         <div class="section-label">Understanding the problem</div>
 
@@ -235,42 +219,41 @@
 
         <blockquote>"The problem is we don't understand the problem." — Paul MacCready</blockquote>
 
-        <p>In 1977, Paul MacCready, an American aeronautical engineer, won the Kremer Prize — a monetary award for human-powered flight. Teams had been attempting this challenge for more than twenty years. All had failed.</p>
+        <p>In 1977, Paul MacCready, an American aeronautical engineer, won the Kremer Prize, a monetary award for human-powered flight. Design teams had been attempting this challenge for more than twenty years. All had failed.</p>
 
-        <p>The challenge was to build an aircraft powered solely by human muscle that could complete a figure-eight course covering one mile. Teams built beautifully crafted machines. They all crashed. And because rebuilding took months or years, each team managed only a handful of attempts.</p>
+        <p>The challenge was to build an aircraft powered solely by human muscle that could complete a figure-eight course covering one mile. Teams built carefully engineered machines. They all crashed. And because rebuilding took months or years, each team managed only a handful of attempts before running out of time or resources.</p>
 
-        <p>MacCready didn't approach it the same way. Rather than assuming he understood the problem, he observed and researched until the real one became clear.</p>
+        <p>MacCready approached the problem differently. Rather than assuming he understood what needed to be solved, he spent time observing and researching until the real problem became clear.</p>
 
-        <p>The other teams were trying to build a plane that wouldn't crash. MacCready asked a different question: what if he built a plane that <em>could</em> crash — and be rebuilt in hours instead of months? That single reframe changed everything. Where competitors iterated once a year, MacCready's team iterated daily. They failed faster, learned faster, and won.</p>
+        <p>Every other team was trying to build a plane that would not crash. MacCready asked a different question: what if he built a plane that could crash, and be rebuilt in hours rather than months? That single reframe changed everything. Where competitors iterated once a year, MacCready's team iterated daily. They failed faster, learned faster, and won.</p>
 
-        <p>His prize-winning aircraft, the Gossamer Albatross, succeeded not because it was the most sophisticated design — but because the problem it was solving was defined more accurately than anyone else had managed.</p>
+        <p>His prize-winning aircraft, the Gossamer Albatross, succeeded not because it was the most sophisticated design, but because the problem it was solving had been defined more accurately than anyone else had managed.</p>
 
-        <p>MacCready's approach is a recipe worth keeping:</p>
-
+        <p>MacCready's approach offers a recipe worth keeping:</p>
         <ul>
-          <li>Deep engagement with the real conditions — not assumptions about them</li>
-          <li>Close observation before committing to a solution</li>
+          <li>Engage deeply with the real conditions, not assumptions about them</li>
+          <li>Observe closely before committing to a solution</li>
           <li>Identify root causes rather than surface symptoms</li>
           <li>Form a hypothesis and test it</li>
-          <li>Fail, learn, and try again — faster than the competition</li>
+          <li>Fail, learn, and try again — faster than before</li>
         </ul>
-
-        <p>This is the core of the UX mindset. Not the tools. Not the deliverables. The thinking that makes them work.</p>
 
         <div class="callout">
           <strong>The deliverable trap</strong>
-          Most UX education teaches you to produce artifacts — personas, wireframes, journey maps, usability reports. These aren't wrong. But when the artifact becomes the goal, work stops when the document is finished. Research is "done" when the report is written. Design is "done" when the wireframes are approved. The question this course trains you to ask at every stage is not "what should I produce?" but "what decision does this work need to support?"
+          Most UX education teaches you to produce artifacts: personas, wireframes, journey maps, usability reports. These are not wrong. But when the artifact becomes the goal, work stops when the document is finished. The question this course trains you to ask at every stage is not "what should I produce?" but "what decision does this work need to support?"
         </div>
 
       </div>
 
-      <!-- REFLECTION 2 -->
-      <div class="block-reflection">
-        <div class="block-label">Reflection</div>
-        <h3>Reframe a problem you've worked on</h3>
-        <p>Think about a UX project or design challenge you've been part of — or observed from the outside. What was the stated problem? Now try applying MacCready's approach: was that actually the right problem to be solving? How might it have been reframed?</p>
-        <textarea placeholder="Describe the original problem, then your reframe..."></textarea>
-        <button class="block-btn" onclick="this.textContent='Saved ✓'">Save reflection</button>
+      <!-- ACTIVITY 2 -->
+      <div class="block-exercise">
+        <div class="block-label">Activity 2 — Reframing</div>
+        <h3>Ask MacCready's question</h3>
+        <p>Go back to what you noticed in Activity 1. Now try asking a different question. Do not ask how to fix it. Instead ask: what is the real problem here?</p>
+        <p>For example, if you noticed that a form on a website was confusing, do not jump to redesigning the form. Ask why the confusion exists. Is the language unclear? Is the user being asked for something at the wrong moment? Is the form solving the wrong problem entirely?</p>
+        <p>Write your reframe in one or two sentences. Start with: "The real problem here is not X, it is Y." This does not need a perfect answer. The goal is to practice separating the symptom from the root cause.</p>
+        <textarea id="activity2-text" placeholder="The real problem here is not... it is..."></textarea>
+        <button class="block-btn" id="activity2-btn" onclick="saveActivity(this, 'Lesson 1.1', 'Activity 2 — Reframing', 'activity2-text')">Save response</button>
       </div>
 
       <div class="reading-content">
@@ -279,13 +262,13 @@
 
         <h3>What you now have</h3>
 
-        <p>The UX mindset is not a checklist. It is a way of operating — one that prioritizes understanding problems over assuming them, and decisions over deliverables.</p>
+        <p>The UX mindset is not a checklist. It is a way of operating that prioritizes understanding problems over assuming them, and decisions over deliverables.</p>
 
-        <p>It is also, to be direct, not something most organizations are set up to support. You will encounter "faster horses" thinking regularly. Teams will rush to solutions. Stakeholders will ask for things that solve the wrong problem. Research will be skipped in the name of speed.</p>
+        <p>You will encounter "faster horses" thinking regularly. Teams will rush to solutions. Stakeholders will ask for things that address the wrong problem. Research will be skipped in the name of speed.</p>
 
-        <p>The UX mindset is what allows you to recognize those moments, name them clearly, and advocate for a better approach. Not just because it's the right thing to do — but because, as Ford and MacCready both demonstrated, it's what actually works.</p>
+        <p>The UX mindset is what allows you to recognize those moments, name them clearly, and make the case for a better approach. Not just because it is the right instinct, but because, as Ford and MacCready both demonstrated, it is what actually works.</p>
 
-        <p>In the next lesson, we'll look at the other side of this: what happens when teams do engage users, but fail to interpret what they're hearing correctly.</p>
+        <p>In the next lesson, we will look at the other side of this: what happens when teams do engage users but fail to interpret what they are hearing.</p>
 
       </div>
 
@@ -296,33 +279,33 @@
           <input type="checkbox"><label>I can explain in my own words why "faster horses" thinking limits good UX work</label>
         </div>
         <div class="check-item" onclick="toggleCheck(this)">
-          <input type="checkbox"><label>I understand how MacCready reframed the problem — and what that made possible</label>
+          <input type="checkbox"><label>I understand how MacCready reframed the problem and what that made possible</label>
         </div>
         <div class="check-item" onclick="toggleCheck(this)">
-          <input type="checkbox"><label>I can describe the difference between producing deliverables and supporting decisions</label>
+          <input type="checkbox"><label>I can describe the difference between producing a deliverable and supporting a decision</label>
         </div>
         <div class="check-item" onclick="toggleCheck(this)">
-          <input type="checkbox"><label>I've completed the exercise and both reflections above</label>
+          <input type="checkbox"><label>I have completed both activities above</label>
         </div>
       </div>
 
       <!-- RESOURCES -->
-      <div style="margin-bottom: 2rem;">
+      <div style="margin-bottom:2rem;">
         <div class="section-label">Resources</div>
         <div class="resource-list">
           <a class="resource-card" href="https://www.humanfactors.com" target="_blank">
             <div class="resource-icon video">▶</div>
-            <div class="resource-text"><div class="resource-title">The ROI of User Experience — Dr. Susan Weinschenk</div><div class="resource-meta">Human Factors International · Referenced in this lesson</div></div>
+            <div class="resource-text"><div class="resource-title">The ROI of User Experience — Dr. Susan Weinschenk</div><div class="resource-meta">Human Factors International</div></div>
             <div class="resource-arrow">↗</div>
           </a>
           <a class="resource-card" href="https://ui.aq/you-are-solving-the-wrong-problem/" target="_blank">
             <div class="resource-icon link">🔗</div>
-            <div class="resource-text"><div class="resource-title">You Are Solving The Wrong Problem — Aza Raskin</div><div class="resource-meta">Article · The MacCready story in full</div></div>
+            <div class="resource-text"><div class="resource-title">You Are Solving The Wrong Problem — Aza Raskin</div><div class="resource-meta">The MacCready story in full</div></div>
             <div class="resource-arrow">↗</div>
           </a>
-          <a class="resource-card" href="#" target="_blank">
+          <a class="resource-card" href="https://www.accessmagazine.org/wp-content/uploads/sites/7/2016/07/Access-30-02-Horse-Power.pdf" target="_blank">
             <div class="resource-icon link">🔗</div>
-            <div class="resource-text"><div class="resource-title">The Great Horse-Manure Crisis of 1894 — Stephen Davies</div><div class="resource-meta">Article · The history behind the Ford myth</div></div>
+            <div class="resource-text"><div class="resource-title">From Horse Power to Horsepower — Eric Morris</div><div class="resource-meta">ACCESS Magazine, UC Berkeley</div></div>
             <div class="resource-arrow">↗</div>
           </a>
         </div>
@@ -331,7 +314,7 @@
       <!-- NAVIGATION -->
       <div class="lesson-nav">
         <a class="nav-btn" href="index.html">← Dashboard</a>
-        <button class="mark-done" onclick="alert('Lesson 1.1 marked complete!')">✓ Mark complete</button>
+        <button class="mark-done" onclick="markDone()">✓ Mark complete</button>
         <a class="nav-btn next" href="lesson-1-2.html">Lesson 1.2 →</a>
       </div>
 
@@ -339,11 +322,33 @@
   </main>
 </div>
 
+<script src="airtable.js"></script>
 <script>
+// Check student is registered, set up greeting
+document.addEventListener('DOMContentLoaded', function() {
+  const student = requireStudent();
+  const initials = student.name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0,2);
+  document.getElementById('avatar-initials').textContent = initials;
+  document.getElementById('student-greeting').textContent = 'Logged in as ' + student.name;
+});
+
+function resetStudent() {
+  if (confirm('This will log you out. Are you sure?')) {
+    localStorage.removeItem('ux_student_name');
+    localStorage.removeItem('ux_student_email');
+    window.location.href = 'welcome.html';
+  }
+}
+
 function toggleCheck(item) {
   const cb = item.querySelector('input');
   cb.checked = !cb.checked;
   item.classList.toggle('checked', cb.checked);
+}
+
+function markDone() {
+  alert('Lesson 1.1 marked complete. On to Lesson 1.2!');
+  window.location.href = 'lesson-1-2.html';
 }
 </script>
 </body>
