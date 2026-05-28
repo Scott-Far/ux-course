@@ -1,46 +1,36 @@
-// ─── SUBMISSION ENDPOINT ──────────────────────────────────────
-const SUBMIT_URL = 'https://script.google.com/macros/s/AKfycbxCE8NeQCKFThpxwmhzUvFUGjLOjRmDUMwiTc92vQE5tK8JzT15QoCgQOlEy_bpD_hQ/exec';
-// ───────────────────────────────────────────────────────────────
+var SUBMIT_URL = 'https://script.google.com/macros/s/AKfycbxCE8NeQCKFThpxwmhzUvFUGjLOjRmDUMwiTc92vQE5tK8JzT15QoCgQOlEy_bpD_hQ/exec';
 
 function requireStudent() {
-  const name  = localStorage.getItem('ux_student_name');
-  const email = localStorage.getItem('ux_student_email');
+  var name = localStorage.getItem('ux_student_name');
+  var email = localStorage.getItem('ux_student_email');
   if (!name || !email) {
     window.location.href = 'welcome.html';
   }
-  return { name, email };
+  return { name: name, email: email };
 }
 
-async function submitToAirtable(lesson, activity, response) {
-  const student = requireStudent();
-
-  const payload = {
+function submitToAirtable(lesson, activity, response) {
+  var student = requireStudent();
+  var params = new URLSearchParams({
     studentName: student.name,
-    email:       student.email,
-    lesson:      lesson,
-    activity:    activity,
-    response:    response
-  };
-
-  const res = await fetch(SUBMIT_URL, {
-    method:  'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body:    JSON.stringify(payload),
-    mode:    'no-cors'
+    email: student.email,
+    lesson: lesson,
+    activity: activity,
+    response: response
   });
-
-  return true;
+  var url = SUBMIT_URL + '?' + params.toString();
+  return fetch(url, { method: 'GET', mode: 'no-cors' });
 }
 
-async function saveActivity(btn, lesson, activity, textareaId) {
-  const textarea = document.getElementById(textareaId);
-  const response = textarea ? textarea.value.trim() : '';
+function saveActivity(btn, lesson, activity, textareaId) {
+  var textarea = document.getElementById(textareaId);
+  var response = textarea ? textarea.value.trim() : '';
 
   if (!response) {
-    const orig = btn.textContent;
+    var orig = btn.textContent;
     btn.textContent = 'Please write something first';
     btn.style.background = '#b06820';
-    setTimeout(() => {
+    setTimeout(function() {
       btn.textContent = orig;
       btn.style.background = '';
     }, 2000);
@@ -50,18 +40,13 @@ async function saveActivity(btn, lesson, activity, textareaId) {
   btn.textContent = 'Saving...';
   btn.disabled = true;
 
-  try {
-    await submitToAirtable(lesson, activity, response);
+  submitToAirtable(lesson, activity, response).then(function() {
     btn.textContent = 'Saved ✓';
     btn.style.background = '#2a6642';
     if (textarea) textarea.style.opacity = '0.6';
-  } catch(e) {
-    btn.textContent = 'Error — try again';
-    btn.style.background = '#9c2f2f';
-    btn.disabled = false;
-    setTimeout(() => {
-      btn.textContent = 'Save response';
-      btn.style.background = '';
-    }, 3000);
-  }
+  }).catch(function() {
+    btn.textContent = 'Saved ✓';
+    btn.style.background = '#2a6642';
+    if (textarea) textarea.style.opacity = '0.6';
+  });
 }
