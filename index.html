@@ -64,7 +64,7 @@
   <main class="main">
     <div class="content-area">
       <div class="dash-welcome">
-        <h1>Welcome back, Jamie.</h1>
+        <h1 id="dash-welcome-name">Welcome back.</h1>
         <p>You're making real progress. Keep the momentum going.</p>
       </div>
       <div class="dash-grid">
@@ -98,6 +98,14 @@
   </main>
 
 </div>
-<script src="shell.js"></script>
+<script src="airtable.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var name = localStorage.getItem('ux_student_name');
+  if (name) {
+    document.getElementById('dash-welcome-name').textContent = 'Welcome back, ' + name + '.';
+  }
+});
+</script>
 </body>
 </html>
