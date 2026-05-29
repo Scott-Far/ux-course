@@ -252,13 +252,13 @@
         </div>
       </div>
 
-      <a class="project-cta" href="project-1.html">
+      <a class="project-cta" href="#" onclick="startProject(event)">
         <div>
           <div class="project-cta-label">You have completed Module 1</div>
-          <div class="project-cta-title">Module 1 Project</div>
-          <div class="project-cta-meta">Put the UX mindset into practice</div>
+          <div class="project-cta-title">Ready to start your first project?</div>
+          <div class="project-cta-meta">Click here to begin. We will email you a summary of all your activity responses — check your inbox before you start.</div>
         </div>
-        <div class="project-cta-arrow">→</div>
+        <div class="project-cta-arrow" id="project-arrow">→</div>
       </a>
 
     </div>
@@ -286,6 +286,25 @@ function toggleCheck(item) {
   var cb = item.querySelector('input');
   cb.checked = !cb.checked;
   item.classList.toggle('checked', cb.checked);
+}
+
+function startProject(e) {
+  e.preventDefault();
+  var student = requireStudent();
+  var arrow = document.getElementById('project-arrow');
+  arrow.textContent = '...';
+
+  var params = new URLSearchParams({
+    action: 'module_summary',
+    studentName: student.name,
+    email: student.email
+  });
+
+  var url = 'https://script.google.com/macros/s/AKfycbxCE8NeQCKFThpxwmhzUvFUGjLOjRmDUMwiTc92vQE5tK8JzT15QoCgQOlEy_bpD_hQ/exec?' + params.toString();
+
+  fetch(url, { method: 'GET', mode: 'no-cors' }).finally(function() {
+    window.location.href = 'project-1.html';
+  });
 }
 </script>
 </body>
