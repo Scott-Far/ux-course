@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Activity Sheet 1.3 | UX That Decides</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #1a1814; --ink-2: #4a4640; --ink-3: #8a8480;
+  --rule: #e8e4de; --bg: #faf8f4; --surface: #fff;
+  --accent: #1e4d8c; --accent-2: #2d6bb8; --accent-light: #e8f0fa;
+  --amber: #b06820; --amber-light: #fdf3e5;
+  --green: #2a6642; --green-light: #e8f4ec;
+  --radius: 8px; --radius-lg: 14px;
+}
+body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; padding: 2rem 1rem 4rem; }
+.sheet-wrap { max-width: 720px; margin: 0 auto; }
+
+/* HEADER */
+.sheet-header { margin-bottom: 2rem; }
+.back-link { font-size: 13px; color: var(--accent); text-decoration: none; display: inline-flex; align-items: center; gap: 4px; margin-bottom: 1.25rem; }
+.back-link:hover { text-decoration: underline; }
+.sheet-tag { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); margin-bottom: 0.4rem; }
+.sheet-title { font-family: 'DM Serif Display', serif; font-size: 2rem; line-height: 1.2; color: var(--ink); margin-bottom: 0.5rem; }
+.sheet-meta { font-size: 13px; color: var(--ink-3); display: flex; gap: 1rem; margin-bottom: 1rem; }
+.student-name-bar { background: var(--accent-light); border-radius: var(--radius); padding: 0.5rem 1rem; font-size: 13px; color: var(--accent); margin-bottom: 1.5rem; }
+
+/* INSTRUCTIONS */
+.instructions { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+.instructions h3 { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 0.6rem; }
+.instructions p { font-size: 14px; color: var(--ink-2); line-height: 1.7; margin-bottom: 0.6rem; }
+.instructions p:last-child { margin-bottom: 0; }
+.suggestions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem; }
+.suggestion-tag { background: var(--accent-light); color: var(--accent); font-size: 12px; padding: 4px 10px; border-radius: 20px; cursor: pointer; border: 1px solid rgba(30,77,140,0.2); transition: background 0.15s; }
+.suggestion-tag:hover { background: #d0e4f7; }
+
+/* EXAMPLE */
+.example-block { background: var(--amber-light); border: 1px solid rgba(176,104,32,0.15); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+.example-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--amber); margin-bottom: 0.75rem; }
+.example-block h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 0.4rem; margin-top: 0.75rem; }
+.example-block h4:first-of-type { margin-top: 0; }
+.example-block p { font-size: 13px; color: var(--ink-2); line-height: 1.65; }
+
+/* FORM SECTIONS */
+.form-section { margin-bottom: 2rem; }
+.section-header { background: var(--accent); color: #fff; border-radius: var(--radius) var(--radius) 0 0; padding: 0.75rem 1.25rem; }
+.section-header h3 { font-size: 14px; font-weight: 500; }
+.section-header p { font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 2px; }
+.section-body { background: var(--surface); border: 1px solid var(--rule); border-top: none; border-radius: 0 0 var(--radius-lg) var(--radius-lg); padding: 1.25rem; }
+
+.field { margin-bottom: 1.25rem; }
+.field:last-child { margin-bottom: 0; }
+.field label { font-size: 13px; font-weight: 500; color: var(--ink); display: block; margin-bottom: 0.4rem; line-height: 1.5; }
+.field .hint { font-size: 12px; color: var(--ink-3); margin-bottom: 0.4rem; display: block; }
+.field textarea { width: 100%; border: 1px solid var(--rule); border-radius: var(--radius); padding: 0.75rem; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--ink); resize: vertical; min-height: 80px; background: var(--bg); outline: none; transition: border-color 0.15s; line-height: 1.6; }
+.field textarea:focus { border-color: var(--accent-2); background: #fff; }
+.field input[type="text"] { width: 100%; border: 1px solid var(--rule); border-radius: var(--radius); padding: 0.65rem 0.85rem; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--ink); background: var(--bg); outline: none; transition: border-color 0.15s; }
+.field input[type="text"]:focus { border-color: var(--accent-2); background: #fff; }
+
+/* HMW SECTION */
+.hmw-section { background: var(--green-light); border: 1px solid rgba(42,102,66,0.2); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 2rem; }
+.hmw-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--green); margin-bottom: 0.5rem; }
+.hmw-section h3 { font-family: 'DM Serif Display', serif; font-size: 1.2rem; color: var(--ink); margin-bottom: 0.5rem; }
+.hmw-section p { font-size: 14px; color: var(--ink-2); line-height: 1.65; margin-bottom: 1rem; }
+.hmw-example { background: rgba(42,102,66,0.08); border-radius: var(--radius); padding: 0.75rem 1rem; font-size: 13px; color: var(--green); margin-bottom: 1rem; font-style: italic; }
+.hmw-input-wrap { display: flex; align-items: flex-start; gap: 0.5rem; }
+.hmw-prefix { font-size: 15px; font-weight: 500; color: var(--green); padding-top: 0.7rem; white-space: nowrap; }
+.hmw-input { flex: 1; border: 1px solid rgba(42,102,66,0.3); border-radius: var(--radius); padding: 0.65rem 0.85rem; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--ink); background: #fff; outline: none; min-height: 80px; resize: vertical; line-height: 1.6; }
+.hmw-input:focus { border-color: var(--green); }
+.hmw-check { font-size: 13px; color: var(--ink-3); margin-top: 0.75rem; line-height: 1.6; }
+
+/* SUBMIT */
+.submit-section { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: 1.5rem; text-align: center; }
+.submit-section p { font-size: 13px; color: var(--ink-3); margin-bottom: 1rem; line-height: 1.6; }
+.submit-btn { background: var(--accent); color: #fff; border: none; border-radius: var(--radius); padding: 12px 32px; font-size: 15px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background 0.15s; }
+.submit-btn:hover { background: var(--accent-2); }
+.submit-btn:disabled { background: var(--ink-3); cursor: not-allowed; }
+.submit-note { font-size: 12px; color: var(--ink-3); margin-top: 0.75rem; }
+.success-msg { display: none; background: var(--green-light); border: 1px solid rgba(42,102,66,0.2); border-radius: var(--radius); padding: 1rem 1.25rem; font-size: 14px; color: var(--green); margin-top: 1rem; }
+</style>
+</head>
+<body>
+<div class="sheet-wrap">
+
+  <div class="sheet-header">
+    <a class="back-link" href="lesson-1-3.html">← Back to Lesson 1.3</a>
+    <div class="sheet-tag">Module 1 · Lesson 3 · Activity Sheet</div>
+    <h1 class="sheet-title">The three circles</h1>
+    <div class="sheet-meta">
+      <span>⏱ ~15 min</span>
+      <span>✏️ 2 parts</span>
+    </div>
+    <div class="student-name-bar" id="student-name-bar">Loading...</div>
+  </div>
+
+  <!-- INSTRUCTIONS -->
+  <div class="instructions">
+    <h3>What to do</h3>
+    <p>Pick a digital product you use regularly and think about the experience of using it. Answer the questions below for each of the three circles from the lesson — Technical Feasibility, Business Viability, and Desirability and Need.</p>
+    <p>You do not need inside knowledge of the company or how it was built. Just describe what you observe and feel as a user. There are no wrong answers — this is about learning to look at a product through three different lenses at the same time.</p>
+    <p><strong>Not sure what to pick?</strong> Choose one of these:</p>
+    <div class="suggestions">
+      <span class="suggestion-tag" onclick="setProduct('My bank\'s mobile app')">Bank mobile app</span>
+      <span class="suggestion-tag" onclick="setProduct('Netflix')">Netflix</span>
+      <span class="suggestion-tag" onclick="setProduct('Spotify')">Spotify</span>
+      <span class="suggestion-tag" onclick="setProduct('DoorDash or Uber Eats')">Food delivery app</span>
+      <span class="suggestion-tag" onclick="setProduct('My email app')">Email app</span>
+      <span class="suggestion-tag" onclick="setProduct('Google Maps')">Google Maps</span>
+      <span class="suggestion-tag" onclick="setProduct('Amazon')">Amazon</span>
+      <span class="suggestion-tag" onclick="setProduct('Instagram')">Instagram</span>
+    </div>
+  </div>
+
+  <!-- EXAMPLE -->
+  <div class="example-block">
+    <div class="example-label">Example — Food delivery app</div>
+    <h4>Technical Feasibility</h4>
+    <p>The app works smoothly most of the time, but the live order tracking map often freezes or shows the driver going in the wrong direction. It feels like the tracking feature was added as a selling point but was not fully thought through. Instinctively it feels like it was hard to build and they shipped it before it was ready.</p>
+    <h4>Business Viability</h4>
+    <p>The app is clearly trying to get me to order more often — there are constant promotions, push notifications, and a rewards program. The company wants my money and my habitual use. The experience often feels designed for the company because the promotions and upsells get in the way of just finding what I want quickly.</p>
+    <h4>Desirability and Need</h4>
+    <p>It solves the problem of not wanting to cook or go out. But it does not fully solve it because I still spend too long browsing and never feel confident I found the best option. I wish it remembered my preferences better and surfaced the right restaurants without me having to search every time. If I were starting over I would design it around the user's history and preferences, not restaurant categories.</p>
+  </div>
+
+  <!-- PRODUCT NAME -->
+  <div class="form-section">
+    <div class="section-header">
+      <h3>The product you chose</h3>
+    </div>
+    <div class="section-body">
+      <div class="field">
+        <label>What product are you analyzing?</label>
+        <input type="text" id="product-name" placeholder="e.g. My bank's mobile app">
+      </div>
+    </div>
+  </div>
+
+  <!-- TECHNICAL FEASIBILITY -->
+  <div class="form-section">
+    <div class="section-header">
+      <h3>Circle 1 — Technical Feasibility</h3>
+      <p>Does it work the way it should?</p>
+    </div>
+    <div class="section-body">
+      <div class="field">
+        <label>Does it feel finished, or does something feel incomplete or inconsistent? If so, where?</label>
+        <textarea id="tech-1" placeholder="Describe what feels finished or unfinished..."></textarea>
+      </div>
+      <div class="field">
+        <label>Is there anything that seems like it should work but doesn't quite?</label>
+        <textarea id="tech-2" placeholder="Describe any gaps between what you expected and what happened..."></textarea>
+      </div>
+      <div class="field">
+        <label>Does the technology feel like it is working for you or against you? Give one specific example.</label>
+        <textarea id="tech-3" placeholder="Describe a specific moment where the technology helped or got in the way..."></textarea>
+      </div>
+      <div class="field">
+        <label>Instinctively, does this feel like something that was hard to build, or something that could have been done better with more care?</label>
+        <span class="hint">You don't need technical knowledge — just describe your gut feeling and why.</span>
+        <textarea id="tech-4" placeholder="What does your instinct tell you?"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- BUSINESS VIABILITY -->
+  <div class="form-section">
+    <div class="section-header">
+      <h3>Circle 2 — Business Viability</h3>
+      <p>What is the company trying to accomplish?</p>
+    </div>
+    <div class="section-body">
+      <div class="field">
+        <label>What is this product trying to get you to do? Buy something? Stay longer? Sign up? Share something?</label>
+        <textarea id="biz-1" placeholder="What does the product seem to want from you?"></textarea>
+      </div>
+      <div class="field">
+        <label>What do you think the company wants from you — your money, your time, your data, your loyalty?</label>
+        <textarea id="biz-2" placeholder="What does the company seem to be after?"></textarea>
+      </div>
+      <div class="field">
+        <label>Does the experience feel designed for you, or for the company? What makes you say that?</label>
+        <textarea id="biz-3" placeholder="Describe a specific moment that made you feel this way..."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- DESIRABILITY -->
+  <div class="form-section">
+    <div class="section-header">
+      <h3>Circle 3 — Desirability and Need</h3>
+      <p>Does it solve the right problem?</p>
+    </div>
+    <div class="section-body">
+      <div class="field">
+        <label>What problem does this product solve for you?</label>
+        <textarea id="des-1" placeholder="What need does it meet?"></textarea>
+      </div>
+      <div class="field">
+        <label>Does it fully solve it, or does it leave something unfinished?</label>
+        <textarea id="des-2" placeholder="Where does it fall short?"></textarea>
+      </div>
+      <div class="field">
+        <label>Is there anything you still have to do manually that you wish it handled?</label>
+        <textarea id="des-3" placeholder="What workarounds have you developed?"></textarea>
+      </div>
+      <div class="field">
+        <label>If you were starting from scratch, what would you design differently and why?</label>
+        <span class="hint">What do you think led the original designers to go in a different direction?</span>
+        <textarea id="des-4" placeholder="What would you change and why?"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOW MIGHT WE -->
+  <div class="hmw-section">
+    <div class="hmw-label">Part 2 — How might we</div>
+    <h3>Write your problem statement</h3>
+    <p>Using the product you just analyzed, identify the biggest problem you found. Not the symptom — the underlying cause. Then write a single "How might we" statement that captures it.</p>
+    <p>Here is the example continued from above:</p>
+    <div class="hmw-example">"How might we help returning users find a meal they will enjoy without having to start from scratch every time they open the app?"</div>
+    <p>Notice that this statement is specific enough to point toward a real design challenge, but open enough that more than one solution could answer it — smarter recommendations, a favorites system, a quick reorder feature, or something else entirely.</p>
+    <p>If your statement only has one obvious answer, it is probably too narrow. If it could apply to almost any product, it is probably too broad.</p>
+    <div class="hmw-input-wrap">
+      <span class="hmw-prefix">How might we</span>
+      <textarea class="hmw-input" id="hmw-statement" placeholder="...help [who] do [what] without [the problem]?"></textarea>
+    </div>
+    <p class="hmw-check">Before you submit: does your statement leave room for more than one solution? If not, try making it slightly broader.</p>
+  </div>
+
+  <!-- SUBMIT -->
+  <div class="submit-section">
+    <p>When you are done, submit your activity sheet. Scott will review it and follow up with feedback by email.</p>
+    <button class="submit-btn" id="submit-btn" onclick="submitSheet()">Submit activity sheet</button>
+    <p class="submit-note">Once submitted your responses go directly to Scott and cannot be edited. Take a moment to review before submitting.</p>
+    <div class="success-msg" id="success-msg">
+      Your activity sheet has been submitted. Scott will review it and get back to you by email. Head back to <a href="lesson-1-3.html" style="color:var(--green)">Lesson 1.3</a> to continue.
+    </div>
+  </div>
+
+</div>
+
+<script src="airtable.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var student = requireStudent();
+  document.getElementById('student-name-bar').textContent = 'Completing as: ' + student.name;
+});
+
+function setProduct(name) {
+  document.getElementById('product-name').value = name;
+  document.getElementById('product-name').focus();
+}
+
+async function submitSheet() {
+  var btn = document.getElementById('submit-btn');
+  var student = requireStudent();
+
+  var product = document.getElementById('product-name').value.trim();
+  if (!product) {
+    alert('Please enter the name of the product you are analyzing.');
+    return;
+  }
+
+  var response = [
+    'PRODUCT: ' + product,
+    '',
+    '--- TECHNICAL FEASIBILITY ---',
+    'Finished or incomplete: ' + document.getElementById('tech-1').value,
+    'What does not work quite right: ' + document.getElementById('tech-2').value,
+    'Technology working for or against: ' + document.getElementById('tech-3').value,
+    'Instinct on build quality: ' + document.getElementById('tech-4').value,
+    '',
+    '--- BUSINESS VIABILITY ---',
+    'What it wants me to do: ' + document.getElementById('biz-1').value,
+    'What the company wants from me: ' + document.getElementById('biz-2').value,
+    'Designed for user or company: ' + document.getElementById('biz-3').value,
+    '',
+    '--- DESIRABILITY AND NEED ---',
+    'Problem it solves: ' + document.getElementById('des-1').value,
+    'What it leaves unfinished: ' + document.getElementById('des-2').value,
+    'Manual workarounds: ' + document.getElementById('des-3').value,
+    'What I would design differently: ' + document.getElementById('des-4').value,
+    '',
+    '--- HOW MIGHT WE ---',
+    'How might we ' + document.getElementById('hmw-statement').value
+  ].join('\n');
+
+  btn.textContent = 'Submitting...';
+  btn.disabled = true;
+
+  try {
+    await submitToAirtable('Lesson 1.3', 'Activity Sheet — Three Circles + HMW', response);
+    btn.style.display = 'none';
+    document.getElementById('success-msg').style.display = 'block';
+  } catch(e) {
+    btn.textContent = 'Submit activity sheet';
+    btn.disabled = false;
+    alert('Something went wrong. Please try again.');
+  }
+}
+</script>
+</body>
+</html>
