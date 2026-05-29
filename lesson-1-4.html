@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1.4 — The Trim Tab | UX That Decides</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.unit-meta { display: flex; gap: 1rem; align-items: center; font-size: 13px; color: var(--ink-3); margin-bottom: 1.75rem; flex-wrap: wrap; }
+.learning-goals { background: var(--accent-light); border-left: 4px solid var(--accent); border-radius: 0 var(--radius-lg) var(--radius-lg) 0; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+.learning-goals h4 { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.6rem; }
+.learning-goals ul { padding-left: 1.2rem; }
+.learning-goals li { font-size: 14px; color: var(--ink-2); line-height: 1.7; margin-bottom: 0.2rem; }
+.section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); margin: 2.5rem 0 0.75rem; display: flex; align-items: center; gap: 0.75rem; }
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+.block-reflection { background: var(--amber-light); border: 1px solid rgba(176,104,32,0.2); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; margin: 1.75rem 0; }
+.block-reflection .block-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--amber); margin-bottom: 0.4rem; }
+.block-reflection h3 { font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: var(--ink); margin-bottom: 0.5rem; }
+.block-reflection p { font-size: 14px; color: var(--ink-2); line-height: 1.65; margin-bottom: 0.75rem; }
+.block-reflection textarea { width: 100%; border: 1px solid rgba(176,104,32,0.3); border-radius: var(--radius); padding: 0.75rem; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--ink); resize: vertical; min-height: 90px; background: #fff; outline: none; }
+.block-reflection textarea:focus { border-color: var(--amber); }
+.block-reflection .block-btn { background: var(--amber); color: #fff; border: none; border-radius: var(--radius); padding: 7px 16px; font-size: 13px; cursor: pointer; font-family: 'DM Sans', sans-serif; margin-top: 0.5rem; }
+.block-checklist { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; margin: 2rem 0; }
+.block-checklist h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 0.85rem; }
+.check-item { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.6rem; cursor: pointer; padding: 0.4rem 0; border-bottom: 1px solid var(--rule); }
+.check-item:last-child { border-bottom: none; margin-bottom: 0; }
+.check-item input[type="checkbox"] { margin-top: 2px; flex-shrink: 0; width: 16px; height: 16px; accent-color: var(--accent); cursor: pointer; }
+.check-item label { font-size: 14px; color: var(--ink-2); line-height: 1.5; cursor: pointer; }
+.check-item.checked label { color: var(--ink-3); text-decoration: line-through; }
+.student-bar { background: var(--accent-light); border-radius: var(--radius); padding: 0.5rem 1rem; font-size: 12px; color: var(--accent); margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+.student-bar a { color: var(--accent); font-size: 11px; cursor: pointer; }
+.save-note { font-size: 12px; color: var(--ink-3); margin-top: 0.5rem; }
+.project-cta { background: var(--ink); border-radius: var(--radius-lg); padding: 1.5rem; color: #fff; display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; text-decoration: none; transition: opacity 0.15s; }
+.project-cta:hover { opacity: 0.92; }
+.project-cta-label { font-size: 11px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.4rem; }
+.project-cta-title { font-family: 'DM Serif Display', serif; font-size: 1.3rem; margin-bottom: 0.25rem; }
+.project-cta-meta { font-size: 13px; color: rgba(255,255,255,0.6); }
+.project-cta-arrow { font-size: 2rem; color: rgba(255,255,255,0.3); }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <header class="topbar">
+    <a class="topbar-logo" href="index.html">UX That <span>Decides</span></a>
+    <div class="topbar-progress">
+      <div class="progress-label"><span>Course progress</span><span>12% complete</span></div>
+      <div class="progress-bar"><div class="progress-fill" style="width:12%"></div></div>
+    </div>
+    <div class="topbar-actions">
+      <a class="topbar-btn notif" href="feedback.html">💬 Feedback</a>
+      <a class="topbar-btn primary" href="schedule.html">📅 Book call</a>
+      <a class="avatar" href="index.html" id="avatar-initials">?</a>
+    </div>
+  </header>
+
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-label">Navigation</div>
+      <a class="module-item" href="index.html"><div class="module-name">📊 My Dashboard</div></a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Module 1 — The mindset</div>
+      <a class="lesson-item" href="lesson-1-1.html"><div class="lesson-dot done"></div><div class="lesson-name">1.1 The UX Mindset</div></a>
+      <a class="lesson-item" href="lesson-1-2.html"><div class="lesson-dot done"></div><div class="lesson-name">1.2 Listening vs. following</div></a>
+      <a class="lesson-item" href="lesson-1-3.html"><div class="lesson-dot done"></div><div class="lesson-name">1.3 Design Thinking</div></a>
+      <a class="lesson-item active" href="lesson-1-4.html"><div class="lesson-dot active"></div><div class="lesson-name">1.4 The trim tab</div></a>
+      <a class="lesson-item" href="project-1.html"><div class="lesson-dot"></div><div class="lesson-name">★ Module 1 Project</div></a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Module 2 — Research that drives action</div>
+      <a class="lesson-item" href="lesson-2-1.html"><div class="lesson-dot"></div><div class="lesson-name">Research Q vs. business Q</div></a>
+      <a class="lesson-item" href="lesson-2-2.html"><div class="lesson-dot"></div><div class="lesson-name">Choosing the right method</div></a>
+      <a class="lesson-item" href="lesson-2-3.html"><div class="lesson-dot"></div><div class="lesson-name">Interviewing for decisions</div></a>
+      <a class="lesson-item" href="lesson-2-4.html"><div class="lesson-dot"></div><div class="lesson-name">Survey design that doesn't lie</div></a>
+      <a class="lesson-item" href="lesson-2-5.html"><div class="lesson-dot"></div><div class="lesson-name">Synthesis: insight to recommendation</div></a>
+      <a class="lesson-item" href="lesson-2-6.html"><div class="lesson-dot"></div><div class="lesson-name">Research under constraints</div></a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Module 3 — Design with research</div>
+      <a class="lesson-item" href="lesson-3-1.html"><div class="lesson-dot"></div><div class="lesson-name">How research shapes design decisions</div></a>
+      <a class="lesson-item" href="lesson-3-2.html"><div class="lesson-dot"></div><div class="lesson-name">Grounded ideation</div></a>
+      <a class="lesson-item" href="lesson-3-3.html"><div class="lesson-dot"></div><div class="lesson-name">Sketching as thinking</div></a>
+      <a class="lesson-item" href="lesson-3-4.html"><div class="lesson-dot"></div><div class="lesson-name">IA from mental models</div></a>
+      <a class="lesson-item" href="lesson-3-5.html"><div class="lesson-dot"></div><div class="lesson-name">Design critique with research</div></a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Modules 4–8</div>
+      <div class="module-item"><div class="module-name">Module 4 — Prototyping</div><div class="module-meta">coming soon</div></div>
+      <div class="module-item"><div class="module-name">Module 5 — High-stakes domains</div><div class="module-meta">coming soon</div></div>
+      <div class="module-item"><div class="module-name">Module 6 — Communicating</div><div class="module-meta">coming soon</div></div>
+      <div class="module-item"><div class="module-name">Module 7 — Portfolio</div><div class="module-meta">coming soon</div></div>
+      <div class="module-item"><div class="module-name">Module 8 — Capstone</div><div class="module-meta">coming soon</div></div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="content-area">
+
+      <div class="student-bar">
+        <span id="student-greeting">Loading...</span>
+        <a onclick="resetStudent()">Log out</a>
+      </div>
+
+      <div class="unit-meta">
+        <span>📖 Reading</span>
+        <span>✏️ 1 activity</span>
+        <span>Module 1 · Lesson 4 of 4</span>
+      </div>
+
+      <div class="lesson-header">
+        <div class="lesson-tag">Module 1 — The UX Mindset</div>
+        <h1 class="lesson-title">The trim tab</h1>
+        <div class="lesson-byline"><span>Scott Faranello</span></div>
+      </div>
+
+      <div class="video-stage">
+        <div class="video-placeholder">
+          <div class="play-btn"><div class="play-triangle"></div></div>
+          <p>Lesson 1.4 — The trim tab</p>
+          <small>Video coming soon</small>
+        </div>
+      </div>
+
+      <div class="learning-goals">
+        <h4>By the end of this lesson you will be able to</h4>
+        <ul>
+          <li>Explain the trim tab concept and why it matters to UX practice</li>
+          <li>Identify the smallest meaningful intervention in a design problem</li>
+          <li>Connect everything from Module 1 into a single coherent framework</li>
+          <li>Describe what you will do in the Module 1 project</li>
+        </ul>
+      </div>
+
+      <div class="reading-content">
+
+        <p>In the last three lessons we covered a lot of ground. We looked at what happens when teams assume they know what users need. We looked at what happens when they engage users but fail to interpret what they hear. And we looked at Design Thinking as a structured way to do both well.</p>
+
+        <p>Before we move into the Module 1 project, there is one more idea worth carrying with you that ties everything together.</p>
+
+        <div class="section-label">Bucky Fuller and the trim tab</div>
+
+        <p>There is a cemetery in Watertown, Massachusetts, with a grave marker that reads: "Call me trim tab. Bucky."</p>
+
+        <p>That is the final resting place of Richard Buckminster Fuller, an American architect, author, designer, and inventor known to those who know him as Bucky Fuller. The inscription reflects a concept that shaped much of his life's work and is worth understanding as you begin yours.</p>
+
+        <p>Fuller approached problems the way MacCready did, by stepping back far enough to see the whole system before deciding when to act. He believed that the most important solutions are often non-obvious, and that finding them requires the willingness to look beyond the easy answer.</p>
+
+        <p>To explain this, Fuller used the metaphor of a trim tab.</p>
+
+        <p>A trim tab is a small rudder attached to a larger rudder on ships and aircraft. The large rudder controls the direction of the vessel. But turning a large rudder against the force of water or air requires enormous effort. The trim tab solves this by creating a small pressure change that makes the larger rudder easier to move.</p>
+
+        <p>The result: a very small surface controls a very large object.</p>
+
+        <p>Fuller saw this as a model for how change actually works. Not through massive force applied directly to a problem, but through small, well-placed interventions that make larger movement possible.</p>
+
+        <div class="callout">
+          <strong>The UX mindset is your trim tab</strong>
+          It does not force solutions. It creates the conditions under which better solutions become possible.
+        </div>
+
+        <div class="section-label">What this means for your work</div>
+
+        <p>Think about the problems we have been discussing across this module. The "faster horses" thinking. The Kawasaki problem. The siloed project teams. In each case, the failure is not because of a lack of resources or intelligence or skill. It is a failure to see solutions from the right perspective.</p>
+
+        <p>MacCready found his trim tab when he stopped trying to build a crash-proof plane and instead designed one that could be rebuilt quickly. Ford found his by understanding that the problem required a more viable and scalable long-term solution rather than a faster version of what already existed.</p>
+
+        <p>In UX, the right solution is rarely the most obvious. It is often the small details that most people do not notice or ever think about — more intuitive navigation, user flows that match how people actually think and behave, a label that uses the user's language instead of the company's.</p>
+
+        <p>These details are grounded in real understanding of the problem. Identifying them and validating them are what turns large, intractable problems into manageable ones.</p>
+
+        <p>Fuller put it this way: get rid of a little nonsense, get rid of things that do not work and are not true, until you start to get that trim tab motion. It works every time.</p>
+
+        <div class="section-label">A cautionary tale</div>
+
+        <p>Before we close Module 1, I want to share a true story that brings everything we have covered into sharp focus.</p>
+
+        <p>A pilot purchased an experimental, build-it-yourself aircraft and decided to take it up for a short flight. The plane had one previous owner, also a pilot, who had made some modifications he believed improved the design.</p>
+
+        <p>The original factory design placed the fuel selector valve, used to switch between gas tanks in each wing, in front of the pilot, with fuel lines along the cockpit floor. The previous owner relocated the valve and the lines to behind the pilot's head, reachable over the left shoulder. He believed this was safer in the event of a belly landing.</p>
+
+        <p>Before the new owner took off, he and his technician discussed the awkward location of the valve. With only enough fuel for an hour of flight, switching tanks mid-air would be unavoidable. They improvised a workaround using a pair of vice grips and a small mirror to avoid having to turn around mid-flight.</p>
+
+        <p>About 45 minutes into the flight, the plane nosedived into the Pacific Ocean. One witness said, "I thought the plane was doing some kind of acrobatic move, and then I realized it wasn't." The pilot was John Denver, a beloved singer known to millions.</p>
+
+        <p>Investigators reconstructed the crash and determined that while reaching for the valve mid-flight, the pilot braced his right foot against the rudder pedal for support, sending the aircraft into an unrecoverable spin.</p>
+
+        <p>What began as a safety consideration became a death trap for someone interacting with a design that failed catastrophically when put to the test.</p>
+
+        <p>The former owner was not careless. He made a change with safety in mind and believed it was an improvement. But he made assumptions that proved to be incorrect.</p>
+
+        <p>This is the failure pattern we have been talking about throughout this module. The "faster horses" teams assumed they knew what users needed. Kawasaki assumed thicker padding was the answer. Teams working in silos assume their interpretation of a problem is correct. In every case assumptions are made with confidence but little else, and that often turns out to be wrong.</p>
+
+        <p>The UX mindset does not guarantee perfect solutions. But it makes this kind of failure far less likely, because it requires you to think deeply about the real problem before committing to a solution. Not a surface problem. Not an obvious fix. The root cause. The trim tab. The Gossamer Albatross. The assembly line.</p>
+
+        <p>No one, regardless of skill or intention, can fully anticipate how others will interact with and experience a solution they have never truly examined from all angles and from outside their own assumptions. That is not a failure of talent. It is a failure of perspective.</p>
+
+        <p>The UX mindset gives you that perspective.</p>
+
+        <div class="section-label">Closing thought</div>
+
+        <p>The UX mindset is not something you either have or you do not. It is a muscle that gets stronger with use. Developing it may also make you more aware of how those around you lack it. No matter how skilled you become, organizations will still rush to solutions, teams will still work in silos, and stakeholders will still ask for the wrong things.</p>
+
+        <p>What the UX mindset gives you is the ability to recognize those moments, name them clearly, and make the case for a better approach. To find the trim tab. To ask the right question before the wrong solution gets built.</p>
+
+        <p>That is the UX mindset, and it is what the project you are about to embark on will ask you to practice for the first time.</p>
+
+      </div>
+
+      <!-- ACTIVITY -->
+      <div class="block-reflection">
+        <div class="block-label">Activity — Finding the trim tab</div>
+        <h3>Where is the trim tab in your problem?</h3>
+        <p>Go back to the problem you have been working with since Lesson 1.1. You have noticed it, reframed it, dug for its root cause, and written a "How might we" statement around it.</p>
+        <p>Now ask one more question: what is the smallest change that would have the biggest impact on this problem?</p>
+        <p>It does not have to be a complete solution. It is the one thing, if changed, that would make everything else easier to solve. The trim tab that moves the larger rudder.</p>
+        <p>Write it down in a sentence or two.</p>
+        <textarea id="activity1-text" placeholder="The smallest change that would have the biggest impact is..."></textarea>
+        <button class="block-btn" id="activity1-btn" onclick="saveActivity(this, 'Lesson 1.4', 'Activity — Finding the trim tab', 'activity1-text')">Save response</button>
+        <p class="save-note">Once submitted your response goes directly to Scott and can't be edited. Take a moment, then hit Save.</p>
+      </div>
+
+      <div class="block-checklist">
+        <h4>Before you move on</h4>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I can explain the trim tab concept in my own words</label>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I understand why small, well-placed interventions are often more effective than large ones</label>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I can connect the trim tab idea to the UX mindset and everything covered in Module 1</label>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I am ready to begin the Module 1 project</label>
+        </div>
+      </div>
+
+      <div style="margin-bottom:2rem;">
+        <div class="section-label">Resources</div>
+        <div class="resource-list">
+          <a class="resource-card" href="https://www.bfi.org" target="_blank">
+            <div class="resource-icon link">🔗</div>
+            <div class="resource-text"><div class="resource-title">Buckminster Fuller Institute</div><div class="resource-meta">bfi.org</div></div>
+            <div class="resource-arrow">↗</div>
+          </a>
+          <a class="resource-card" href="https://www.youtube.com/watch?v=LWeCgmUgXpE" target="_blank">
+            <div class="resource-icon video">▶</div>
+            <div class="resource-text"><div class="resource-title">John Denver — Take Me Home, Country Roads</div><div class="resource-meta">YouTube</div></div>
+            <div class="resource-arrow">↗</div>
+          </a>
+        </div>
+      </div>
+
+      <a class="project-cta" href="project-1.html">
+        <div>
+          <div class="project-cta-label">You have completed Module 1</div>
+          <div class="project-cta-title">Module 1 Project</div>
+          <div class="project-cta-meta">Put the UX mindset into practice</div>
+        </div>
+        <div class="project-cta-arrow">→</div>
+      </a>
+
+    </div>
+  </main>
+</div>
+
+<script src="airtable.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var student = requireStudent();
+  var initials = student.name.split(' ').map(function(n) { return n[0]; }).join('').toUpperCase().slice(0,2);
+  document.getElementById('avatar-initials').textContent = initials;
+  document.getElementById('student-greeting').textContent = 'Logged in as ' + student.name;
+});
+
+function resetStudent() {
+  if (confirm('Log out of this device?')) {
+    localStorage.removeItem('ux_student_name');
+    localStorage.removeItem('ux_student_email');
+    window.location.href = 'welcome.html';
+  }
+}
+
+function toggleCheck(item) {
+  var cb = item.querySelector('input');
+  cb.checked = !cb.checked;
+  item.classList.toggle('checked', cb.checked);
+}
+</script>
+</body>
+</html>
