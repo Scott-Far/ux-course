@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1.2 — Listening vs. Following | UX That Decides</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.unit-meta { display: flex; gap: 1rem; align-items: center; font-size: 13px; color: var(--ink-3); margin-bottom: 1.75rem; flex-wrap: wrap; }
+.learning-goals { background: var(--accent-light); border-left: 4px solid var(--accent); border-radius: 0 var(--radius-lg) var(--radius-lg) 0; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+.learning-goals h4 { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.6rem; }
+.learning-goals ul { padding-left: 1.2rem; }
+.learning-goals li { font-size: 14px; color: var(--ink-2); line-height: 1.7; margin-bottom: 0.2rem; }
+.section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); margin: 2.5rem 0 0.75rem; display: flex; align-items: center; gap: 0.75rem; }
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+.block-reflection { background: var(--amber-light); border: 1px solid rgba(176,104,32,0.2); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; margin: 1.75rem 0; }
+.block-reflection .block-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--amber); margin-bottom: 0.4rem; }
+.block-reflection h3 { font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: var(--ink); margin-bottom: 0.5rem; }
+.block-reflection p { font-size: 14px; color: var(--ink-2); line-height: 1.65; margin-bottom: 0.75rem; }
+.block-reflection textarea { width: 100%; border: 1px solid rgba(176,104,32,0.3); border-radius: var(--radius); padding: 0.75rem; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--ink); resize: vertical; min-height: 90px; background: #fff; outline: none; }
+.block-reflection textarea:focus { border-color: var(--amber); }
+.block-reflection .block-btn { background: var(--amber); color: #fff; border: none; border-radius: var(--radius); padding: 7px 16px; font-size: 13px; cursor: pointer; font-family: 'DM Sans', sans-serif; margin-top: 0.5rem; }
+.block-exercise { background: var(--green-light); border: 1px solid rgba(42,102,66,0.2); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; margin: 1.75rem 0; }
+.block-exercise .block-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--green); margin-bottom: 0.4rem; }
+.block-exercise h3 { font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: var(--ink); margin-bottom: 0.5rem; }
+.block-exercise p { font-size: 14px; color: var(--ink-2); line-height: 1.65; margin-bottom: 0.75rem; }
+.block-exercise textarea { width: 100%; border: 1px solid rgba(42,102,66,0.3); border-radius: var(--radius); padding: 0.75rem; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--ink); resize: vertical; min-height: 90px; background: #fff; outline: none; }
+.block-exercise textarea:focus { border-color: var(--green); }
+.block-exercise .block-btn { background: var(--green); color: #fff; border: none; border-radius: var(--radius); padding: 7px 16px; font-size: 13px; cursor: pointer; font-family: 'DM Sans', sans-serif; margin-top: 0.5rem; }
+.block-checklist { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; margin: 2rem 0; }
+.block-checklist h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 0.85rem; }
+.check-item { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.6rem; cursor: pointer; padding: 0.4rem 0; border-bottom: 1px solid var(--rule); }
+.check-item:last-child { border-bottom: none; margin-bottom: 0; }
+.check-item input[type="checkbox"] { margin-top: 2px; flex-shrink: 0; width: 16px; height: 16px; accent-color: var(--accent); cursor: pointer; }
+.check-item label { font-size: 14px; color: var(--ink-2); line-height: 1.5; cursor: pointer; }
+.check-item.checked label { color: var(--ink-3); text-decoration: line-through; }
+.student-bar { background: var(--accent-light); border-radius: var(--radius); padding: 0.5rem 1rem; font-size: 12px; color: var(--accent); margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+.student-bar a { color: var(--accent); font-size: 11px; cursor: pointer; }
+.save-note { font-size: 12px; color: var(--ink-3); margin-top: 0.5rem; }
+.lesson-image { width: 100%; border-radius: var(--radius-lg); margin: 1.25rem 0; display: block; }
+.image-caption { font-size: 12px; color: var(--ink-3); text-align: center; margin-top: -0.5rem; margin-bottom: 1.25rem; }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <header class="topbar">
+    <a class="topbar-logo" href="index.html">UX That <span>Decides</span></a>
+    <div class="topbar-progress">
+      <div class="progress-label"><span>Course progress</span><span>6% complete</span></div>
+      <div class="progress-bar"><div class="progress-fill" style="width:6%"></div></div>
+    </div>
+    <div class="topbar-actions">
+      <a class="topbar-btn notif" href="feedback.html">💬 Feedback</a>
+      <a class="topbar-btn primary" href="schedule.html">📅 Book call</a>
+      <a class="avatar" href="index.html" id="avatar-initials">?</a>
+    </div>
+  </header>
+
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-label">Navigation</div>
+      <a class="module-item" href="index.html"><div class="module-name">📊 My Dashboard</div></a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Module 1 — The mindset</div>
+      <a class="lesson-item" href="lesson-1-1.html"><div class="lesson-dot done"></div><div class="lesson-name">1.1 The UX Mindset</div></a>
+      <a class="lesson-item active" href="lesson-1-2.html"><div class="lesson-dot active"></div><div class="lesson-name">1.2 Listening vs. following</div></a>
+      <a class="lesson-item" href="lesson-1-3.html"><div class="lesson-dot"></div><div class="lesson-name">1.3 Design Thinking</div></a>
+      <a class="lesson-item" href="lesson-1-4.html"><div class="lesson-dot"></div><div class="lesson-name">1.4 The trim tab</div></a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Module 2 — Research that drives action</div>
+      <a class="lesson-item" href="lesson-2-1.html"><div class="lesson-dot"></div><div class="lesson-name">Research Q vs. business Q</div></a>
+      <a class="lesson-item" href="lesson-2-2.html"><div class="lesson-dot"></div><div class="lesson-name">Choosing the right method</div></a>
+      <a class="lesson-item" href="lesson-2-3.html"><div class="lesson-dot"></div><div class="lesson-name">Interviewing for decisions</div></a>
+      <a class="lesson-item" href="lesson-2-4.html"><div class="lesson-dot"></div><div class="lesson-name">Survey design that doesn't lie</div></a>
+      <a class="lesson-item" href="lesson-2-5.html"><div class="lesson-dot"></div><div class="lesson-name">Synthesis: insight to recommendation</div></a>
+      <a class="lesson-item" href="lesson-2-6.html"><div class="lesson-dot"></div><div class="lesson-name">Research under constraints</div></a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Module 3 — Design with research</div>
+      <a class="lesson-item" href="lesson-3-1.html"><div class="lesson-dot"></div><div class="lesson-name">How research shapes design decisions</div></a>
+      <a class="lesson-item" href="lesson-3-2.html"><div class="lesson-dot"></div><div class="lesson-name">Grounded ideation</div></a>
+      <a class="lesson-item" href="lesson-3-3.html"><div class="lesson-dot"></div><div class="lesson-name">Sketching as thinking</div></a>
+      <a class="lesson-item" href="lesson-3-4.html"><div class="lesson-dot"></div><div class="lesson-name">IA from mental models</div></a>
+      <a class="lesson-item" href="lesson-3-5.html"><div class="lesson-dot"></div><div class="lesson-name">Design critique with research</div></a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Modules 4–8</div>
+      <div class="module-item"><div class="module-name">Module 4 — Prototyping</div><div class="module-meta">coming soon</div></div>
+      <div class="module-item"><div class="module-name">Module 5 — High-stakes domains</div><div class="module-meta">coming soon</div></div>
+      <div class="module-item"><div class="module-name">Module 6 — Communicating</div><div class="module-meta">coming soon</div></div>
+      <div class="module-item"><div class="module-name">Module 7 — Portfolio</div><div class="module-meta">coming soon</div></div>
+      <div class="module-item"><div class="module-name">Module 8 — Capstone</div><div class="module-meta">coming soon</div></div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="content-area">
+
+      <div class="student-bar">
+        <span id="student-greeting">Loading...</span>
+        <a onclick="resetStudent()">Log out</a>
+      </div>
+
+      <div class="unit-meta">
+        <span>⏱ ~20 min</span>
+        <span>📖 Reading</span>
+        <span>✏️ 2 activities</span>
+        <span>Module 1 · Lesson 2 of 4</span>
+      </div>
+
+      <div class="lesson-header">
+        <div class="lesson-tag">Module 1 — The UX Mindset</div>
+        <h1 class="lesson-title">Listening vs. following</h1>
+        <div class="lesson-byline"><span>Scott Faranello</span></div>
+      </div>
+
+      <div class="video-stage">
+        <div class="video-placeholder">
+          <div class="play-btn"><div class="play-triangle"></div></div>
+          <p>Lesson 1.2 — Listening vs. following</p>
+          <small>Video coming soon</small>
+        </div>
+      </div>
+
+      <div class="learning-goals">
+        <h4>By the end of this lesson you will be able to</h4>
+        <ul>
+          <li>Explain the difference between listening and following what users say</li>
+          <li>Recognize how teams misinterpret user needs</li>
+          <li>Apply root cause questioning to identify real problems</li>
+          <li>Describe why interpretation is as important as observation</li>
+        </ul>
+      </div>
+
+      <div class="reading-content">
+
+        <p>In the last lesson we looked at what happens when teams skip user engagement entirely. The "faster horses" mindset assumes we already know what people need, so we never bother to ask.</p>
+
+        <p>But there is an equally dangerous risk on the other side.</p>
+
+        <p>What happens when teams do engage users but fail to interpret what they are hearing?</p>
+
+        <p>This is where UX work breaks down. Not in the absence of research, but in the misreading of it.</p>
+
+        <div class="section-label">Collaboration is a joke, but nobody is laughing</div>
+
+        <p>You may recognize this illustration. It is often found pinned to cubicle walls in technology teams and serves as an uncomfortable reminder of what happens when everyone hears the same request but interprets it differently.</p>
+
+        <img src="TireSwing.png" alt="Tree swing illustration showing how a customer request gets misinterpreted by each team member" class="lesson-image">
+        <p class="image-caption">How the customer explained it vs. what the customer actually needed.</p>
+
+        <p>Instead of working through problems collaboratively, specialized teams become narrowly focused. Each hears information and interprets it based on their individual understanding of the problem and their specific frame of reference.</p>
+
+        <p>The reason this illustration resonates so widely is because it reflects something real in most organizations. Teams work in silos, rarely coordinating, each believing their contribution is the most critical factor in a project's success.</p>
+
+        <p>The problem is that without input from a unified, cross-disciplinary team, things fall apart quickly. Products get released untested. Research is surface level or overlooked entirely. The final result fails to satisfy the needs of the people who have to use it.</p>
+
+        <p>When projects fail under these conditions, as is often the case, it is easier to place blame elsewhere than to confront the real issue: nobody was actually listening.</p>
+
+        <p>This is not only "faster horses" thinking from the customer side, but also from the project team side — where nobody is asking whether they are building the right solution at all.</p>
+
+        <p>The result is siloed teams rushing to solutions to just get it done. It is not that individual teams want to deliver bad products. The opposite is often true. But without the mindset necessary to think through problems carefully, it is easy to mistake getting it done for doing it correctly.</p>
+
+      </div>
+
+      <div class="block-reflection">
+        <div class="block-label">Activity 1 — The other side of the table · ~5 minutes</div>
+        <h3>When you were the customer</h3>
+        <p>Think about a time when someone asked you what you wanted, and when you received it you realized it was not actually what you needed. What did you ask for? What did you actually need? What was the gap between the two?</p>
+        <p>Write down what happened. This does not need to be dramatic — it could be as simple as ordering something at a restaurant and realizing it was not what you pictured, or requesting a feature at work that solved the wrong problem.</p>
+        <textarea id="activity1-text" placeholder="What did you ask for? What did you actually need?"></textarea>
+        <button class="block-btn" id="activity1-btn" onclick="saveActivity(this, 'Lesson 1.2', 'Activity 1 — The other side of the table', 'activity1-text')">Save response</button>
+        <p class="save-note">Once submitted your response goes directly to Scott and can't be edited. Take a moment, then hit Save.</p>
+      </div>
+
+      <div class="reading-content">
+
+        <div class="section-label">Shut up and listen</div>
+
+        <p>As trained UX professionals, it is our responsibility to interpret what we see and hear and translate it into informed hypotheses that can be tested with real people. Listening is not detrimental to success. It is essential to it — provided we know how to listen, how to interpret what we observe, and how to turn those insights into viable design solutions.</p>
+
+        <p>Listening does not mean outsourcing design decisions. It does not mean blindly implementing whatever customers ask for. It means engaging deeply enough to uncover desired outcomes, constraints, and unmet needs — then applying expertise, judgment, and testing to determine what form a solution should take.</p>
+
+        <p>Consider what happened to Kawasaki.</p>
+
+        <p>Kawasaki, maker of motorcycles and other powerful machines, received a request from their Jet Ski customers for extra padding on the vehicle's sides to make the standing position more comfortable. At first, it makes perfect sense. Most Jet Skis require the rider to stand and absorb the impact of the water, making for an uncomfortable ride.</p>
+
+        <p>Kawasaki, being a customer-centric company, focused their efforts on delivering exactly what customers asked for. Meanwhile, their competitors were doing something different. They heard the same complaints from their own customers and saw something else entirely.</p>
+
+        <p>Rather than protect the rider's legs from getting banged around while standing, the competitor gave them a seat. It never occurred to Kawasaki to consider this. As a result, the competitor's seated solution ultimately displaced Kawasaki from its leading market position.</p>
+
+        <p>The customer was not wrong. They described their experience accurately. But Kawasaki failed to ask a more important question: why did their customers need to stand at all?</p>
+
+        <p>True listening is not an either-or proposition. It is a balance between knowing how to design and the ability to listen and interpret what is being said — and never taking things at face value.</p>
+
+        <p>Having a UX mindset means understanding not only what is being said, but also what is not. It is our responsibility to interpret, test, and validate that information to make sure we are designing the right solution.</p>
+
+        <div class="callout">
+          <strong>Remember</strong>
+          Having a UX mindset enables you to listen to what people tell you and what they experience. It is then your job to interpret that information to understand what they actually need.
+        </div>
+
+        <p>Good design is a product of good research. Whether you actually ask customers what they want is not what makes a good product. A good product is the result of knowing the origin of the pain — where it emanates from — because what you think you see and know is not always right.</p>
+
+        <div class="section-label">Data-driven design</div>
+
+        <h3>Getting to root causes</h3>
+
+        <p>One of the key themes throughout this course is getting to root causes. Root causes are what you uncover when you peel back all the layers of a problem until you find its true origin.</p>
+
+        <p>Sometimes problems are right in front of you, as Henry Ford saw living during a time when horses were an insurmountable problem. Sometimes they are much harder to see, like MacCready's flying machine. But they are always there. You just have to know how to look.</p>
+
+        <p>Getting to root causes requires asking the right questions — questions that not only address what customers and users experience, but also what stakeholders need to solve at a business level.</p>
+
+        <p>For example, when working with stakeholders, asking:</p>
+
+        <ul>
+          <li>What is the current business problem?</li>
+          <li>How do you know it is a problem?</li>
+          <li>What are the measurable business goals and key performance indicators?</li>
+          <li>How will we know we are successful?</li>
+          <li>What business areas, systems, or applications are impacted?</li>
+          <li>What are the risks if we do not solve it?</li>
+        </ul>
+
+        <p>These are difficult but essential questions. They force stakeholders to think more deeply about why a problem is being solved and how success will be defined. Without this approach, there is no reliable way to understand what is broken, or by how much.</p>
+
+        <p>Without knowing what you are measuring, or what baseline you are measuring against, you are essentially designing blind.</p>
+
+      </div>
+
+      <div class="block-exercise">
+        <div class="block-label">Activity 2 — Digging for the root cause · ~5 minutes</div>
+        <h3>Ask why three times</h3>
+        <p>Go back to the problem you identified in Lesson 1.1, Activity 1. Now ask "why" three times.</p>
+        <p>For example: A banking app is confusing to use. Why? Because users can't find the transfer function. Why? Because it is buried under three levels of navigation. Why? Because the navigation was organized around internal business categories, not how users think about their money. The real problem is not that the app is confusing. The real problem is that the information architecture reflects the bank's internal structure rather than the user's mental model.</p>
+        <p>Try this with your problem. Write three "why" questions and see where they lead. You do not need a final answer. The goal is to practice not stopping at the first explanation.</p>
+        <textarea id="activity2-text" placeholder="Problem: ...&#10;Why? ...&#10;Why? ...&#10;Why? ...&#10;&#10;The real problem is..."></textarea>
+        <button class="block-btn" id="activity2-btn" onclick="saveActivity(this, 'Lesson 1.2', 'Activity 2 — Root cause', 'activity2-text')">Save response</button>
+        <p class="save-note">Once submitted your response goes directly to Scott and can't be edited. Take a moment, then hit Save.</p>
+      </div>
+
+      <div class="reading-content">
+
+        <div class="section-label">Wrapping up</div>
+
+        <h3>Summary</h3>
+
+        <p>Listening to users is not enough. Interpretation is everything.</p>
+
+        <p>Teams that engage users but take their feedback literally — giving them padding instead of a seat, a faster horse instead of an affordable car — are making the same mistake as teams that never engage at all. The symptom gets addressed. The real problem remains.</p>
+
+        <p>The UX mindset requires holding two things at once: genuine curiosity about what people experience, and disciplined skepticism about the possible solutions.</p>
+
+        <p>In the next lesson, we will look at how Design Thinking gives teams a structured way to do exactly that, before the wrong solutions are too far along to fix.</p>
+
+      </div>
+
+      <div class="block-checklist">
+        <h4>Before you move on</h4>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I can explain the difference between listening to users and blindly following what they say</label>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I understand why the Kawasaki example is a failure of interpretation, not a failure of engagement</label>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I can write at least three "why" questions to dig toward a root cause</label>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I have completed both activities above</label>
+        </div>
+      </div>
+
+      <div style="margin-bottom:2rem;">
+        <div class="section-label">Resources</div>
+        <div class="resource-list">
+          <a class="resource-card" href="https://hbr.org/2002/01/turn-customer-input-into-innovation" target="_blank">
+            <div class="resource-icon link">🔗</div>
+            <div class="resource-text"><div class="resource-title">Turn Customer Input into Innovation — Anthony W. Ulwick</div><div class="resource-meta">Harvard Business Review</div></div>
+            <div class="resource-arrow">↗</div>
+          </a>
+          <a class="resource-card" href="https://www.accessmagazine.org/wp-content/uploads/sites/7/2016/07/Access-30-02-Horse-Power.pdf" target="_blank">
+            <div class="resource-icon link">🔗</div>
+            <div class="resource-text"><div class="resource-title">From Horse Power to Horsepower — Eric Morris</div><div class="resource-meta">ACCESS Magazine, UC Berkeley</div></div>
+            <div class="resource-arrow">↗</div>
+          </a>
+          <a class="resource-card" href="https://www.amazon.com/Fifth-Discipline-Practice-Learning-Organization/dp/0385517254" target="_blank">
+            <div class="resource-icon link">🔗</div>
+            <div class="resource-text"><div class="resource-title">The Fifth Discipline — Peter Senge</div><div class="resource-meta">On siloed teams and organizational learning</div></div>
+            <div class="resource-arrow">↗</div>
+          </a>
+        </div>
+      </div>
+
+      <div class="lesson-nav">
+        <a class="nav-btn" href="lesson-1-1.html">← Lesson 1.1</a>
+        <button class="mark-done" onclick="markDone()">✓ Mark complete</button>
+        <a class="nav-btn next" href="lesson-1-3.html">Lesson 1.3 →</a>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="airtable.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var student = requireStudent();
+  var initials = student.name.split(' ').map(function(n) { return n[0]; }).join('').toUpperCase().slice(0,2);
+  document.getElementById('avatar-initials').textContent = initials;
+  document.getElementById('student-greeting').textContent = 'Logged in as ' + student.name;
+});
+
+function resetStudent() {
+  if (confirm('Log out of this device?')) {
+    localStorage.removeItem('ux_student_name');
+    localStorage.removeItem('ux_student_email');
+    window.location.href = 'welcome.html';
+  }
+}
+
+function toggleCheck(item) {
+  var cb = item.querySelector('input');
+  cb.checked = !cb.checked;
+  item.classList.toggle('checked', cb.checked);
+}
+
+function markDone() {
+  window.location.href = 'lesson-1-3.html';
+}
+</script>
+</body>
+</html>
