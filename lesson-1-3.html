@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1.3 — Design Thinking | UX That Decides</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.unit-meta { display: flex; gap: 1rem; align-items: center; font-size: 13px; color: var(--ink-3); margin-bottom: 1.75rem; flex-wrap: wrap; }
+.learning-goals { background: var(--accent-light); border-left: 4px solid var(--accent); border-radius: 0 var(--radius-lg) var(--radius-lg) 0; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+.learning-goals h4 { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.6rem; }
+.learning-goals ul { padding-left: 1.2rem; }
+.learning-goals li { font-size: 14px; color: var(--ink-2); line-height: 1.7; margin-bottom: 0.2rem; }
+.section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); margin: 2.5rem 0 0.75rem; display: flex; align-items: center; gap: 0.75rem; }
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+.block-reflection { background: var(--amber-light); border: 1px solid rgba(176,104,32,0.2); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; margin: 1.75rem 0; }
+.block-reflection .block-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--amber); margin-bottom: 0.4rem; }
+.block-reflection h3 { font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: var(--ink); margin-bottom: 0.5rem; }
+.block-reflection p { font-size: 14px; color: var(--ink-2); line-height: 1.65; margin-bottom: 0.75rem; }
+.block-reflection textarea { width: 100%; border: 1px solid rgba(176,104,32,0.3); border-radius: var(--radius); padding: 0.75rem; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--ink); resize: vertical; min-height: 90px; background: #fff; outline: none; }
+.block-reflection textarea:focus { border-color: var(--amber); }
+.block-reflection .block-btn { background: var(--amber); color: #fff; border: none; border-radius: var(--radius); padding: 7px 16px; font-size: 13px; cursor: pointer; font-family: 'DM Sans', sans-serif; margin-top: 0.5rem; }
+.block-exercise { background: var(--green-light); border: 1px solid rgba(42,102,66,0.2); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; margin: 1.75rem 0; }
+.block-exercise .block-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--green); margin-bottom: 0.4rem; }
+.block-exercise h3 { font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: var(--ink); margin-bottom: 0.5rem; }
+.block-exercise p { font-size: 14px; color: var(--ink-2); line-height: 1.65; margin-bottom: 0.75rem; }
+.block-exercise .open-btn { display: inline-block; background: var(--green); color: #fff; border: none; border-radius: var(--radius); padding: 10px 20px; font-size: 14px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; text-decoration: none; transition: background 0.15s; }
+.block-exercise .open-btn:hover { background: #1e5232; }
+.block-checklist { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; margin: 2rem 0; }
+.block-checklist h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 0.85rem; }
+.check-item { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.6rem; cursor: pointer; padding: 0.4rem 0; border-bottom: 1px solid var(--rule); }
+.check-item:last-child { border-bottom: none; margin-bottom: 0; }
+.check-item input[type="checkbox"] { margin-top: 2px; flex-shrink: 0; width: 16px; height: 16px; accent-color: var(--accent); cursor: pointer; }
+.check-item label { font-size: 14px; color: var(--ink-2); line-height: 1.5; cursor: pointer; }
+.check-item.checked label { color: var(--ink-3); text-decoration: line-through; }
+.student-bar { background: var(--accent-light); border-radius: var(--radius); padding: 0.5rem 1rem; font-size: 12px; color: var(--accent); margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+.student-bar a { color: var(--accent); font-size: 11px; cursor: pointer; }
+.five-stages { display: flex; flex-direction: column; gap: 0.75rem; margin: 1rem 0; }
+.stage { display: flex; gap: 1rem; align-items: flex-start; }
+.stage-num { background: var(--accent); color: #fff; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; flex-shrink: 0; margin-top: 2px; }
+.stage-content { flex: 1; }
+.stage-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 2px; }
+.stage-desc { font-size: 14px; color: var(--ink-2); line-height: 1.6; }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <header class="topbar">
+    <a class="topbar-logo" href="index.html">UX That <span>Decides</span></a>
+    <div class="topbar-progress">
+      <div class="progress-label"><span>Course progress</span><span>9% complete</span></div>
+      <div class="progress-bar"><div class="progress-fill" style="width:9%"></div></div>
+    </div>
+    <div class="topbar-actions">
+      <a class="topbar-btn notif" href="feedback.html">💬 Feedback</a>
+      <a class="topbar-btn primary" href="schedule.html">📅 Book call</a>
+      <a class="avatar" href="index.html" id="avatar-initials">?</a>
+    </div>
+  </header>
+
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-label">Navigation</div>
+      <a class="module-item" href="index.html"><div class="module-name">📊 My Dashboard</div></a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Module 1 — The mindset</div>
+      <a class="lesson-item" href="lesson-1-1.html"><div class="lesson-dot done"></div><div class="lesson-name">1.1 The UX Mindset</div></a>
+      <a class="lesson-item" href="lesson-1-2.html"><div class="lesson-dot done"></div><div class="lesson-name">1.2 Listening vs. following</div></a>
+      <a class="lesson-item active" href="lesson-1-3.html"><div class="lesson-dot active"></div><div class="lesson-name">1.3 Design Thinking</div></a>
+      <a class="lesson-item" href="lesson-1-4.html"><div class="lesson-dot"></div><div class="lesson-name">1.4 The trim tab</div></a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Module 2 — Research that drives action</div>
+      <a class="lesson-item" href="lesson-2-1.html"><div class="lesson-dot"></div><div class="lesson-name">Research Q vs. business Q</div></a>
+      <a class="lesson-item" href="lesson-2-2.html"><div class="lesson-dot"></div><div class="lesson-name">Choosing the right method</div></a>
+      <a class="lesson-item" href="lesson-2-3.html"><div class="lesson-dot"></div><div class="lesson-name">Interviewing for decisions</div></a>
+      <a class="lesson-item" href="lesson-2-4.html"><div class="lesson-dot"></div><div class="lesson-name">Survey design that doesn't lie</div></a>
+      <a class="lesson-item" href="lesson-2-5.html"><div class="lesson-dot"></div><div class="lesson-name">Synthesis: insight to recommendation</div></a>
+      <a class="lesson-item" href="lesson-2-6.html"><div class="lesson-dot"></div><div class="lesson-name">Research under constraints</div></a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Module 3 — Design with research</div>
+      <a class="lesson-item" href="lesson-3-1.html"><div class="lesson-dot"></div><div class="lesson-name">How research shapes design decisions</div></a>
+      <a class="lesson-item" href="lesson-3-2.html"><div class="lesson-dot"></div><div class="lesson-name">Grounded ideation</div></a>
+      <a class="lesson-item" href="lesson-3-3.html"><div class="lesson-dot"></div><div class="lesson-name">Sketching as thinking</div></a>
+      <a class="lesson-item" href="lesson-3-4.html"><div class="lesson-dot"></div><div class="lesson-name">IA from mental models</div></a>
+      <a class="lesson-item" href="lesson-3-5.html"><div class="lesson-dot"></div><div class="lesson-name">Design critique with research</div></a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Modules 4–8</div>
+      <div class="module-item"><div class="module-name">Module 4 — Prototyping</div><div class="module-meta">coming soon</div></div>
+      <div class="module-item"><div class="module-name">Module 5 — High-stakes domains</div><div class="module-meta">coming soon</div></div>
+      <div class="module-item"><div class="module-name">Module 6 — Communicating</div><div class="module-meta">coming soon</div></div>
+      <div class="module-item"><div class="module-name">Module 7 — Portfolio</div><div class="module-meta">coming soon</div></div>
+      <div class="module-item"><div class="module-name">Module 8 — Capstone</div><div class="module-meta">coming soon</div></div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="content-area">
+
+      <div class="student-bar">
+        <span id="student-greeting">Loading...</span>
+        <a onclick="resetStudent()">Log out</a>
+      </div>
+
+      <div class="unit-meta">
+        <span>📖 Reading</span>
+        <span>✏️ 2 activities</span>
+        <span>Module 1 · Lesson 3 of 4</span>
+      </div>
+
+      <div class="lesson-header">
+        <div class="lesson-tag">Module 1 — The UX Mindset</div>
+        <h1 class="lesson-title">Design Thinking</h1>
+        <div class="lesson-byline"><span>Scott Faranello</span></div>
+      </div>
+
+      <div class="video-stage">
+        <div class="video-placeholder">
+          <div class="play-btn"><div class="play-triangle"></div></div>
+          <p>Lesson 1.3 — Design Thinking</p>
+          <small>Video coming soon</small>
+        </div>
+      </div>
+
+      <div class="learning-goals">
+        <h4>By the end of this lesson you will be able to</h4>
+        <ul>
+          <li>Explain what Design Thinking is and why it matters</li>
+          <li>Describe the three areas good design must balance</li>
+          <li>Recognize where Design Thinking fits into UX practice</li>
+          <li>Write a "How might we" problem statement for a real challenge</li>
+        </ul>
+      </div>
+
+      <div class="reading-content">
+
+        <p>In the last two lessons we established two things. First, assuming you know what users need without engaging them is a recipe for failure. Second, engaging users without knowing how to interpret what they tell you is equally dangerous.</p>
+
+        <p>So what does a better approach actually look like in practice?</p>
+
+        <p>Before we answer that, one more myth to put to rest.</p>
+
+        <div class="section-label">One more quote that needs context</div>
+
+        <blockquote>"We built the Mac for ourselves. We were the group of people who were going to judge whether it was great or not. We weren't going to go out and do market research." — Steve Jobs</blockquote>
+
+        <p>This quote gets used the same way the Ford quote does — as justification for skipping user research because brilliant designers just know what's best.</p>
+
+        <p>But Jobs said something else that rarely gets quoted alongside it.</p>
+
+        <blockquote>"Really great products come from melding two points of view — the technology point of view and the customer point of view. You need both. It takes a long time to pull out of customers what they really want, and it takes a long time to pull out of technology what it can really give." — Steve Jobs</blockquote>
+
+        <p>Jobs was not ignoring his customers. He was doing exactly what we have been talking about — listening deeply, interpreting carefully, and not outsourcing design decisions to people who hadn't thought as hard about the problem as he had.</p>
+
+        <p>The lesson is the same one from Kawasaki. Don't give customers a more comfortable way to stand when sitting is what they actually need. Don't give them a faster horse when an affordable, easy to produce alternative solves the very real problem.</p>
+
+        <p>Good solutions do not come from ignoring what you see or assuming what is true. They come from knowing what is true by seeing it, experiencing it, and validating it before any solution is conceived.</p>
+
+        <div class="section-label">Design Thinking</div>
+
+        <p>Henry Ford and Steve Jobs did not work alone. Neither should you.</p>
+
+        <p>The idea that meaningful solutions come from isolated expertise ignores how complex problems actually are. They require multiple perspectives, shared understanding, and a willingness to challenge assumptions so that a desire to be first does not end up as a costly mistake.</p>
+
+        <p>This is where Design Thinking comes in.</p>
+
+        <p>Design Thinking is a popular term that originated at Stanford University's School of Engineering as a way to tackle complex, ambiguous challenges. Its value comes from forcing teams to slow down, define a problem carefully, and address real constraints before committing to solutions.</p>
+
+        <p>Rather than jumping directly to execution, Design Thinking encourages teams to first clarify what problem they are actually solving, then explore a range of possible solutions and test those ideas with real people along the way. In doing so, Design Thinking exposes assumptions, surfaces risk, and encourages a willingness to iterate instead of rushing into solutions.</p>
+
+        <div class="section-label">The three areas Design Thinking balances</div>
+
+        <p>At its core, Design Thinking requires teams to balance three key areas:</p>
+
+        <ul>
+          <li><strong>Technical Feasibility</strong> — What can realistically be built, given technical constraints, budgets, timelines, and organizational realities. A solution that cannot realistically be delivered is not a solution.</li>
+          <li><strong>Business Viability</strong> — Does the solution support measurable outcomes and long-term return on investment? A solution that solves the user's problem but provides no value to the business is not sustainable.</li>
+          <li><strong>Desirability and Need</strong> — Is the solution desirable and does it meaningfully address a problem uncovered through research?</li>
+        </ul>
+
+        <p>Technology teams tend to build things that are feasible but not often needed by anyone outside the technology team. Business teams generally optimize for business accountability over usability. Design teams often create experiences that are desired but, when measured against the first two areas, are usually a much lower priority.</p>
+
+        <p>Design Thinking forces all three into the room at the same time.</p>
+
+        <div class="callout">
+          <strong>The best solutions sit at the intersection of all three areas</strong>
+          Feasible enough to build. Viable enough to sustain. Desirable and needed so people actually use them.
+        </div>
+
+        <div class="section-label">The five stages</div>
+
+        <p>Design Thinking is often represented in five stages. They are not a rigid sequence — in practice teams move back and forth between them — but they provide a useful map:</p>
+
+        <div class="five-stages">
+          <div class="stage">
+            <div class="stage-num">1</div>
+            <div class="stage-content">
+              <div class="stage-title">Empathize</div>
+              <div class="stage-desc">Understand the people you are designing for. Observe them. Talk to them. Set aside your assumptions and engage with their actual experience.</div>
+            </div>
+          </div>
+          <div class="stage">
+            <div class="stage-num">2</div>
+            <div class="stage-content">
+              <div class="stage-title">Define</div>
+              <div class="stage-desc">Synthesize what you learned into a clear problem statement. This is where "How might we" comes in — a tool that turns observations into design challenges.</div>
+            </div>
+          </div>
+          <div class="stage">
+            <div class="stage-num">3</div>
+            <div class="stage-content">
+              <div class="stage-title">Ideate</div>
+              <div class="stage-desc">Generate possible solutions before committing to any of them.</div>
+            </div>
+          </div>
+          <div class="stage">
+            <div class="stage-num">4</div>
+            <div class="stage-content">
+              <div class="stage-title">Prototype</div>
+              <div class="stage-desc">Create low-fidelity versions of the most promising ideas. The goal is to make your thinking tangible enough to test.</div>
+            </div>
+          </div>
+          <div class="stage">
+            <div class="stage-num">5</div>
+            <div class="stage-content">
+              <div class="stage-title">Test</div>
+              <div class="stage-desc">Put your prototype in front of real people. Observe what happens. Learn. Revise.</div>
+            </div>
+          </div>
+        </div>
+
+        <p>Notice how this mirrors what we have been talking about across the first two lessons. Empathizing is listening and observing. Define is root cause analysis. Ideate is MacCready's approach to problem solving. Prototype and test are the iteration loop.</p>
+
+        <p>Design Thinking is not a new framework. It is a formal name given to an approach that good designers have always followed. Giving it a name makes it approachable and teachable to those who haven't looked at problems and solutions in this way, and gives them a map to follow.</p>
+
+        <p>Let's try it out.</p>
+
+      </div>
+
+      <!-- ACTIVITY 1 -->
+      <div class="block-reflection">
+        <div class="block-label">Activity 1 — Balancing Act</div>
+        <h3>Look at a product through three lenses</h3>
+        <p>Think about a digital product you use regularly — a mobile app, a website, or a software tool. It could be something you love, something you tolerate, or something you avoid. Picture yourself using it right now.</p>
+        <p>Answer the questions below for each of the three circles. You do not need inside knowledge of the company or how it was built. Just describe what you observe and feel as a user.</p>
+        <p><strong>What product are you analyzing?</strong></p>
+        <textarea id="activity1-product" placeholder="e.g. My bank's mobile app, Netflix, Google Maps, Instagram..."></textarea>
+        <p style="font-size:13px;color:var(--ink-2);margin-top:1rem;margin-bottom:0.5rem;"><strong>Technical Feasibility</strong></p>
+        <textarea id="activity1-tech" placeholder="Does it feel finished? Is there anything that should work but doesn't quite? Does the technology feel like it is working for you or against you?"></textarea>
+        <p style="font-size:13px;color:var(--ink-2);margin-top:0.75rem;margin-bottom:0.5rem;"><strong>Business Viability</strong></p>
+        <textarea id="activity1-biz" placeholder="What does the product want you to do? What do you think the company wants from your interaction? Does the experience feel designed for you or for the company?"></textarea>
+        <p style="font-size:13px;color:var(--ink-2);margin-top:0.75rem;margin-bottom:0.5rem;"><strong>Desirability and Need</strong></p>
+        <textarea id="activity1-des" placeholder="What problem does it solve? Does it fully solve it? What would you design differently and why?"></textarea>
+        <button class="block-btn" id="activity1-btn" onclick="saveActivity1()">Save response</button>
+        <p style="font-size:12px;color:var(--ink-3);margin-top:0.5rem;">Once submitted your response goes directly to Scott and can't be edited. Take a moment, then hit Save.</p>
+      </div>
+
+      <div class="reading-content">
+
+        <div class="section-label">"How might we"</div>
+
+        <p>The "How might we" statement is a Design Thinking tool that takes a potential problem or pain point and turns it into a design challenge — specific enough to guide decisions but open enough to allow for more than one solution.</p>
+
+        <p>A good "How might we" statement is not too broad and not too narrow.</p>
+
+        <ul>
+          <li><strong>Too broad:</strong> "How might we improve healthcare?"</li>
+          <li><strong>Too narrow:</strong> "How might we add a search bar to the patient portal?"</li>
+          <li><strong>Just right:</strong> "How might we help first-time patients navigate a hospital system without feeling overwhelmed or lost?"</li>
+        </ul>
+
+        <p>Notice that the "just right" version is specific enough to point toward a real design challenge, but open enough that more than one solution could answer it. You could solve it with better signage, a guided onboarding flow, a simpler map, a staff escort system, or something else entirely. The statement does not prescribe the solution. It defines the problem.</p>
+
+      </div>
+
+      <!-- ACTIVITY 2 -->
+      <div class="block-exercise">
+        <div class="block-label">Activity 2 — How might we</div>
+        <h3>Write your problem statement</h3>
+        <p>Using the product from Activity 1, think about the root cause of the biggest problem you identified. Not the symptom — the underlying cause. Then write a "How might we" statement that captures it.</p>
+        <p>This activity has its own worksheet. Open it below, complete it, and submit it directly to Scott from there.</p>
+        <a class="open-btn" href="activity-1-3.html" target="_blank">Open Activity 2 worksheet →</a>
+      </div>
+
+      <div class="reading-content">
+
+        <div class="section-label">Wrapping up</div>
+
+        <h3>Summary</h3>
+
+        <p>Design Thinking gives teams a structured way to do what good UX practitioners have always done — engage deeply, define clearly, explore broadly, and test before committing.</p>
+
+        <p>It is not a magic formula. It is a discipline. And like the UX mindset itself, it requires practice, thoughtfulness, and dedication to develop.</p>
+
+        <p>In the next lesson we will close out Module 1 with one final idea, and look at what all of this adds up to before you take on the Module 1 project.</p>
+
+      </div>
+
+      <div class="block-checklist">
+        <h4>Before you move on</h4>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I can explain what Design Thinking is and why it exists</label>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I understand the three areas that good design must balance</label>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I can describe the five stages and how they connect to lessons 1.1 and 1.2</label>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I have completed the Activity 2 worksheet and submitted it</label>
+        </div>
+      </div>
+
+      <div style="margin-bottom:2rem;">
+        <div class="section-label">Resources</div>
+        <div class="resource-list">
+          <a class="resource-card" href="https://dschool.stanford.edu" target="_blank">
+            <div class="resource-icon link">🔗</div>
+            <div class="resource-text"><div class="resource-title">Design Thinking — Stanford d.school</div><div class="resource-meta">The original source</div></div>
+            <div class="resource-arrow">↗</div>
+          </a>
+          <a class="resource-card" href="https://hbr.org/2002/01/turn-customer-input-into-innovation" target="_blank">
+            <div class="resource-icon link">🔗</div>
+            <div class="resource-text"><div class="resource-title">Turn Customer Input into Innovation — Anthony W. Ulwick</div><div class="resource-meta">Harvard Business Review</div></div>
+            <div class="resource-arrow">↗</div>
+          </a>
+          <a class="resource-card" href="https://www.ideo.com/post/design-thinking" target="_blank">
+            <div class="resource-icon link">🔗</div>
+            <div class="resource-text"><div class="resource-title">IDEO Design Thinking</div><div class="resource-meta">ideo.com</div></div>
+            <div class="resource-arrow">↗</div>
+          </a>
+        </div>
+      </div>
+
+      <div class="lesson-nav">
+        <a class="nav-btn" href="lesson-1-2.html">← Lesson 1.2</a>
+        <button class="mark-done" onclick="markDone()">✓ Mark complete</button>
+        <a class="nav-btn next" href="lesson-1-4.html">Lesson 1.4 →</a>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="airtable.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var student = requireStudent();
+  var initials = student.name.split(' ').map(function(n) { return n[0]; }).join('').toUpperCase().slice(0,2);
+  document.getElementById('avatar-initials').textContent = initials;
+  document.getElementById('student-greeting').textContent = 'Logged in as ' + student.name;
+});
+
+function resetStudent() {
+  if (confirm('Log out of this device?')) {
+    localStorage.removeItem('ux_student_name');
+    localStorage.removeItem('ux_student_email');
+    window.location.href = 'welcome.html';
+  }
+}
+
+function toggleCheck(item) {
+  var cb = item.querySelector('input');
+  cb.checked = !cb.checked;
+  item.classList.toggle('checked', cb.checked);
+}
+
+function markDone() {
+  window.location.href = 'lesson-1-4.html';
+}
+
+async function saveActivity1() {
+  var btn = document.getElementById('activity1-btn');
+  var product = document.getElementById('activity1-product').value.trim();
+  var tech = document.getElementById('activity1-tech').value.trim();
+  var biz = document.getElementById('activity1-biz').value.trim();
+  var des = document.getElementById('activity1-des').value.trim();
+
+  if (!product && !tech && !biz && !des) {
+    btn.textContent = 'Please fill in at least one field';
+    btn.style.background = '#b06820';
+    setTimeout(function() {
+      btn.textContent = 'Save response';
+      btn.style.background = '';
+    }, 2000);
+    return;
+  }
+
+  var combined = 'PRODUCT: ' + product +
+    '\n\nTechnical Feasibility:\n' + tech +
+    '\n\nBusiness Viability:\n' + biz +
+    '\n\nDesirability and Need:\n' + des;
+
+  btn.textContent = 'Saving...';
+  btn.disabled = true;
+
+  try {
+    await submitToAirtable('Lesson 1.3', 'Activity 1 — Balancing Act', combined);
+    btn.textContent = 'Saved ✓';
+    btn.style.background = '#2a6642';
+  } catch(e) {
+    btn.textContent = 'Error — try again';
+    btn.style.background = '#9c2f2f';
+    btn.disabled = false;
+  }
+}
+</script>
+</body>
+</html>
