@@ -18,7 +18,7 @@
     <div class="topbar-actions">
       <a class="topbar-btn notif" href="feedback.html">💬 Feedback</a>
       <a class="topbar-btn primary" href="schedule.html">📅 Book call</a>
-      <a class="avatar" href="index.html">JS</a>
+      <a class="avatar" href="index.html" id="avatar-initials">?</a>
     </div>
   </header>
 
@@ -65,7 +65,7 @@
     <div class="content-area">
       <div class="dash-welcome">
         <h1 id="dash-welcome-name">Welcome back.</h1>
-        <p>You're making real progress. Keep the momentum going.</p>
+        <p>You're making real progress. Keep the momentum going. <a onclick="logout()" style="font-size:12px;color:var(--ink-3);cursor:pointer;margin-left:0.5rem;">Log out</a></p>
       </div>
       <div class="dash-grid">
         <div class="stat-card"><div class="stat-num">1</div><div class="stat-label">Lessons completed</div></div>
@@ -104,8 +104,18 @@ document.addEventListener('DOMContentLoaded', function() {
   var name = localStorage.getItem('ux_student_name');
   if (name) {
     document.getElementById('dash-welcome-name').textContent = 'Welcome back, ' + name + '.';
+    var initials = name.split(' ').map(function(n) { return n[0]; }).join('').toUpperCase().slice(0,2);
+    document.getElementById('avatar-initials').textContent = initials;
   }
 });
+
+function logout() {
+  if (confirm('Log out of this device?')) {
+    localStorage.removeItem('ux_student_name');
+    localStorage.removeItem('ux_student_email');
+    window.location.href = 'welcome.html';
+  }
+}
 </script>
 </body>
 </html>
