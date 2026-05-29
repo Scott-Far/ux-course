@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 1 Project | UX That Decides</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.unit-meta { display: flex; gap: 1rem; align-items: center; font-size: 13px; color: var(--ink-3); margin-bottom: 1.75rem; flex-wrap: wrap; }
+.section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); margin: 2.5rem 0 0.75rem; display: flex; align-items: center; gap: 0.75rem; }
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+.student-bar { background: var(--accent-light); border-radius: var(--radius); padding: 0.5rem 1rem; font-size: 12px; color: var(--accent); margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+.student-bar a { color: var(--accent); font-size: 11px; cursor: pointer; }
+
+.inbox-reminder { background: var(--amber-light); border: 1px solid rgba(176,104,32,0.2); border-radius: var(--radius-lg); padding: 1rem 1.25rem; margin-bottom: 2rem; display: flex; gap: 0.75rem; align-items: flex-start; }
+.inbox-reminder .icon { font-size: 1.25rem; flex-shrink: 0; margin-top: 2px; }
+.inbox-reminder p { font-size: 14px; color: var(--amber); line-height: 1.6; }
+.inbox-reminder strong { display: block; margin-bottom: 2px; }
+
+.part-block { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 1.25rem; }
+.part-header { background: var(--accent); color: #fff; padding: 0.85rem 1.25rem; }
+.part-header h3 { font-size: 14px; font-weight: 500; }
+.part-header p { font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 2px; }
+.part-body { padding: 1.25rem; }
+.part-body p { font-size: 14px; color: var(--ink-2); line-height: 1.7; margin-bottom: 0.75rem; }
+.part-body p:last-child { margin-bottom: 0; }
+.part-body .example { font-size: 13px; color: var(--ink-3); font-style: italic; background: var(--bg); border-radius: var(--radius); padding: 0.65rem 0.9rem; margin-top: 0.5rem; }
+
+.eval-list { list-style: none; padding: 0; }
+.eval-list li { font-size: 14px; color: var(--ink-2); line-height: 1.7; padding: 0.5rem 0; border-bottom: 1px solid var(--rule); display: flex; gap: 0.75rem; align-items: flex-start; }
+.eval-list li:last-child { border-bottom: none; }
+.eval-list li::before { content: '→'; color: var(--accent); font-size: 13px; flex-shrink: 0; margin-top: 2px; }
+
+.thread-list { list-style: none; padding: 0; }
+.thread-item { display: flex; gap: 0.75rem; align-items: flex-start; padding: 0.65rem 0; border-bottom: 1px solid var(--rule); }
+.thread-item:last-child { border-bottom: none; }
+.thread-num { background: var(--accent); color: #fff; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; flex-shrink: 0; margin-top: 1px; }
+.thread-text { font-size: 14px; color: var(--ink-2); line-height: 1.6; }
+.thread-text strong { color: var(--ink); font-weight: 500; }
+
+.tools-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 0.75rem; }
+.tool-item { background: var(--bg); border: 1px solid var(--rule); border-radius: var(--radius); padding: 0.75rem 1rem; font-size: 13px; color: var(--ink-2); }
+.tool-item strong { display: block; color: var(--ink); font-size: 13px; margin-bottom: 2px; }
+
+.submit-block { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: 1.5rem; margin-top: 2rem; }
+.submit-block h3 { font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 0.75rem; }
+.submit-block p { font-size: 14px; color: var(--ink-2); line-height: 1.65; margin-bottom: 1rem; }
+.submit-block input[type="url"] { width: 100%; border: 1px solid var(--rule); border-radius: var(--radius); padding: 0.75rem 1rem; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--ink); background: var(--bg); outline: none; margin-bottom: 0.75rem; transition: border-color 0.15s; }
+.submit-block input[type="url"]:focus { border-color: var(--accent-2); background: #fff; }
+.submit-btn { background: var(--accent); color: #fff; border: none; border-radius: var(--radius); padding: 10px 24px; font-size: 14px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background 0.15s; }
+.submit-btn:hover { background: var(--accent-2); }
+.submit-btn:disabled { background: var(--ink-3); cursor: not-allowed; }
+.submit-note { font-size: 12px; color: var(--ink-3); margin-top: 0.5rem; }
+.success-msg { display: none; background: var(--green-light); border: 1px solid rgba(42,102,66,0.2); border-radius: var(--radius); padding: 1rem; font-size: 14px; color: var(--green); margin-top: 1rem; }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <header class="topbar">
+    <a class="topbar-logo" href="index.html">UX That <span>Decides</span></a>
+    <div class="topbar-progress">
+      <div class="progress-label"><span>Course progress</span><span>15% complete</span></div>
+      <div class="progress-bar"><div class="progress-fill" style="width:15%"></div></div>
+    </div>
+    <div class="topbar-actions">
+      <a class="topbar-btn notif" href="feedback.html">💬 Feedback</a>
+      <a class="topbar-btn primary" href="schedule.html">📅 Book call</a>
+      <a class="avatar" href="index.html" id="avatar-initials">?</a>
+    </div>
+  </header>
+
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-label">Navigation</div>
+      <a class="module-item" href="index.html"><div class="module-name">📊 My Dashboard</div></a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Module 1 — The mindset</div>
+      <a class="lesson-item" href="lesson-1-1.html"><div class="lesson-dot done"></div><div class="lesson-name">1.1 The UX Mindset</div></a>
+      <a class="lesson-item" href="lesson-1-2.html"><div class="lesson-dot done"></div><div class="lesson-name">1.2 Listening vs. following</div></a>
+      <a class="lesson-item" href="lesson-1-3.html"><div class="lesson-dot done"></div><div class="lesson-name">1.3 Design Thinking</div></a>
+      <a class="lesson-item" href="lesson-1-4.html"><div class="lesson-dot done"></div><div class="lesson-name">1.4 The trim tab</div></a>
+      <a class="lesson-item active" href="project-1.html"><div class="lesson-dot active"></div><div class="lesson-name">★ Module 1 Project</div></a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Module 2 — Research that drives action</div>
+      <a class="lesson-item" href="lesson-2-1.html"><div class="lesson-dot"></div><div class="lesson-name">Research Q vs. business Q</div></a>
+      <a class="lesson-item" href="lesson-2-2.html"><div class="lesson-dot"></div><div class="lesson-name">Choosing the right method</div></a>
+      <a class="lesson-item" href="lesson-2-3.html"><div class="lesson-dot"></div><div class="lesson-name">Interviewing for decisions</div></a>
+      <a class="lesson-item" href="lesson-2-4.html"><div class="lesson-dot"></div><div class="lesson-name">Survey design that doesn't lie</div></a>
+      <a class="lesson-item" href="lesson-2-5.html"><div class="lesson-dot"></div><div class="lesson-name">Synthesis: insight to recommendation</div></a>
+      <a class="lesson-item" href="lesson-2-6.html"><div class="lesson-dot"></div><div class="lesson-name">Research under constraints</div></a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Module 3 — Design with research</div>
+      <a class="lesson-item" href="lesson-3-1.html"><div class="lesson-dot"></div><div class="lesson-name">How research shapes design decisions</div></a>
+      <a class="lesson-item" href="lesson-3-2.html"><div class="lesson-dot"></div><div class="lesson-name">Grounded ideation</div></a>
+      <a class="lesson-item" href="lesson-3-3.html"><div class="lesson-dot"></div><div class="lesson-name">Sketching as thinking</div></a>
+      <a class="lesson-item" href="lesson-3-4.html"><div class="lesson-dot"></div><div class="lesson-name">IA from mental models</div></a>
+      <a class="lesson-item" href="lesson-3-5.html"><div class="lesson-dot"></div><div class="lesson-name">Design critique with research</div></a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Modules 4–8</div>
+      <div class="module-item"><div class="module-name">Module 4 — Prototyping</div><div class="module-meta">coming soon</div></div>
+      <div class="module-item"><div class="module-name">Module 5 — High-stakes domains</div><div class="module-meta">coming soon</div></div>
+      <div class="module-item"><div class="module-name">Module 6 — Communicating</div><div class="module-meta">coming soon</div></div>
+      <div class="module-item"><div class="module-name">Module 7 — Portfolio</div><div class="module-meta">coming soon</div></div>
+      <div class="module-item"><div class="module-name">Module 8 — Capstone</div><div class="module-meta">coming soon</div></div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="content-area">
+
+      <div class="student-bar">
+        <span id="student-greeting">Loading...</span>
+        <a onclick="resetStudent()">Log out</a>
+      </div>
+
+      <div class="unit-meta">
+        <span>📋 Project</span>
+        <span>Module 1 · Final</span>
+      </div>
+
+      <div class="lesson-header">
+        <div class="lesson-tag">Module 1 — The UX Mindset</div>
+        <h1 class="lesson-title">Define it. Sketch it. Defend it.</h1>
+        <div class="lesson-byline"><span>Scott Faranello</span></div>
+      </div>
+
+      <!-- INBOX REMINDER -->
+      <div class="inbox-reminder">
+        <div class="icon">📬</div>
+        <p><strong>Check your inbox before you start</strong>A summary of all your Module 1 activity responses was sent to your email when you clicked through from Lesson 1.4. Have it open as you work through this project — your responses are the foundation of everything you are about to build.</p>
+      </div>
+
+      <div class="reading-content">
+
+        <div class="section-label">What this project is</div>
+
+        <p>Throughout Module 1 you have been building a single thread — a real problem you noticed, a root cause you dug to, a "How might we" statement you wrote, and the smallest meaningful intervention you identified. This project asks you to bring all of that together into one cohesive response.</p>
+
+        <p>You are not building a finished product. You are being asked to think like a UX practitioner and show your work.</p>
+
+        <div class="section-label">What you will submit</div>
+
+      </div>
+
+      <div class="part-block">
+        <div class="part-header">
+          <h3>Part 1 — The problem</h3>
+          <p>From Lesson 1.1, Activities 1 and 2</p>
+        </div>
+        <div class="part-body">
+          <p>Describe the problem you identified in Lesson 1.1. What did you notice? What does it feel like to experience it? Then describe your reframe — the real problem underneath the symptom you first observed.</p>
+          <p>Be specific. "Apps are confusing" is not a problem statement. "The navigation on my bank's app uses internal labels that customers do not recognize, so people cannot find what they need without guessing" is a problem statement.</p>
+          <p class="example">Check your inbox for your Lesson 1.1 activity responses.</p>
+        </div>
+      </div>
+
+      <div class="part-block">
+        <div class="part-header">
+          <h3>Part 2 — The root cause</h3>
+          <p>From Lesson 1.2, Activity 2</p>
+        </div>
+        <div class="part-body">
+          <p>Using the three whys from Lesson 1.2, describe what is actually driving the problem. What did you find when you kept asking why? What is underneath the symptom you first noticed?</p>
+          <p>Explain the difference between what the problem looks like on the surface and what is actually causing it.</p>
+        </div>
+      </div>
+
+      <div class="part-block">
+        <div class="part-header">
+          <h3>Part 3 — The "How might we"</h3>
+          <p>From Lesson 1.3, Activity 2</p>
+        </div>
+        <div class="part-body">
+          <p>Write your "How might we" statement from your Lesson 1.3 activity worksheet. One sentence. Specific enough to guide a design decision but open enough to allow more than one solution.</p>
+          <p class="example">"How might we help mobile banking users find the transfer function without relying on labels they do not recognize?"</p>
+        </div>
+      </div>
+
+      <div class="part-block">
+        <div class="part-header">
+          <h3>Part 4 — The solution sketch</h3>
+          <p>From Lesson 1.4, Activity</p>
+        </div>
+        <div class="part-body">
+          <p>Using the trim tab you identified in Lesson 1.4 as your starting point, sketch or describe your proposed solution. Show what it looks like and how it works. Label the parts. Explain why each decision addresses the root cause you defined.</p>
+          <p>It does not need to be beautiful. It needs to be clear. If you are drawing by hand, take a photo. If you are writing it out, be specific enough that someone who has never seen the problem could understand your solution from your description alone.</p>
+        </div>
+      </div>
+
+      <div class="reading-content">
+
+        <div class="section-label">How you will be evaluated</div>
+
+        <p>I will review every submission personally. I am not looking for polished design. I am looking for evidence of the UX mindset:</p>
+
+        <ul class="eval-list">
+          <li>Did you identify a real problem, not a symptom?</li>
+          <li>Did you dig past the surface to find the root cause?</li>
+          <li>Does your solution address the actual need, not just the obvious fix?</li>
+          <li>Can you explain why you made the decisions you made?</li>
+        </ul>
+
+        <p style="margin-top:1rem;">There is no single right answer. Every student will have observed a different problem and arrived at a different solution. What matters is the quality of your thinking, not the quality of your drawing.</p>
+
+        <div class="section-label">The project thread — what each lesson added</div>
+
+        <p>Before you submit, check that your project includes work from all four lessons:</p>
+
+      </div>
+
+      <div class="part-block">
+        <div class="part-body">
+          <div class="thread-item">
+            <div class="thread-num">1</div>
+            <div class="thread-text"><strong>Lesson 1.1</strong> You noticed a problem and reframed it</div>
+          </div>
+          <div class="thread-item">
+            <div class="thread-num">2</div>
+            <div class="thread-text"><strong>Lesson 1.2</strong> You dug for the root cause using the three whys</div>
+          </div>
+          <div class="thread-item">
+            <div class="thread-num">3</div>
+            <div class="thread-text"><strong>Lesson 1.3</strong> You wrote a "How might we" problem statement</div>
+          </div>
+          <div class="thread-item">
+            <div class="thread-num">4</div>
+            <div class="thread-text"><strong>Lesson 1.4</strong> You identified the trim tab — the smallest change with the biggest impact</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reading-content">
+        <p>If you skipped a lesson or did not complete the activity, go back and do it before submitting. The project only works if all four pieces are in place.</p>
+
+        <div class="section-label">A note on tools</div>
+
+        <p>Use whatever you are comfortable with. The tool does not matter. The thinking does.</p>
+      </div>
+
+      <div class="tools-grid">
+        <div class="tool-item"><strong>Pen and paper</strong>Photograph it and upload to Google Drive</div>
+        <div class="tool-item"><strong>Figma</strong>Keep it low fidelity — boxes, labels, arrows</div>
+        <div class="tool-item"><strong>PowerPoint or Google Slides</strong>One slide per part works well</div>
+        <div class="tool-item"><strong>Google Doc</strong>Written description with a rough sketch embedded</div>
+      </div>
+
+      <!-- SUBMIT -->
+      <div class="submit-block">
+        <h3>How to submit</h3>
+        <p>Upload your document or image to Google Drive and paste the shared link below. Make sure sharing is set to "Anyone with the link can view." If you have questions before submitting, use the Feedback button at the top of the page.</p>
+        <input type="url" id="project-link" placeholder="Paste your Google Drive link here...">
+        <br>
+        <button class="submit-btn" id="submit-btn" onclick="submitProject()">Submit project</button>
+        <p class="submit-note">Once submitted your project goes directly to me and cannot be edited. If you need to resubmit, use the Feedback button to let me know.</p>
+        <div class="success-msg" id="success-msg">Your project has been submitted. I will review it and get back to you by email with feedback.</div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="airtable.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var student = requireStudent();
+  var initials = student.name.split(' ').map(function(n) { return n[0]; }).join('').toUpperCase().slice(0,2);
+  document.getElementById('avatar-initials').textContent = initials;
+  document.getElementById('student-greeting').textContent = 'Logged in as ' + student.name;
+});
+
+function resetStudent() {
+  if (confirm('Log out of this device?')) {
+    localStorage.removeItem('ux_student_name');
+    localStorage.removeItem('ux_student_email');
+    window.location.href = 'welcome.html';
+  }
+}
+
+async function submitProject() {
+  var btn = document.getElementById('submit-btn');
+  var link = document.getElementById('project-link').value.trim();
+
+  if (!link || !link.startsWith('http')) {
+    btn.textContent = 'Please paste your Google Drive link first';
+    btn.style.background = '#b06820';
+    setTimeout(function() {
+      btn.textContent = 'Submit project';
+      btn.style.background = '';
+    }, 2500);
+    return;
+  }
+
+  btn.textContent = 'Submitting...';
+  btn.disabled = true;
+
+  try {
+    await submitToAirtable('Module 1 Project', 'Final submission', link);
+    btn.style.display = 'none';
+    document.getElementById('success-msg').style.display = 'block';
+  } catch(e) {
+    btn.textContent = 'Error — try again';
+    btn.style.background = '#9c2f2f';
+    btn.disabled = false;
+    setTimeout(function() {
+      btn.textContent = 'Submit project';
+      btn.style.background = '';
+      btn.disabled = false;
+    }, 3000);
+  }
+}
+</script>
+</body>
+</html>
