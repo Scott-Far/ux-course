@@ -46,33 +46,6 @@
   </header>
 
   <aside class="sidebar">
-    <div class="sidebar-section">
-      <div class="sidebar-label">Navigation</div>
-      <a class="module-item" href="index.html"><div class="module-name">📊 My Dashboard</div></a>
-    </div>
-    <div class="sidebar-section">
-      <div class="sidebar-label">Module 1 — The mindset</div>
-      <a class="lesson-item" href="lesson-1-1.html"><div class="lesson-dot done"></div><div class="lesson-name">1.1 The UX Mindset</div></a>
-      <a class="lesson-item" href="lesson-1-2.html"><div class="lesson-dot done"></div><div class="lesson-name">1.2 Listening vs. following</div></a>
-      <a class="lesson-item" href="lesson-1-3.html"><div class="lesson-dot done"></div><div class="lesson-name">1.3 Design Thinking</div></a>
-      <a class="lesson-item" href="lesson-1-4.html"><div class="lesson-dot done"></div><div class="lesson-name">1.4 The trim tab</div></a>
-      <a class="lesson-item" href="project-1.html"><div class="lesson-dot done"></div><div class="lesson-name">★ Module 1 Project</div></a>
-    </div>
-    <div class="sidebar-section">
-      <div class="sidebar-label">Module 2 — Creative and good UX design</div>
-      <a class="lesson-item" href="lesson-2-1.html"><div class="lesson-dot done"></div><div class="lesson-name">2.1 Open and closed modes</div></a>
-      <a class="lesson-item" href="lesson-2-2.html"><div class="lesson-dot done"></div><div class="lesson-name">2.2 The conditions for creativity</div></a>
-      <a class="lesson-item active" href="lesson-2-3.html"><div class="lesson-dot active"></div><div class="lesson-name">2.3 What good UX design looks like</div></a>
-    </div>
-    <div class="sidebar-section">
-      <div class="sidebar-label">Modules 3–8</div>
-      <div class="module-item"><div class="module-name">Module 3 — Good UX Design</div><div class="module-meta">coming soon</div></div>
-      <div class="module-item"><div class="module-name">Module 4 — Information Architecture</div><div class="module-meta">coming soon</div></div>
-      <div class="module-item"><div class="module-name">Module 5 — Patterns and Properties</div><div class="module-meta">coming soon</div></div>
-      <div class="module-item"><div class="module-name">Module 6 — Research Methods</div><div class="module-meta">coming soon</div></div>
-      <div class="module-item"><div class="module-name">Module 7 — Interviewing and Synthesis</div><div class="module-meta">coming soon</div></div>
-      <div class="module-item"><div class="module-name">Module 8 — Capstone</div><div class="module-meta">coming soon</div></div>
-    </div>
   </aside>
 
   <main class="main">
@@ -244,9 +217,11 @@
   </main>
 </div>
 
+<script src="nav.js"></script>
 <script src="airtable.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+  buildNav('lesson-2-3.html');
   var student = requireStudent();
   var initials = student.name.split(' ').map(function(n) { return n[0]; }).join('').toUpperCase().slice(0,2);
   document.getElementById('avatar-initials').textContent = initials;
