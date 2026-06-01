@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2.2 — The Conditions for Creativity | UX That Decides</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.unit-meta { display: flex; gap: 1rem; align-items: center; font-size: 13px; color: var(--ink-3); margin-bottom: 1.75rem; flex-wrap: wrap; }
+.learning-goals { background: var(--accent-light); border-left: 4px solid var(--accent); border-radius: 0 var(--radius-lg) var(--radius-lg) 0; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+.learning-goals h4 { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.6rem; }
+.learning-goals ul { padding-left: 1.2rem; }
+.learning-goals li { font-size: 14px; color: var(--ink-2); line-height: 1.7; margin-bottom: 0.2rem; }
+.section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); margin: 2.5rem 0 0.75rem; display: flex; align-items: center; gap: 0.75rem; }
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+.block-checklist { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; margin: 2rem 0; }
+.block-checklist h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 0.85rem; }
+.check-item { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.6rem; cursor: pointer; padding: 0.4rem 0; border-bottom: 1px solid var(--rule); }
+.check-item:last-child { border-bottom: none; margin-bottom: 0; }
+.check-item input[type="checkbox"] { margin-top: 2px; flex-shrink: 0; width: 16px; height: 16px; accent-color: var(--accent); cursor: pointer; }
+.check-item label { font-size: 14px; color: var(--ink-2); line-height: 1.5; cursor: pointer; }
+.check-item.checked label { color: var(--ink-3); text-decoration: line-through; }
+.student-bar { background: var(--accent-light); border-radius: var(--radius); padding: 0.5rem 1rem; font-size: 12px; color: var(--accent); margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+.student-bar a { color: var(--accent); font-size: 11px; cursor: pointer; }
+.conditions-list { display: flex; flex-direction: column; gap: 0.5rem; margin: 1rem 0 1.5rem; }
+.condition-item { display: flex; gap: 1rem; align-items: flex-start; background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); padding: 0.75rem 1rem; }
+.condition-num { background: var(--accent); color: #fff; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; flex-shrink: 0; margin-top: 1px; }
+.condition-text { font-size: 14px; color: var(--ink-2); line-height: 1.5; }
+.condition-text strong { color: var(--ink); }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <header class="topbar">
+    <a class="topbar-logo" href="index.html">UX That <span>Decides</span></a>
+    <div class="topbar-progress">
+      <div class="progress-label"><span>Course progress</span><span>21% complete</span></div>
+      <div class="progress-bar"><div class="progress-fill" style="width:21%"></div></div>
+    </div>
+    <div class="topbar-actions">
+      <a class="topbar-btn notif" href="feedback.html">💬 Feedback</a>
+      <a class="topbar-btn primary" href="schedule.html">📅 Book call</a>
+      <a class="avatar" href="index.html" id="avatar-initials">?</a>
+    </div>
+  </header>
+
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-label">Navigation</div>
+      <a class="module-item" href="index.html"><div class="module-name">📊 My Dashboard</div></a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Module 1 — The mindset</div>
+      <a class="lesson-item" href="lesson-1-1.html"><div class="lesson-dot done"></div><div class="lesson-name">1.1 The UX Mindset</div></a>
+      <a class="lesson-item" href="lesson-1-2.html"><div class="lesson-dot done"></div><div class="lesson-name">1.2 Listening vs. following</div></a>
+      <a class="lesson-item" href="lesson-1-3.html"><div class="lesson-dot done"></div><div class="lesson-name">1.3 Design Thinking</div></a>
+      <a class="lesson-item" href="lesson-1-4.html"><div class="lesson-dot done"></div><div class="lesson-name">1.4 The trim tab</div></a>
+      <a class="lesson-item" href="project-1.html"><div class="lesson-dot done"></div><div class="lesson-name">★ Module 1 Project</div></a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Module 2 — Creative and good UX design</div>
+      <a class="lesson-item" href="lesson-2-1.html"><div class="lesson-dot done"></div><div class="lesson-name">2.1 Open and closed modes</div></a>
+      <a class="lesson-item active" href="lesson-2-2.html"><div class="lesson-dot active"></div><div class="lesson-name">2.2 The conditions for creativity</div></a>
+      <a class="lesson-item" href="lesson-2-3.html"><div class="lesson-dot"></div><div class="lesson-name">2.3 What good UX design looks like</div></a>
+      <a class="lesson-item" href="lesson-2-4.html"><div class="lesson-dot"></div><div class="lesson-name">2.4 Design principles in practice</div></a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Modules 3–8</div>
+      <div class="module-item"><div class="module-name">Module 3 — Good UX Design</div><div class="module-meta">coming soon</div></div>
+      <div class="module-item"><div class="module-name">Module 4 — Information Architecture</div><div class="module-meta">coming soon</div></div>
+      <div class="module-item"><div class="module-name">Module 5 — Patterns and Properties</div><div class="module-meta">coming soon</div></div>
+      <div class="module-item"><div class="module-name">Module 6 — Research Methods</div><div class="module-meta">coming soon</div></div>
+      <div class="module-item"><div class="module-name">Module 7 — Interviewing and Synthesis</div><div class="module-meta">coming soon</div></div>
+      <div class="module-item"><div class="module-name">Module 8 — Capstone</div><div class="module-meta">coming soon</div></div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="content-area">
+
+      <div class="student-bar">
+        <span id="student-greeting">Loading...</span>
+        <a onclick="resetStudent()">Log out</a>
+      </div>
+
+      <div class="unit-meta">
+        <span>📖 Reading</span>
+        <span>Module 2 · Lesson 2 of 4</span>
+      </div>
+
+      <div class="lesson-header">
+        <div class="lesson-tag">Module 2 — Creative and Good UX Design</div>
+        <h1 class="lesson-title">The conditions for creativity</h1>
+        <div class="lesson-byline"><span>Scott Faranello</span></div>
+      </div>
+
+      <div class="video-stage">
+        <div class="video-placeholder">
+          <div class="play-btn"><div class="play-triangle"></div></div>
+          <p>Lesson 2.2 — The conditions for creativity</p>
+          <small>Video coming soon</small>
+        </div>
+      </div>
+
+      <div class="learning-goals">
+        <h4>By the end of this lesson you will be able to</h4>
+        <ul>
+          <li>Describe what it means to get stuck in a mode and why it happens</li>
+          <li>Explain all five conditions needed for creativity</li>
+          <li>Apply these conditions to your own work and team environment</li>
+        </ul>
+      </div>
+
+      <div class="reading-content">
+
+        <p>In the last lesson we looked at open and closed modes and how switching between them is something we already do naturally. The challenge is not knowing we are doing it and creating the conditions that allow open and closed modes to happen when you need them.</p>
+
+        <div class="section-label">Stuck in a mode</div>
+
+        <p>In a fast-paced work environment, teams can easily find themselves stuck in one mode for too long. Consider this scenario.</p>
+
+        <p>A development team is working on an application that helps clients analyze data related to customer usage and online business health. Users have been complaining about readability and poor navigation. The dashboard is confusing and customer support calls are high. The team requests someone from the UX team to join their next project meeting to address these issues.</p>
+
+        <p>At that meeting, the UX person asks a lot of questions and is told that the project is moving quickly and to design solutions quickly to meet the project deadline which is fast approaching.</p>
+
+        <p>With little time to understand root causes, the UX person spends the next week understanding the current issues and doing as much as possible to avoid assumptions and deliver what they believe is the right approach to fixing the issues.</p>
+
+        <p>This is a very common scenario where UX is given very little information, minimal data, and minimal time to understand the underlying issues causing pain points for users. In situations like this, it is easy to get stuck in closed mode because there simply is not enough information or time to be open to all possibilities.</p>
+
+        <p>Under such pressure, our first instinct is to remain closed to avoid distraction and missing the deadline. However, open and closed modes are not timed activities in a strict sense, and with practice, you can jump in and out quickly and efficiently.</p>
+
+        <p>It is also important to remember that open mode does not guarantee creativity. It simply guarantees that if you create the proper conditions for creativity, you will have created the best opportunity for creativity to happen.</p>
+
+        <div class="section-label">The five conditions for creativity</div>
+
+        <div class="conditions-list">
+          <div class="condition-item">
+            <div class="condition-num">1</div>
+            <div class="condition-text"><strong>Space</strong> — Finding the physical space to be creative</div>
+          </div>
+          <div class="condition-item">
+            <div class="condition-num">2</div>
+            <div class="condition-text"><strong>Time</strong> — Putting aside time for creativity to occur</div>
+          </div>
+          <div class="condition-item">
+            <div class="condition-num">3</div>
+            <div class="condition-text"><strong>Confidence</strong> — Knowing when to switch between open and closed modes</div>
+          </div>
+          <div class="condition-item">
+            <div class="condition-num">4</div>
+            <div class="condition-text"><strong>Humor</strong> — Embracing failure</div>
+          </div>
+          <div class="condition-item">
+            <div class="condition-num">5</div>
+            <div class="condition-text"><strong>Agreement</strong> — Gaining agreement that your approach is sound</div>
+          </div>
+        </div>
+
+        <div class="section-label">Space</div>
+
+        <p>No matter where you choose to work, the requirements for a creative space are the same:</p>
+
+        <ul>
+          <li>No phones</li>
+          <li>No email</li>
+          <li>No clock watching</li>
+          <li>No judgment</li>
+        </ul>
+
+        <div class="callout">
+          We are not our ideas. We are simply allowing ideas to come to us and through us. Failure is encouraged, so long as we are trying.
+        </div>
+
+        <div class="section-label">Time</div>
+
+        <p>Think about the last time you were in open mode. Did time fly by? Did hours seem like minutes? Contrast this with how it feels when you are rushing through a project with deadlines looming. In closed mode you are thinking about time constantly.</p>
+
+        <p>Many times, you will find that project teams want to rush to a solution and move on quickly. For people who function best in closed mode, being open can actually make them feel physically ill, forcing them to want to finish in order to feel better.</p>
+
+        <p>Do not be tricked by this feeling. Time is a requirement.</p>
+
+        <p>That does not mean spending weeks or even days in open mode. Some people need an hour, while others need a whole day or more. Open mode becomes easier with practice so if it does not come right away for you, do not worry. Over time, with practice and experience, you can control open mode at will.</p>
+
+        <p>But without making time on a regular basis and exercising open mode, you can be sure that it will never come when you need it.</p>
+
+        <blockquote>"The people I find it hardest to be creative with are people who need to project an image of themselves as decisive and to create this image they need to decide everything very quickly and with a great show of confidence. This behavior, I suggest sincerely, is the most effective way of strangling creativity at birth." — John Cleese</blockquote>
+
+        <div class="section-label">The 10,000 hour rule</div>
+
+        <p>Malcolm Gladwell, in his book Outliers, wrote that the magic number to acquire greatness in anything is 10,000 hours. Gladwell was not suggesting that this number makes someone a champion or famous or even the best. The point he was making was that "natural ability requires a huge investment of time in order to be made manifest."</p>
+
+        <p>Becoming highly proficient and highly creative takes time and often a good deal of discomfort. However, the most creative people would not trade it for anything in the world, because once they arrive, any discomfort they may have experienced pales in comparison to the payoff.</p>
+
+        <blockquote>"I fear not the man who has practiced 10,000 kicks once, but I fear the man who has practiced one kick 10,000 times." — Bruce Lee</blockquote>
+
+        <p>By jumping to conclusions, making assumptions, and being decisive with no evidence to support it, we are essentially trying to skip the work and just get lucky. But unless we put in at least enough time to experience some discomfort, we will never truly know what possibilities exist on the other side.</p>
+
+        <div class="section-label">Confidence</div>
+
+        <blockquote>"Nothing will stop you being creative so effectively as the fear of making a mistake." — John Cleese</blockquote>
+
+        <p>In a study performed by scientists at Johns Hopkins University, six Jazz piano players were asked to improvise music while hooked up to an MRI. The study found that the parts of the frontal lobe associated with judgment went quiet, allowing more ideas to pass through.</p>
+
+        <div class="section-label">Humor</div>
+
+        <p>There is also a strong correlation between creativity and play. In one study, participants including professional designers and improvisational comedians were given a cartoon caption humor test. The comedians generated 20 percent more ideas than the designers, and were rated 25 percent more creative.</p>
+
+        <p>The research found that improvisational comedians outperformed the designers because they were trained to bypass their inner editor, while designers are often taught to brainstorm viable solutions.</p>
+
+        <p>Creativity is serious business. The least you can do is enjoy it.</p>
+
+        <div class="section-label">Agreement</div>
+
+        <p>Once you have met all the conditions necessary for creativity to occur, the final step is agreement:</p>
+
+        <ul>
+          <li>Agreement with yourself or your team to work together to find the right solution</li>
+          <li>Agreement from project stakeholders that your solution is technically feasible, has business value, and will meaningfully address a real need</li>
+        </ul>
+
+        <p>If you do not have agreement in these areas, then creativity will be stifled and any solution will be ineffective at best.</p>
+
+        <div class="section-label">Summary</div>
+
+        <p>Getting stuck in closed mode is one of the most common challenges UX practitioners face. The five conditions that make open mode possible are not complicated, but they are easy to skip by impatient, decisive people who just want to get it done and move on to solutions. Creating the right conditions for creativity is not a luxury. It is a requirement for the kind of thinking that produces solutions worth building.</p>
+
+        <p>In the next lesson we will look at what good UX design actually looks like once you are in the right mode to produce it.</p>
+
+      </div>
+
+      <div class="block-checklist">
+        <h4>Before you move on</h4>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I can describe what it means to get stuck in a mode and why it happens</label>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I understand the five conditions for creativity and why each one matters</label>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I can identify which conditions are missing from my own work</label>
+        </div>
+      </div>
+
+      <div class="lesson-nav">
+        <a class="nav-btn" href="lesson-2-1.html">← Lesson 2.1</a>
+        <button class="mark-done" onclick="markDone()">✓ Mark complete</button>
+        <a class="nav-btn next" href="lesson-2-3.html">Lesson 2.3 →</a>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="airtable.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var student = requireStudent();
+  var initials = student.name.split(' ').map(function(n) { return n[0]; }).join('').toUpperCase().slice(0,2);
+  document.getElementById('avatar-initials').textContent = initials;
+  document.getElementById('student-greeting').textContent = 'Logged in as ' + student.name;
+});
+
+function resetStudent() {
+  if (confirm('Log out of this device?')) {
+    localStorage.removeItem('ux_student_name');
+    localStorage.removeItem('ux_student_email');
+    window.location.href = 'welcome.html';
+  }
+}
+
+function toggleCheck(item) {
+  var cb = item.querySelector('input');
+  cb.checked = !cb.checked;
+  item.classList.toggle('checked', cb.checked);
+}
+
+function markDone() {
+  window.location.href = 'lesson-2-3.html';
+}
+</script>
+</body>
+</html>
