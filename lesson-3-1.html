@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3.1 — What IA Is and Why It Matters | UX That Decides</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.unit-meta { display: flex; gap: 1rem; align-items: center; font-size: 13px; color: var(--ink-3); margin-bottom: 1.75rem; flex-wrap: wrap; }
+.learning-goals { background: var(--accent-light); border-left: 4px solid var(--accent); border-radius: 0 var(--radius-lg) var(--radius-lg) 0; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+.learning-goals h4 { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.6rem; }
+.learning-goals ul { padding-left: 1.2rem; }
+.learning-goals li { font-size: 14px; color: var(--ink-2); line-height: 1.7; margin-bottom: 0.2rem; }
+.section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); margin: 2.5rem 0 0.75rem; display: flex; align-items: center; gap: 0.75rem; }
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+.block-checklist { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; margin: 2rem 0; }
+.block-checklist h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 0.85rem; }
+.check-item { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.6rem; cursor: pointer; padding: 0.4rem 0; border-bottom: 1px solid var(--rule); }
+.check-item:last-child { border-bottom: none; margin-bottom: 0; }
+.check-item input[type="checkbox"] { margin-top: 2px; flex-shrink: 0; width: 16px; height: 16px; accent-color: var(--accent); cursor: pointer; }
+.check-item label { font-size: 14px; color: var(--ink-2); line-height: 1.5; cursor: pointer; }
+.check-item.checked label { color: var(--ink-3); text-decoration: line-through; }
+.student-bar { background: var(--accent-light); border-radius: var(--radius); padding: 0.5rem 1rem; font-size: 12px; color: var(--accent); margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+.student-bar a { color: var(--accent); font-size: 11px; cursor: pointer; }
+.four-c { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 1.5rem; }
+.four-c-header { background: var(--accent); color: #fff; padding: 0.75rem 1.25rem; }
+.four-c-header h3 { font-size: 14px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
+.four-c-body { padding: 1.25rem; }
+.four-c-body p { font-size: 14px; color: var(--ink-2); line-height: 1.7; margin-bottom: 0.75rem; }
+.four-c-body p:last-child { margin-bottom: 0; }
+.four-c-applies { background: var(--accent-light); border-radius: var(--radius); padding: 0.85rem 1rem; margin-top: 0.75rem; }
+.four-c-applies-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.4rem; }
+.four-c-applies p { font-size: 13px; color: var(--ink-2); line-height: 1.65; margin: 0; }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <header class="topbar">
+    <a class="topbar-logo" href="index.html">UX That <span>Decides</span></a>
+    <div class="topbar-progress">
+      <div class="progress-label"><span>Course progress</span><span>28% complete</span></div>
+      <div class="progress-bar"><div class="progress-fill" style="width:28%"></div></div>
+    </div>
+    <div class="topbar-actions">
+      <a class="topbar-btn notif" href="feedback.html">💬 Feedback</a>
+      <a class="topbar-btn primary" href="schedule.html">📅 Book call</a>
+      <a class="avatar" href="index.html" id="avatar-initials">?</a>
+    </div>
+  </header>
+
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-label">Navigation</div>
+      <a class="module-item" href="index.html"><div class="module-name">📊 My Dashboard</div></a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Module 1 — The mindset</div>
+      <a class="lesson-item" href="lesson-1-1.html"><div class="lesson-dot done"></div><div class="lesson-name">1.1 The UX Mindset</div></a>
+      <a class="lesson-item" href="lesson-1-2.html"><div class="lesson-dot done"></div><div class="lesson-name">1.2 Listening vs. following</div></a>
+      <a class="lesson-item" href="lesson-1-3.html"><div class="lesson-dot done"></div><div class="lesson-name">1.3 Design Thinking</div></a>
+      <a class="lesson-item" href="lesson-1-4.html"><div class="lesson-dot done"></div><div class="lesson-name">1.4 The trim tab</div></a>
+      <a class="lesson-item" href="project-1.html"><div class="lesson-dot done"></div><div class="lesson-name">★ Module 1 Project</div></a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Module 2 — Creative and good UX design</div>
+      <a class="lesson-item" href="lesson-2-1.html"><div class="lesson-dot done"></div><div class="lesson-name">2.1 Open and closed modes</div></a>
+      <a class="lesson-item" href="lesson-2-2.html"><div class="lesson-dot done"></div><div class="lesson-name">2.2 The conditions for creativity</div></a>
+      <a class="lesson-item" href="lesson-2-3.html"><div class="lesson-dot done"></div><div class="lesson-name">2.3 What good UX design looks like</div></a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Module 3 — Information Architecture</div>
+      <a class="lesson-item active" href="lesson-3-1.html"><div class="lesson-dot active"></div><div class="lesson-name">3.1 What IA is and why it matters</div></a>
+      <a class="lesson-item" href="lesson-3-2.html"><div class="lesson-dot"></div><div class="lesson-name">3.2 Mental models, taxonomy, and sitemaps</div></a>
+      <a class="lesson-item" href="lesson-3-3.html"><div class="lesson-dot"></div><div class="lesson-name">3.3 Wayfinding and designing for change</div></a>
+      <a class="lesson-item" href="lesson-3-4.html"><div class="lesson-dot"></div><div class="lesson-name">3.4 IA in practice</div></a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Modules 4–8</div>
+      <div class="module-item"><div class="module-name">Module 4 — Patterns and Properties</div><div class="module-meta">coming soon</div></div>
+      <div class="module-item"><div class="module-name">Module 5 — Research Methods</div><div class="module-meta">coming soon</div></div>
+      <div class="module-item"><div class="module-name">Module 6 — Interviewing and Synthesis</div><div class="module-meta">coming soon</div></div>
+      <div class="module-item"><div class="module-name">Module 7 — Portfolio</div><div class="module-meta">coming soon</div></div>
+      <div class="module-item"><div class="module-name">Module 8 — Capstone</div><div class="module-meta">coming soon</div></div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="content-area">
+
+      <div class="student-bar">
+        <span id="student-greeting">Loading...</span>
+        <a onclick="resetStudent()">Log out</a>
+      </div>
+
+      <div class="unit-meta">
+        <span>📖 Reading</span>
+        <span>Module 3 · Lesson 1 of 4</span>
+      </div>
+
+      <div class="lesson-header">
+        <div class="lesson-tag">Module 3 — Information Architecture</div>
+        <h1 class="lesson-title">What IA is and why it matters</h1>
+        <div class="lesson-byline"><span>Scott Faranello</span></div>
+      </div>
+
+      <div class="video-stage">
+        <div class="video-placeholder">
+          <div class="play-btn"><div class="play-triangle"></div></div>
+          <p>Lesson 3.1 — What IA is and why it matters</p>
+          <small>Video coming soon</small>
+        </div>
+      </div>
+
+      <div class="learning-goals">
+        <h4>By the end of this lesson you will be able to</h4>
+        <ul>
+          <li>Explain what Information Architecture is and why it matters</li>
+          <li>Describe the difference between data and information</li>
+          <li>Identify the Four Cs of IA and what each one means</li>
+          <li>Recognize IA in your everyday life</li>
+        </ul>
+      </div>
+
+      <div class="reading-content">
+
+        <p>One of the most overlooked and undervalued skills of the UX practitioner is Information Architecture, or IA. It is the foundation for all good design and is what determines the overall experience and one's ability to achieve their objective when faced with a task to complete.</p>
+
+        <div class="section-label">The glue that holds it all together</div>
+
+        <p>In technology, IA is often associated with developers as they have to piece together a very complex assortment of code and systems and processes for even the simplest tasks to function properly. But looking at IA only from a technology perspective creates a very narrow understanding of what IA actually is.</p>
+
+        <blockquote>"I use the word information in its truest sense. Most of the word information contains the word inform, so I call things information only if they inform me, not if they are just collections of data, or stuff." — Richard Saul Wurman</blockquote>
+
+        <p>As Wurman implied, information alone is not effective unless it provides a foundation on which learning can take place. One of the most useful examples to clearly explain IA is supermarket design.</p>
+
+        <p>It is safe to say we have all been to the supermarket. It is also safe to assume that your supermarket is designed in a very similar way to the one I shop at, even if we live in different states or even different countries. This is no accident.</p>
+
+        <p>Supermarkets are designed to make you spend money, much like casinos. This may seem like an odd comparison, but consider this: both are designed without clocks or windows and with enough stimuli to truly immerse you in the experience. The difference is in how they guide you through it.</p>
+
+        <p>Casinos are designed to make you lose yourself and wander around in a maze of sights and sounds that compel you to try your luck. Supermarkets do the opposite. They guide you very carefully on a journey similarly designed to engage your senses, but where casinos want you to stay all day and night, supermarkets want to get you in and out efficiently, and in very predictable ways.</p>
+
+        <p>When you first enter a supermarket, you will often encounter sights, sounds, and smells designed to grab your attention and keep you engaged. Fresh flowers are strategically placed to create a pleasant scent as you walk in. Fruits and vegetables present their bright colors under special lighting designed to give the impression that everything was picked that day. Before you know it, the outside world slips away and you are locked on your shopping list, and then some.</p>
+
+        <p>Every element of it has been carefully considered and coordinated to guide you through the store in a specific way. And while you may not think of a supermarket as a designed experience, it is one of the best examples of IA you will ever encounter.</p>
+
+        <p>To understand why, it helps to look at four qualities that define good IA in any environment, whether it is a supermarket, a casino, or a mobile app.</p>
+
+        <div class="section-label">The Four Cs of IA</div>
+
+      </div>
+
+      <div class="four-c">
+        <div class="four-c-header"><h3>Coordination</h3></div>
+        <div class="four-c-body">
+          <p>Supermarkets are designed as a highly coordinated system of stimuli that allows for thousands of products to be presented at once while allowing customers to find their way and make decisions while the staff maintains order.</p>
+          <p>To do this requires coordination on a large scale, across many departments and product types, each with their own story to tell, ultimately guiding you to your destination — and the store's: the cash register.</p>
+          <div class="four-c-applies">
+            <div class="four-c-applies-label">How it applies</div>
+            <p>In a digital experience, coordination means that a user landing on your product for the first time immediately understands what it does, where to start, and how to move forward. Nothing competes for attention unnecessarily. Everything points in the same direction.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="four-c">
+        <div class="four-c-header"><h3>Cooperation</h3></div>
+        <div class="four-c-body">
+          <p>In addition to finding the items on your list, supermarkets also place many distractions along your path, in the form of sale prices, competitor products, and things you did not even know you needed until you saw them. But these distractions are highly cooperative in that they may divert your attention but will never throw you off course.</p>
+          <div class="four-c-applies">
+            <div class="four-c-applies-label">How it applies</div>
+            <p>In a digital experience, cooperation means that when a user gets distracted, clicks the wrong link, or takes an unexpected path, the design brings them back without punishment. They never feel lost and never have to start over. The experience bends around them rather than breaking.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="four-c">
+        <div class="four-c-header"><h3>Change</h3></div>
+        <div class="four-c-body">
+          <p>Supermarkets are also in a constant state of change with products being restocked and others changed without any disruption to the shopping experience. Good IA scales seamlessly, without any disruption to the underlying structure.</p>
+          <div class="four-c-applies">
+            <div class="four-c-applies-label">How it applies</div>
+            <p>In a digital experience, change means that when new features are added, content is updated, or the product evolves, users do not have to relearn how to use it. The underlying structure absorbs the change without disruption. This is what separates a design built on solid IA from one that has to be rebuilt every time something new needs to be added.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="four-c">
+        <div class="four-c-header"><h3>Consequence</h3></div>
+        <div class="four-c-body">
+          <p>Supermarkets are designed for outcomes. This could mean customers buying the right products, buying more than they intended, and returning to shop there another day. Each of these are the consequences of good IA and are seen and felt at the business level in the form of profit and increased customer satisfaction.</p>
+          <div class="four-c-applies">
+            <div class="four-c-applies-label">How it applies</div>
+            <p>In a digital experience, consequence means that every IA decision has an outcome for the user and for the business. A user who finds what they need quickly and easily is more likely to return, recommend the product, and trust it. A user who gets lost, confused, or frustrated is more likely to leave and not come back. Good IA makes the right consequence more likely. Poor IA makes the wrong one almost inevitable.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="reading-content">
+
+        <div class="section-label">Summary</div>
+
+        <p>IA is not just a technology concept. It is a way of organizing and presenting information so that people can understand it, navigate it, and accomplish their goals without confusion or frustration. The Four Cs give us a framework for evaluating whether our IA is doing its job.</p>
+
+        <p>In the next lesson we will look at the tools UX practitioners use to build good IA, starting with mental models, taxonomy, and sitemaps.</p>
+
+      </div>
+
+      <div class="block-checklist">
+        <h4>Before you move on</h4>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I can explain what IA is and why it matters beyond technology</label>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I understand the difference between data and information</label>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I can name and describe each of the Four Cs of IA</label>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I can recognize IA in everyday environments around me</label>
+        </div>
+      </div>
+
+      <div class="lesson-nav">
+        <a class="nav-btn" href="lesson-2-3.html">← Lesson 2.3</a>
+        <button class="mark-done" onclick="markDone()">✓ Mark complete</button>
+        <a class="nav-btn next" href="lesson-3-2.html">Lesson 3.2 →</a>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="airtable.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var student = requireStudent();
+  var initials = student.name.split(' ').map(function(n) { return n[0]; }).join('').toUpperCase().slice(0,2);
+  document.getElementById('avatar-initials').textContent = initials;
+  document.getElementById('student-greeting').textContent = 'Logged in as ' + student.name;
+});
+
+function resetStudent() {
+  if (confirm('Log out of this device?')) {
+    localStorage.removeItem('ux_student_name');
+    localStorage.removeItem('ux_student_email');
+    window.location.href = 'welcome.html';
+  }
+}
+
+function toggleCheck(item) {
+  var cb = item.querySelector('input');
+  cb.checked = !cb.checked;
+  item.classList.toggle('checked', cb.checked);
+}
+
+function markDone() {
+  window.location.href = 'lesson-3-2.html';
+}
+</script>
+</body>
+</html>
