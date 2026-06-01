@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2.3 — What Good UX Design Looks Like | UX That Decides</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.unit-meta { display: flex; gap: 1rem; align-items: center; font-size: 13px; color: var(--ink-3); margin-bottom: 1.75rem; flex-wrap: wrap; }
+.learning-goals { background: var(--accent-light); border-left: 4px solid var(--accent); border-radius: 0 var(--radius-lg) var(--radius-lg) 0; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+.learning-goals h4 { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.6rem; }
+.learning-goals ul { padding-left: 1.2rem; }
+.learning-goals li { font-size: 14px; color: var(--ink-2); line-height: 1.7; margin-bottom: 0.2rem; }
+.section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); margin: 2.5rem 0 0.75rem; display: flex; align-items: center; gap: 0.75rem; }
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+.block-checklist { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; margin: 2rem 0; }
+.block-checklist h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 0.85rem; }
+.check-item { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.6rem; cursor: pointer; padding: 0.4rem 0; border-bottom: 1px solid var(--rule); }
+.check-item:last-child { border-bottom: none; margin-bottom: 0; }
+.check-item input[type="checkbox"] { margin-top: 2px; flex-shrink: 0; width: 16px; height: 16px; accent-color: var(--accent); cursor: pointer; }
+.check-item label { font-size: 14px; color: var(--ink-2); line-height: 1.5; cursor: pointer; }
+.check-item.checked label { color: var(--ink-3); text-decoration: line-through; }
+.student-bar { background: var(--accent-light); border-radius: var(--radius); padding: 0.5rem 1rem; font-size: 12px; color: var(--accent); margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+.student-bar a { color: var(--accent); font-size: 11px; cursor: pointer; }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <header class="topbar">
+    <a class="topbar-logo" href="index.html">UX That <span>Decides</span></a>
+    <div class="topbar-progress">
+      <div class="progress-label"><span>Course progress</span><span>24% complete</span></div>
+      <div class="progress-bar"><div class="progress-fill" style="width:24%"></div></div>
+    </div>
+    <div class="topbar-actions">
+      <a class="topbar-btn notif" href="feedback.html">💬 Feedback</a>
+      <a class="topbar-btn primary" href="schedule.html">📅 Book call</a>
+      <a class="avatar" href="index.html" id="avatar-initials">?</a>
+    </div>
+  </header>
+
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-label">Navigation</div>
+      <a class="module-item" href="index.html"><div class="module-name">📊 My Dashboard</div></a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Module 1 — The mindset</div>
+      <a class="lesson-item" href="lesson-1-1.html"><div class="lesson-dot done"></div><div class="lesson-name">1.1 The UX Mindset</div></a>
+      <a class="lesson-item" href="lesson-1-2.html"><div class="lesson-dot done"></div><div class="lesson-name">1.2 Listening vs. following</div></a>
+      <a class="lesson-item" href="lesson-1-3.html"><div class="lesson-dot done"></div><div class="lesson-name">1.3 Design Thinking</div></a>
+      <a class="lesson-item" href="lesson-1-4.html"><div class="lesson-dot done"></div><div class="lesson-name">1.4 The trim tab</div></a>
+      <a class="lesson-item" href="project-1.html"><div class="lesson-dot done"></div><div class="lesson-name">★ Module 1 Project</div></a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Module 2 — Creative and good UX design</div>
+      <a class="lesson-item" href="lesson-2-1.html"><div class="lesson-dot done"></div><div class="lesson-name">2.1 Open and closed modes</div></a>
+      <a class="lesson-item" href="lesson-2-2.html"><div class="lesson-dot done"></div><div class="lesson-name">2.2 The conditions for creativity</div></a>
+      <a class="lesson-item active" href="lesson-2-3.html"><div class="lesson-dot active"></div><div class="lesson-name">2.3 What good UX design looks like</div></a>
+      <a class="lesson-item" href="lesson-2-4.html"><div class="lesson-dot"></div><div class="lesson-name">2.4 Design principles in practice</div></a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Modules 3–8</div>
+      <div class="module-item"><div class="module-name">Module 3 — Good UX Design</div><div class="module-meta">coming soon</div></div>
+      <div class="module-item"><div class="module-name">Module 4 — Information Architecture</div><div class="module-meta">coming soon</div></div>
+      <div class="module-item"><div class="module-name">Module 5 — Patterns and Properties</div><div class="module-meta">coming soon</div></div>
+      <div class="module-item"><div class="module-name">Module 6 — Research Methods</div><div class="module-meta">coming soon</div></div>
+      <div class="module-item"><div class="module-name">Module 7 — Interviewing and Synthesis</div><div class="module-meta">coming soon</div></div>
+      <div class="module-item"><div class="module-name">Module 8 — Capstone</div><div class="module-meta">coming soon</div></div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="content-area">
+
+      <div class="student-bar">
+        <span id="student-greeting">Loading...</span>
+        <a onclick="resetStudent()">Log out</a>
+      </div>
+
+      <div class="unit-meta">
+        <span>📖 Reading</span>
+        <span>Module 2 · Lesson 3 of 4</span>
+      </div>
+
+      <div class="lesson-header">
+        <div class="lesson-tag">Module 2 — Creative and Good UX Design</div>
+        <h1 class="lesson-title">What good UX design looks like</h1>
+        <div class="lesson-byline"><span>Scott Faranello</span></div>
+      </div>
+
+      <div class="video-stage">
+        <div class="video-placeholder">
+          <div class="play-btn"><div class="play-triangle"></div></div>
+          <p>Lesson 2.3 — What good UX design looks like</p>
+          <small>Video coming soon</small>
+        </div>
+      </div>
+
+      <div class="learning-goals">
+        <h4>By the end of this lesson you will be able to</h4>
+        <ul>
+          <li>Explain what good design is and should be</li>
+          <li>Describe what good design feels like from a user's perspective</li>
+          <li>Recognize the difference between designing for yourself and designing for others</li>
+          <li>Apply these ideas to your own design decisions</li>
+        </ul>
+      </div>
+
+      <div class="reading-content">
+
+        <blockquote>"With the passage of time, the psychology of people stays the same, but the tools and objects in the world change." — Donald A. Norman, The Design of Everyday Things</blockquote>
+
+        <p>At the end of the day after all of the research, brainstorming, team meetings, requirements and solutions are ready and agreed upon, how do we know whether what we have delivered is good?</p>
+
+        <p>In this lesson we will explore the concept of good design and what it looks like in practice.</p>
+
+        <div class="section-label">What is good design?</div>
+
+        <p>From an aesthetic perspective, it is easy to assume that good design is subjective. Everyone has an opinion. What you think is good, someone else may not. One person loves an iPhone, another swears by Android. One designer prefers a minimal interface, another wants more features.</p>
+
+        <p>But here is the thing: good design is also objective. Even though some may choose an iPhone over an Android or a Tesla over a Toyota, both would agree that they are both well designed because regardless of brand loyalty, opinion, or some nuances that make one product unique over another, good design is relatively easy to understand and use almost immediately, and when that happens, subjectivity is no longer at play. Now what we have is evidence.</p>
+
+        <p>This is not easy to achieve, but it is achievable if you understand the elements of good design and how to test them.</p>
+
+        <p>Ford's assembly line was not the result of him sitting alone in a room and inventing the Model T in isolation. It was the result of years of immersion in real conditions, observing real people, understanding real constraints, and testing ideas against reality. Even then, mistakes happen. Solutions can be wrong. No amount of confidence guarantees correctness.</p>
+
+        <p>This is why research and usability testing matter. They allow us to step outside our own perspective and test our solutions with people who are seeing them for the first time. They remind us that we are not our solutions and that being too close to an idea can cloud our ability to remain open to feedback and see what is actually there rather than what we intended.</p>
+
+        <p>But research and testing only work once you have something worth testing. Which raises one of the most important questions a designer can answer: how do you know when your design is good enough to test?</p>
+
+        <p>That is what this lesson covers.</p>
+
+        <div class="section-label">Good design is non-obvious</div>
+
+        <p>Think of a product or app you use every day. Do you consciously think about its design? Probably not. Good design is not something most people notice, and that is precisely the point.</p>
+
+        <blockquote>"Good design is actually a lot harder to notice than poor design, in part because good designs fit our needs so well that the design is invisible." — Donald A. Norman, The Design of Everyday Things</blockquote>
+
+        <div class="section-label">Good design is invisible</div>
+
+        <p>Good design works when we do not have to think about it. When we can complete tasks without fail we take it for granted. For example, any car can be driven whether it is a Porsche or a Prius. Aside from specific features and the price, both take you to your destination with little thought of how to do it. The steering wheel is where you expect it to be, as are the gas and brake pedals.</p>
+
+        <p>Good design is based on learned expectations. Change any of those and the whole thing can fail.</p>
+
+        <div class="section-label">Good design creates emotion</div>
+
+        <p>Think about how you feel when something does not work as expected. Angry? Frustrated? Stupid? Like it is your fault?</p>
+
+        <p>How we react to design and how it makes us feel when we interact with it plays a big part in knowing how good the design is. Your goal as a designer is to never distract in any way from the objective of the product. This includes color choices, font choices, images, bold text vs non bold text, language, navigation, and many other choices you may not even know you are making until it is too late. We will talk more about this soon.</p>
+
+        <div class="section-label">Good design is familiar</div>
+
+        <p>Familiarity plays a big part in good design. Consider something as simple as a light switch. All of us use them every day and they could not be easier. They are usually located on the wall inside the entrance to a room. They are usually at the same height and can be located without looking. And once you find it, the choices for operating it are usually either up for ON and down for OFF.</p>
+
+        <p>This is the same for something more complex, like a website. Consider a website we all use every day like Amazon or any other website where you are searching for items and purchasing them with a credit card. Even since Amazon launched in 1995 to today it has not changed all that much in terms of what it is used for. Sure, it has gotten a lot more complex and sophisticated in terms of the technology and items you can buy, but for someone with even a basic knowledge of how websites work, finding a product and ordering it is a no brainer.</p>
+
+        <p>On the other hand, change it, and bad things can happen.</p>
+
+        <div class="section-label">When preference beats performance</div>
+
+        <p>You may not have known this, but your computer keyboard is called a QWERTY keyboard, so named because the first five letters in the top row of letters spell out QWERTY. Take a look.</p>
+
+        <p>This layout debuted in 1874 for manual typewriters where common two-letter combinations were placed on opposite sides of the keyboard to avoid the keys from sticking together. In the early twentieth century, an educational psychologist named August Dvorak designed an alternate layout that he claimed would decrease typing errors, speed up typing, and lessen typing fatigue. He called it the Dvorak Simplified Keyboard.</p>
+
+        <p>It seemed like a great idea and is arguably a better design, but sometimes even good design is not enough to overcome familiarity, as well as other negatives that Dvorak assumed would be easily overcome, like the time required to learn a new keyboard layout, and the fact that nobody was complaining about the current one.</p>
+
+        <p>Oftentimes, even a great idea can fail when it fixes something that was not considered broken. The best solutions solve a real problem. Everything else is just noise.</p>
+
+        <div class="callout">
+          <strong>Never be clever</strong>
+          Avoid designing something new if what already exists is working fine and there is no evidence of pain. Ford's idea worked because change was desperately needed and everyone knew it, even if they did not know what that change looked like until they saw it.
+        </div>
+
+        <div class="section-label">Summary</div>
+
+        <p>Good design is invisible. When it works, nobody notices. When it fails, everyone does.</p>
+
+        <p>Getting there is harder than it looks, but it starts with a few simple principles worth remembering.</p>
+
+        <p>Understand the situation before you sketch or draw anything. Know what already exists and what is already working. Do not change what is not broken in an effort to stand out or be unique. Never be clever for its own sake.</p>
+
+        <p>Just because you can design something does not mean you should. The best solutions solve real problems that people actually have. Everything else is noise.</p>
+
+        <p>Test your design and listen to the feedback. Feedback is never wrong. You do not have to follow every piece of it, but you should never ignore it. The person giving you feedback is telling you something true about their experience, even if you disagree with their proposed solution.</p>
+
+        <p>Ford's idea worked because change was desperately needed and everyone knew it, even if they did not know what that change looked like until they saw it. That is what good design does — when it arrives it feels inevitable.</p>
+
+      </div>
+
+      <div class="block-checklist">
+        <h4>Before you move on</h4>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I can explain why good design is hard to identify</label>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I understand the difference between designing for myself and designing for others</label>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I can describe what good design feels like from a user's perspective</label>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I understand why familiarity matters in design decisions</label>
+        </div>
+      </div>
+
+      <div class="lesson-nav">
+        <a class="nav-btn" href="lesson-2-2.html">← Lesson 2.2</a>
+        <button class="mark-done" onclick="markDone()">✓ Mark complete</button>
+        <a class="nav-btn next" href="lesson-2-4.html">Lesson 2.4 →</a>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="airtable.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var student = requireStudent();
+  var initials = student.name.split(' ').map(function(n) { return n[0]; }).join('').toUpperCase().slice(0,2);
+  document.getElementById('avatar-initials').textContent = initials;
+  document.getElementById('student-greeting').textContent = 'Logged in as ' + student.name;
+});
+
+function resetStudent() {
+  if (confirm('Log out of this device?')) {
+    localStorage.removeItem('ux_student_name');
+    localStorage.removeItem('ux_student_email');
+    window.location.href = 'welcome.html';
+  }
+}
+
+function toggleCheck(item) {
+  var cb = item.querySelector('input');
+  cb.checked = !cb.checked;
+  item.classList.toggle('checked', cb.checked);
+}
+
+function markDone() {
+  window.location.href = 'lesson-2-4.html';
+}
+</script>
+</body>
+</html>
