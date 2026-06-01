@@ -22,6 +22,11 @@
 .check-item.checked label { color: var(--ink-3); text-decoration: line-through; }
 .student-bar { background: var(--accent-light); border-radius: var(--radius); padding: 0.5rem 1rem; font-size: 12px; color: var(--accent); margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; }
 .student-bar a { color: var(--accent); font-size: 11px; cursor: pointer; }
+.principles-list { display: flex; flex-direction: column; gap: 0.75rem; margin: 1.25rem 0; }
+.principle-item { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); padding: 0.85rem 1.1rem; }
+.principle-item strong { color: var(--ink); font-size: 14px; }
+.principle-item span { color: var(--ink-2); font-size: 14px; }
+.principle-note { font-size: 12px; color: var(--ink-3); margin-top: 1rem; font-style: italic; }
 </style>
 </head>
 <body>
@@ -58,7 +63,6 @@
       <a class="lesson-item" href="lesson-2-1.html"><div class="lesson-dot done"></div><div class="lesson-name">2.1 Open and closed modes</div></a>
       <a class="lesson-item" href="lesson-2-2.html"><div class="lesson-dot done"></div><div class="lesson-name">2.2 The conditions for creativity</div></a>
       <a class="lesson-item active" href="lesson-2-3.html"><div class="lesson-dot active"></div><div class="lesson-name">2.3 What good UX design looks like</div></a>
-      <a class="lesson-item" href="lesson-2-4.html"><div class="lesson-dot"></div><div class="lesson-name">2.4 Design principles in practice</div></a>
     </div>
     <div class="sidebar-section">
       <div class="sidebar-label">Modules 3–8</div>
@@ -81,7 +85,7 @@
 
       <div class="unit-meta">
         <span>📖 Reading</span>
-        <span>Module 2 · Lesson 3 of 4</span>
+        <span>Module 2 · Lesson 3 of 3</span>
       </div>
 
       <div class="lesson-header">
@@ -173,6 +177,31 @@
           Avoid designing something new if what already exists is working fine and there is no evidence of pain. Ford's idea worked because change was desperately needed and everyone knew it, even if they did not know what that change looked like until they saw it.
         </div>
 
+        <div class="section-label">A framework for evaluating good design</div>
+
+        <p>Knowing what good design looks and feels like is one thing. Having a framework to evaluate it is another.</p>
+
+        <p>In the late 1970s, German industrial designer Dieter Rams introduced ten principles of good design that still hold true today and transfer directly to UX. Use these as a lens when evaluating your own work and the work around you:</p>
+
+        <div class="principles-list">
+          <div class="principle-item"><strong>Innovative</strong> <span>— Does it solve a problem in a new or better way?</span></div>
+          <div class="principle-item"><strong>Useful</strong> <span>— Does it actually do what people need it to do?</span></div>
+          <div class="principle-item"><strong>Aesthetically pleasing</strong> <span>— Does it look like it was made with care?</span></div>
+          <div class="principle-item"><strong>Understandable</strong> <span>— Can people figure out how and why to use it without explanation?</span></div>
+          <div class="principle-item"><strong>Unobtrusive</strong> <span>— Does it stay out of the way and let people do what they came to do?</span></div>
+          <div class="principle-item"><strong>Honest</strong> <span>— Does it do what it promises and nothing more?</span></div>
+          <div class="principle-item"><strong>Long-lasting</strong> <span>— Is it built on a foundation that can grow without breaking?</span></div>
+          <div class="principle-item"><strong>Thorough</strong> <span>— Has every detail been considered?</span></div>
+          <div class="principle-item"><strong>Minimalist</strong> <span>— Does it include only what is necessary?</span></div>
+          <div class="principle-item"><strong>Valuable*</strong> <span>— Does it give people a reason to come back? A design can be innovative, useful, minimalist, and honest and still fail if it does not give people something worth their time. Value means identifying why a customer or user would want to engage with your design and then delivering something meaningful in return. If people cannot immediately see what they get from using your product, they will not use it. And if they do not use it, nothing else on this list matters.</span></div>
+        </div>
+
+        <p>You do not need to memorize these, but you do need to represent them. The next time you are reviewing your own work, or using a product that frustrates or delights you, run it against this list. You will start to see exactly where good design exists and where it breaks down.</p>
+
+        <p>To see these principles applied to Rams' own design work, visit <a href="https://www.vitsoe.com/us/about/good-design" target="_blank">vitsoe.com/us/about/good-design</a>.</p>
+
+        <p class="principle-note">*Valuable was added to replace Rams' original "environmentally friendly" principle, which does not translate well to the world of digital products.</p>
+
         <div class="section-label">Summary</div>
 
         <p>Good design is invisible. When it works, nobody notices. When it fails, everyone does.</p>
@@ -208,7 +237,7 @@
       <div class="lesson-nav">
         <a class="nav-btn" href="lesson-2-2.html">← Lesson 2.2</a>
         <button class="mark-done" onclick="markDone()">✓ Mark complete</button>
-        <a class="nav-btn next" href="lesson-2-4.html">Lesson 2.4 →</a>
+        <a class="nav-btn next" href="project-2.html">Module 2 Project →</a>
       </div>
 
     </div>
@@ -239,7 +268,7 @@ function toggleCheck(item) {
 }
 
 function markDone() {
-  window.location.href = 'lesson-2-4.html';
+  window.location.href = 'project-2.html';
 }
 </script>
 </body>
