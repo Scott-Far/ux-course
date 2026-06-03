@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3.3 — IA in Practice | UX That Decides</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.unit-meta { display: flex; gap: 1rem; align-items: center; font-size: 13px; color: var(--ink-3); margin-bottom: 1.75rem; flex-wrap: wrap; }
+.learning-goals { background: var(--accent-light); border-left: 4px solid var(--accent); border-radius: 0 var(--radius-lg) var(--radius-lg) 0; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+.learning-goals h4 { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.6rem; }
+.learning-goals ul { padding-left: 1.2rem; }
+.learning-goals li { font-size: 14px; color: var(--ink-2); line-height: 1.7; margin-bottom: 0.2rem; }
+.section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); margin: 2.5rem 0 0.75rem; display: flex; align-items: center; gap: 0.75rem; }
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+.block-checklist { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; margin: 2rem 0; }
+.block-checklist h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 0.85rem; }
+.check-item { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.6rem; cursor: pointer; padding: 0.4rem 0; border-bottom: 1px solid var(--rule); }
+.check-item:last-child { border-bottom: none; margin-bottom: 0; }
+.check-item input[type="checkbox"] { margin-top: 2px; flex-shrink: 0; width: 16px; height: 16px; accent-color: var(--accent); cursor: pointer; }
+.check-item label { font-size: 14px; color: var(--ink-2); line-height: 1.5; cursor: pointer; }
+.check-item.checked label { color: var(--ink-3); text-decoration: line-through; }
+.student-bar { background: var(--accent-light); border-radius: var(--radius); padding: 0.5rem 1rem; font-size: 12px; color: var(--accent); margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+.student-bar a { color: var(--accent); font-size: 11px; cursor: pointer; }
+.four-c { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 1rem; }
+.four-c-header { background: var(--accent); color: #fff; padding: 0.65rem 1.25rem; }
+.four-c-header h3 { font-size: 13px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
+.four-c-body { padding: 1rem 1.25rem; }
+.four-c-body p { font-size: 14px; color: var(--ink-2); line-height: 1.7; margin: 0; }
+.gauge-list { list-style: none; padding: 0; margin: 1rem 0; }
+.gauge-list li { font-size: 14px; color: var(--ink-2); line-height: 1.7; padding: 0.6rem 0; border-bottom: 1px solid var(--rule); display: flex; gap: 0.75rem; align-items: flex-start; }
+.gauge-list li:last-child { border-bottom: none; }
+.gauge-list li::before { content: '?'; color: var(--accent); font-weight: 700; font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <header class="topbar">
+    <a class="topbar-logo" href="index.html">UX That <span>Decides</span></a>
+    <div class="topbar-progress">
+      <div class="progress-label"><span>Course progress</span><span>34% complete</span></div>
+      <div class="progress-bar"><div class="progress-fill" style="width:34%"></div></div>
+    </div>
+    <div class="topbar-actions">
+      <a class="topbar-btn notif" href="feedback.html">💬 Feedback</a>
+      <a class="topbar-btn primary" href="schedule.html">📅 Book call</a>
+      <a class="avatar" href="index.html" id="avatar-initials">?</a>
+    </div>
+  </header>
+
+  <aside class="sidebar"></aside>
+
+  <main class="main">
+    <div class="content-area">
+
+      <div class="student-bar">
+        <span id="student-greeting">Loading...</span>
+        <a onclick="resetStudent()">Log out</a>
+      </div>
+
+      <div class="unit-meta">
+        <span>📖 Reading</span>
+        <span>Module 3 · Lesson 3 of 3</span>
+      </div>
+
+      <div class="lesson-header">
+        <div class="lesson-tag">Module 3 — Information Architecture</div>
+        <h1 class="lesson-title">IA in practice</h1>
+        <div class="lesson-byline"><span>Scott Faranello</span></div>
+      </div>
+
+      <div class="video-stage">
+        <div class="video-placeholder">
+          <div class="play-btn"><div class="play-triangle"></div></div>
+          <p>Lesson 3.3 — IA in practice</p>
+          <small>Video coming soon</small>
+        </div>
+      </div>
+
+      <div class="learning-goals">
+        <h4>By the end of this lesson you will be able to</h4>
+        <ul>
+          <li>Recognize good IA in digital products you use every day</li>
+          <li>Identify how the Four Cs show up in real product decisions</li>
+          <li>Evaluate a product's IA using the concepts from this module</li>
+          <li>Apply the Four Cs as a checklist to your own design work</li>
+        </ul>
+      </div>
+
+      <div class="reading-content">
+
+        <p>In the last two lessons we covered what IA is, where it comes from, and the tools practitioners use to build it. In this lesson we look at how it all works together in the real world.</p>
+
+        <p>The best way to understand good IA is to see it in action in products you already use. Once you know what to look for, you will start seeing it everywhere.</p>
+
+        <div class="section-label">Amazon</div>
+
+        <p>For over two decades, Amazon has led the way in designing a highly usable experience that demonstrates every principle we have covered in this module. Consider what Amazon does when you land on their homepage. Without any instruction, you immediately know what the site is for, where to search, how to navigate, and what to do next.</p>
+
+        <p>Nothing requires explanation. The design does the work. This is not accidental.</p>
+
+        <p>Amazon's IA is built around a deeply understood mental model of online shopping and how people search. Every decision in their information architecture serves that model. The search bar is prominent because finding things is the primary task. Categories are organized around how customers think about products, not how Amazon organizes its warehouse. Related items, purchase history, and recommendations all reflect what a specific user has already shown interest in.</p>
+
+        <p>Amazon also demonstrates all Four Cs:</p>
+
+      </div>
+
+      <div class="four-c">
+        <div class="four-c-header"><h3>Coordination</h3></div>
+        <div class="four-c-body">
+          <p>Thousands of products, categories, and promotions presented simultaneously without overwhelming the user. Every element points toward the same destination.</p>
+        </div>
+      </div>
+
+      <div class="four-c">
+        <div class="four-c-header"><h3>Cooperation</h3></div>
+        <div class="four-c-body">
+          <p>Distractions are everywhere on Amazon — ads, recommendations, deals, similar items, reviews — but none of them prevent you from completing your original task. If anything, they enhance the experience and encourage your purchase more than stopping it.</p>
+        </div>
+      </div>
+
+      <div class="four-c">
+        <div class="four-c-header"><h3>Change</h3></div>
+        <div class="four-c-body">
+          <p>Amazon is highly scalable and built for change and expansion. The company is too big and too familiar to suddenly change everything, but they have designed it to continuously expand without disrupting the underlying experience.</p>
+        </div>
+      </div>
+
+      <div class="four-c">
+        <div class="four-c-header"><h3>Consequence</h3></div>
+        <div class="four-c-body">
+          <p>The outcome of Amazon's IA is measurable at every level. Users find what they need. Purchases are completed. People come back. And the business is one of the most successful retail operations in history.</p>
+        </div>
+      </div>
+
+      <div class="reading-content">
+
+        <div class="section-label">What good IA feels like</div>
+
+        <p>When IA is working, you do not notice it. You arrive at a destination. You find what you need. You complete your task. The experience feels effortless because the structure is doing its job invisibly.</p>
+
+        <p>When IA is failing, you feel it immediately. You cannot find what you are looking for. You retrace your steps. You wonder whether what you need even exists. You give up and call customer support or go somewhere else.</p>
+
+        <p>The most important thing to understand about IA as a designer is this: your job is to create a structure so obvious and so aligned with how your users think that they never have to think about it at all.</p>
+
+        <div class="callout">
+          <strong>Your job is not to wow people</strong>
+          Your job is to make sure they never notice anything you have done. If you can do that, you have arrived.
+        </div>
+
+        <div class="section-label">Gauging your IA</div>
+
+        <p>As you design and evaluate IA, ask yourself these questions and make sure you can answer them.</p>
+
+      </div>
+
+      <ul class="gauge-list">
+        <li>Is the information coordinated in a way that is quickly and easily understandable?</li>
+        <li>How much effort is required to engage with your design?</li>
+        <li>How do you know? Have you tested it with real users?</li>
+        <li>Is the right amount of information presented? Too much? Too little? Just right?</li>
+        <li>Can your design change and grow without disrupting the existing foundation?</li>
+        <li>What are the consequences if users cannot find what they need? Not just for customers, but for the company?</li>
+      </ul>
+
+      <div class="reading-content">
+
+        <p>These questions should become a checklist to be reviewed for each and every design project you ever work on. Eventually they will become second nature, but until that time, keep coming back to this list until it does.</p>
+
+        <div class="section-label">Summary</div>
+
+        <p>Good IA is invisible when it works and immediately painful when it does not. Amazon succeeds not because it is beautiful but because its structure is built around a deeply understood mental model and maintained across constant change without disruption.</p>
+
+        <p>The Four Cs are your checklist. Mental models are your starting point. Taxonomy and visual hierarchy are your tools. Sitemaps are your blueprint. Use them together and you have everything you need to build an IA that guides users to their destination without them ever having to think about how they got there.</p>
+
+      </div>
+
+      <div class="block-checklist">
+        <h4>Before you move on</h4>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I can identify good IA in products I use every day</label>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I understand how the Four Cs show up in real product decisions</label>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I can use the gauging questions to evaluate my own IA work</label>
+        </div>
+      </div>
+
+      <div class="lesson-nav">
+        <a class="nav-btn" href="lesson-3-2.html">← Lesson 3.2</a>
+        <button class="mark-done" onclick="markDone()">✓ Mark complete</button>
+        <a class="nav-btn next" href="project-3.html">Module 3 Project →</a>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="nav.js"></script>
+<script src="airtable.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  buildNav('lesson-3-3.html');
+  var student = requireStudent();
+  var initials = student.name.split(' ').map(function(n) { return n[0]; }).join('').toUpperCase().slice(0,2);
+  document.getElementById('avatar-initials').textContent = initials;
+  document.getElementById('student-greeting').textContent = 'Logged in as ' + student.name;
+});
+
+function resetStudent() {
+  if (confirm('Log out of this device?')) {
+    localStorage.removeItem('ux_student_name');
+    localStorage.removeItem('ux_student_email');
+    window.location.href = 'welcome.html';
+  }
+}
+
+function toggleCheck(item) {
+  var cb = item.querySelector('input');
+  cb.checked = !cb.checked;
+  item.classList.toggle('checked', cb.checked);
+}
+
+function markDone() {
+  window.location.href = 'project-3.html';
+}
+</script>
+</body>
+</html>
