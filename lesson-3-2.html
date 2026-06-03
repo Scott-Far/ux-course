@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3.2 — Mental Models, Taxonomy, and Sitemaps | UX That Decides</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.unit-meta { display: flex; gap: 1rem; align-items: center; font-size: 13px; color: var(--ink-3); margin-bottom: 1.75rem; flex-wrap: wrap; }
+.learning-goals { background: var(--accent-light); border-left: 4px solid var(--accent); border-radius: 0 var(--radius-lg) var(--radius-lg) 0; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+.learning-goals h4 { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.6rem; }
+.learning-goals ul { padding-left: 1.2rem; }
+.learning-goals li { font-size: 14px; color: var(--ink-2); line-height: 1.7; margin-bottom: 0.2rem; }
+.section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); margin: 2.5rem 0 0.75rem; display: flex; align-items: center; gap: 0.75rem; }
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+.block-checklist { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; margin: 2rem 0; }
+.block-checklist h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 0.85rem; }
+.check-item { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.6rem; cursor: pointer; padding: 0.4rem 0; border-bottom: 1px solid var(--rule); }
+.check-item:last-child { border-bottom: none; margin-bottom: 0; }
+.check-item input[type="checkbox"] { margin-top: 2px; flex-shrink: 0; width: 16px; height: 16px; accent-color: var(--accent); cursor: pointer; }
+.check-item label { font-size: 14px; color: var(--ink-2); line-height: 1.5; cursor: pointer; }
+.check-item.checked label { color: var(--ink-3); text-decoration: line-through; }
+.student-bar { background: var(--accent-light); border-radius: var(--radius); padding: 0.5rem 1rem; font-size: 12px; color: var(--accent); margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+.student-bar a { color: var(--accent); font-size: 11px; cursor: pointer; }
+.hierarchy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.25rem 0; }
+.hierarchy-card { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); padding: 1rem 1.1rem; }
+.hierarchy-card strong { display: block; font-size: 13px; font-weight: 600; color: var(--accent); margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 0.05em; }
+.hierarchy-card p { font-size: 13px; color: var(--ink-2); line-height: 1.6; margin: 0; }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <header class="topbar">
+    <a class="topbar-logo" href="index.html">UX That <span>Decides</span></a>
+    <div class="topbar-progress">
+      <div class="progress-label"><span>Course progress</span><span>31% complete</span></div>
+      <div class="progress-bar"><div class="progress-fill" style="width:31%"></div></div>
+    </div>
+    <div class="topbar-actions">
+      <a class="topbar-btn notif" href="feedback.html">💬 Feedback</a>
+      <a class="topbar-btn primary" href="schedule.html">📅 Book call</a>
+      <a class="avatar" href="index.html" id="avatar-initials">?</a>
+    </div>
+  </header>
+
+  <aside class="sidebar"></aside>
+
+  <main class="main">
+    <div class="content-area">
+
+      <div class="student-bar">
+        <span id="student-greeting">Loading...</span>
+        <a onclick="resetStudent()">Log out</a>
+      </div>
+
+      <div class="unit-meta">
+        <span>📖 Reading</span>
+        <span>Module 3 · Lesson 2 of 3</span>
+      </div>
+
+      <div class="lesson-header">
+        <div class="lesson-tag">Module 3 — Information Architecture</div>
+        <h1 class="lesson-title">Mental models, taxonomy, and sitemaps</h1>
+        <div class="lesson-byline"><span>Scott Faranello</span></div>
+      </div>
+
+      <div class="video-stage">
+        <div class="video-placeholder">
+          <div class="play-btn"><div class="play-triangle"></div></div>
+          <p>Lesson 3.2 — Mental models, taxonomy, and sitemaps</p>
+          <small>Video coming soon</small>
+        </div>
+      </div>
+
+      <div class="learning-goals">
+        <h4>By the end of this lesson you will be able to</h4>
+        <ul>
+          <li>Explain what mental models are and why they matter in IA</li>
+          <li>Describe what taxonomy is and how it organizes information</li>
+          <li>Understand how visual hierarchy communicates information priority before a user reads a single word</li>
+          <li>Explain what a sitemap is and why it is essential to good IA</li>
+        </ul>
+      </div>
+
+      <div class="reading-content">
+
+        <p>In the last lesson we looked at what IA is and why it matters. We saw how the Four Cs play out in environments we encounter every day. In this lesson we move from the concept to the craft — the tools UX practitioners use to actually build good IA.</p>
+
+        <p>It starts with understanding how your users think.</p>
+
+        <div class="section-label">Mental models</div>
+
+        <p>Before you can design good navigation, you need to understand how your users think about the space they are navigating. A mental model is the internal picture a person carries of how something works. It is built from past experience. When a design matches that picture, it feels intuitive. When it does not, it creates confusion and friction.</p>
+
+        <p>Consider an online supermarket. You cannot smell the flowers or see the produce under special lighting, but like a physical space, a virtual one is designed according to two things:</p>
+
+        <ul>
+          <li>Customer expectations about an in-person shopping experience</li>
+          <li>Customer expectations about an online shopping experience</li>
+        </ul>
+
+        <p>Even though they are two totally different mediums, both require familiarity in their specific domains to find what the customer is looking for.</p>
+
+        <p>If you are in a physical store or online, you know that produce is in one section, dairy and bakery items in another. And just like in a store, you expect to find similar items grouped together. Change that model and you are no longer considering how people think in this situation, creating unnecessary work for the customer to find what they want where they expect to find it. Mental models provide the insight needed to design not how you think, but how your customers think.</p>
+
+        <p>Without knowing the user's mental model, you are just guessing.</p>
+
+        <div class="section-label">Taxonomy</div>
+
+        <p>Once you understand the user's mental model, the next step is to organize the information into a taxonomy, which is the practice of naming and organizing items into structured categories based on their shared characteristics and relationships.</p>
+
+        <p>In a supermarket, think of the signs above your head as you go down each aisle. They are like navigation menus on a website, or vice versa. They tell you where to find certain items, and using those characteristics, you can also find other items not on your list because you understand the relationships between them.</p>
+
+        <div class="section-label">Visual hierarchy and taxonomy</div>
+
+        <p>In addition to naming and organizing information, taxonomy is also about communication. As a designer, how information is presented says a lot about what is happening at every moment and what to expect next. Visual hierarchy informs a person instantly about what is important, where to focus their attention, and what to do.</p>
+
+        <p>Visual hierarchy is created through four key properties:</p>
+
+        <div class="hierarchy-grid">
+          <div class="hierarchy-card">
+            <strong>Size</strong>
+            <p>Larger elements draw the eye first. A page title is larger than a section heading, which is larger than body text. Size communicates importance.</p>
+          </div>
+          <div class="hierarchy-card">
+            <strong>Weight</strong>
+            <p>Bold text carries more visual weight than regular text. Weight signals emphasis and priority.</p>
+          </div>
+          <div class="hierarchy-card">
+            <strong>Position</strong>
+            <p>Elements at the top of a page or at the left edge of a navigation bar are seen first. Position establishes reading order.</p>
+          </div>
+          <div class="hierarchy-card">
+            <strong>Space</strong>
+            <p>White space around an element makes it feel more important. Crowded elements feel less significant. Space gives the eye somewhere to rest and directs attention.</p>
+          </div>
+        </div>
+
+        <p>When your taxonomy and your visual hierarchy are aligned, people do not have to think about where to look. The design tells them. When that is misaligned or done incorrectly, it creates uncertainty and confusion, even if the content is perfectly organized.</p>
+
+        <div class="section-label">Sitemaps</div>
+
+        <p>Once you understand your users' mental models and taxonomy, before you start designing, think about how they will navigate your design. One way to do that is with a sitemap.</p>
+
+        <p>A sitemap is a visual diagram that maps out every page or section of a product and shows how they connect to each other. Think of it as a blueprint — the same way an architect maps out a building before construction begins, a UX practitioner maps out the full structure of a product before a single screen is designed.</p>
+
+        <p>Sitemaps are useful for several reasons. They force you to think through the full scope of the design before a single pixel is placed, they surface problems early, and they give the designer a blueprint before work begins.</p>
+
+        <div class="section-label">Summary</div>
+
+        <p>Mental models tell you how your users think. Taxonomy gives you a way to organize information that matches that thinking. Visual hierarchy makes the organization visible and immediately understandable. Sitemaps let you see and validate the full structure before design work begins.</p>
+
+        <p>Together they ensure that the IA you build is not based on assumptions but on a genuine understanding of how your users experience and navigate the world.</p>
+
+      </div>
+
+      <div class="block-checklist">
+        <h4>Before you move on</h4>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I can explain what mental models are and why they matter</label>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I understand how visual hierarchy communicates structure and priority</label>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I can explain what a sitemap is and why to use one before design work begins</label>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I understand how mental models, taxonomy, visual hierarchy, and sitemaps work together to create good IA</label>
+        </div>
+      </div>
+
+      <div class="lesson-nav">
+        <a class="nav-btn" href="lesson-3-1.html">← Lesson 3.1</a>
+        <button class="mark-done" onclick="markDone()">✓ Mark complete</button>
+        <a class="nav-btn next" href="lesson-3-3.html">Lesson 3.3 →</a>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="nav.js"></script>
+<script src="airtable.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  buildNav('lesson-3-2.html');
+  var student = requireStudent();
+  var initials = student.name.split(' ').map(function(n) { return n[0]; }).join('').toUpperCase().slice(0,2);
+  document.getElementById('avatar-initials').textContent = initials;
+  document.getElementById('student-greeting').textContent = 'Logged in as ' + student.name;
+});
+
+function resetStudent() {
+  if (confirm('Log out of this device?')) {
+    localStorage.removeItem('ux_student_name');
+    localStorage.removeItem('ux_student_email');
+    window.location.href = 'welcome.html';
+  }
+}
+
+function toggleCheck(item) {
+  var cb = item.querySelector('input');
+  cb.checked = !cb.checked;
+  item.classList.toggle('checked', cb.checked);
+}
+
+function markDone() {
+  window.location.href = 'lesson-3-3.html';
+}
+</script>
+</body>
+</html>
