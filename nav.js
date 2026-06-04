@@ -34,19 +34,28 @@ var COURSE_NAV = [
     items: [
       { type: 'lesson', href: 'lesson-3-1.html', label: '3.1 What IA is and why it matters' },
       { type: 'lesson', href: 'lesson-3-2.html', label: '3.2 Mental models, taxonomy, and sitemaps' },
-      { type: 'lesson', href: 'lesson-3-3.html', label: '3.3 Wayfinding and designing for change' },
-      { type: 'lesson', href: 'lesson-3-4.html', label: '3.4 IA in practice' },
+      { type: 'lesson', href: 'lesson-3-3.html', label: '3.3 IA in practice' },
       { type: 'project', href: 'project-3.html', label: '★ Module 3 Project' }
     ]
   },
   {
-    label: 'Modules 4–8',
+    label: 'Module 4 — Design Patterns',
     items: [
-      { type: 'coming', label: 'Module 4 — Patterns and Properties' },
-      { type: 'coming', label: 'Module 5 — Research Methods' },
-      { type: 'coming', label: 'Module 6 — Interviewing and Synthesis' },
-      { type: 'coming', label: 'Module 7 — Portfolio' },
-      { type: 'coming', label: 'Module 8 — Capstone' }
+      { type: 'lesson', href: 'lesson-4-1.html', label: '4.1 Wholeness and patterns in UX design' },
+      { type: 'lesson', href: 'lesson-4-2.html', label: '4.2 Scale, hierarchy, and structure' },
+      { type: 'lesson', href: 'lesson-4-3.html', label: '4.3 Space, rhythm, and consistency' },
+      { type: 'lesson', href: 'lesson-4-4.html', label: '4.4 Simplicity and wholeness' },
+      { type: 'project', href: 'project-4.html', label: '★ Module 4 Project' }
+    ]
+  },
+  {
+    label: 'Modules 5–9',
+    items: [
+      { type: 'coming', label: 'Module 5 — Wireframing and Prototyping' },
+      { type: 'coming', label: 'Module 6 — Usability Testing' },
+      { type: 'coming', label: 'Module 7 — Research Methods' },
+      { type: 'coming', label: 'Module 8 — Building a Portfolio' },
+      { type: 'coming', label: 'Module 9 — Preparing for the Job Market' }
     ]
   }
 ];
