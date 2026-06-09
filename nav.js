@@ -35,6 +35,7 @@ var COURSE_NAV = [
       { type: 'lesson', href: 'lesson-3-1.html', label: '3.1 What IA is and why it matters' },
       { type: 'lesson', href: 'lesson-3-2.html', label: '3.2 Mental models, taxonomy, and sitemaps' },
       { type: 'lesson', href: 'lesson-3-3.html', label: '3.3 IA in practice' },
+      { type: 'lesson', href: 'lesson-3-4.html', label: '3.4 Patterns' },
       { type: 'project', href: 'project-3.html', label: '★ Module 3 Project' }
     ]
   },
