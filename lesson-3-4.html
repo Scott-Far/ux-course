@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3.4 — Patterns | UX That Decides</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.unit-meta { display: flex; gap: 1rem; align-items: center; font-size: 13px; color: var(--ink-3); margin-bottom: 1.75rem; flex-wrap: wrap; }
+.learning-goals { background: var(--accent-light); border-left: 4px solid var(--accent); border-radius: 0 var(--radius-lg) var(--radius-lg) 0; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+.learning-goals h4 { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.6rem; }
+.learning-goals ul { padding-left: 1.2rem; }
+.learning-goals li { font-size: 14px; color: var(--ink-2); line-height: 1.7; margin-bottom: 0.2rem; }
+.section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); margin: 2.5rem 0 0.75rem; display: flex; align-items: center; gap: 0.75rem; }
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+.block-checklist { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; margin: 2rem 0; }
+.block-checklist h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 0.85rem; }
+.check-item { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.6rem; cursor: pointer; padding: 0.4rem 0; border-bottom: 1px solid var(--rule); }
+.check-item:last-child { border-bottom: none; margin-bottom: 0; }
+.check-item input[type="checkbox"] { margin-top: 2px; flex-shrink: 0; width: 16px; height: 16px; accent-color: var(--accent); cursor: pointer; }
+.check-item label { font-size: 14px; color: var(--ink-2); line-height: 1.5; cursor: pointer; }
+.check-item.checked label { color: var(--ink-3); text-decoration: line-through; }
+.student-bar { background: var(--accent-light); border-radius: var(--radius); padding: 0.5rem 1rem; font-size: 12px; color: var(--accent); margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+.student-bar a { color: var(--accent); font-size: 11px; cursor: pointer; }
+.properties-list { display: flex; flex-direction: column; gap: 0.5rem; margin: 1.25rem 0; }
+.property-item { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); padding: 0.75rem 1rem; display: flex; gap: 1rem; align-items: flex-start; }
+.property-name { font-size: 13px; font-weight: 600; color: var(--accent); min-width: 100px; flex-shrink: 0; }
+.property-desc { font-size: 13px; color: var(--ink-2); line-height: 1.6; }
+.sub-section-label { font-size: 13px; font-weight: 600; color: var(--ink); margin: 1.5rem 0 0.5rem; }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <header class="topbar">
+    <a class="topbar-logo" href="index.html">UX That <span>Decides</span></a>
+    <div class="topbar-progress">
+      <div class="progress-label"><span>Course progress</span><span>37% complete</span></div>
+      <div class="progress-bar"><div class="progress-fill" style="width:37%"></div></div>
+    </div>
+    <div class="topbar-actions">
+      <a class="topbar-btn notif" href="feedback.html">💬 Feedback</a>
+      <a class="topbar-btn primary" href="schedule.html">📅 Book call</a>
+      <a class="avatar" href="index.html" id="avatar-initials">?</a>
+    </div>
+  </header>
+
+  <aside class="sidebar"></aside>
+
+  <main class="main">
+    <div class="content-area">
+
+      <div class="student-bar">
+        <span id="student-greeting">Loading...</span>
+        <a onclick="resetStudent()">Log out</a>
+      </div>
+
+      <div class="unit-meta">
+        <span>📖 Reading</span>
+        <span>Module 3 · Lesson 4 of 4</span>
+      </div>
+
+      <div class="lesson-header">
+        <div class="lesson-tag">Module 3 — Information Architecture</div>
+        <h1 class="lesson-title">Patterns</h1>
+        <div class="lesson-byline"><span>Scott Faranello</span></div>
+      </div>
+
+      <div class="video-stage">
+        <div class="video-placeholder">
+          <div class="play-btn"><div class="play-triangle"></div></div>
+          <p>Lesson 3.4 — Patterns</p>
+          <small>Video coming soon</small>
+        </div>
+      </div>
+
+      <div class="learning-goals">
+        <h4>By the end of this lesson you will be able to</h4>
+        <ul>
+          <li>Explain what design patterns are and why they exist</li>
+          <li>Recognize common patterns in the products you use every day</li>
+          <li>Understand when to use existing patterns versus creating new ones</li>
+          <li>Describe the difference between a pattern library and a style guide</li>
+        </ul>
+      </div>
+
+      <div class="reading-content">
+
+        <p>In the last three lessons we looked at how information is organized, structured, navigated, and visually presented. In this lesson we look at patterns, which are closely related to IA. Where IA determines how information is organized and presented, patterns help to instantly recognize what the information means and how to interact with it.</p>
+
+        <div class="section-label">What are patterns?</div>
+
+        <p>Patterns are everywhere. We use them every day without being aware because when we see them we instantly recognize and understand how to interact with them.</p>
+
+        <p>A doorknob is a pattern. A chair is a pattern. An outlet is a pattern. Supermarket aisles are a pattern. Web and mobile design uses patterns too. A search bar, a hamburger menu, form fields, a shopping cart icon, a power button. The list is endless.</p>
+
+        <p>Architect Christopher Alexander described patterns as visual cues we recognize because patterns communicate with us "through the connection we feel when we are in their presence."</p>
+
+        <p>The most important thing to understand about patterns is that they work best when they are easily recognizable, and where the observer does not have to learn something new in order to understand what it means.</p>
+
+        <div class="section-label">Patterns and mental models</div>
+
+        <p>Patterns are an extension of mental models, which we covered in Lesson 3.2. A mental model is the picture a person carries in their mind of how something should look and work based on past experience with similar patterns.</p>
+
+        <p>Christopher Alexander identified 15 types of patterns we are familiar with. Here is a simplified version.</p>
+
+        <div class="section-label">The 15 properties (simplified)</div>
+
+        <p>As you read through them, think about products and apps you use every day and see how many you can spot.</p>
+
+      </div>
+
+      <div class="properties-list">
+        <div class="property-item"><span class="property-name">Scale</span><span class="property-desc">Important things look important. Bigger, bolder, or more prominent elements signal priority.</span></div>
+        <div class="property-item"><span class="property-name">Focus</span><span class="property-desc">Every design has one main thing it wants you to notice first. Everything else supports it.</span></div>
+        <div class="property-item"><span class="property-name">Boundaries</span><span class="property-desc">Things that belong together look like they belong together. Things that are separate look separate.</span></div>
+        <div class="property-item"><span class="property-name">Repetition</span><span class="property-desc">The same patterns appear over and over so you only have to learn them once.</span></div>
+        <div class="property-item"><span class="property-name">Space</span><span class="property-desc">Empty space is not wasted space. It gives your eye somewhere to rest and makes content easier to read.</span></div>
+        <div class="property-item"><span class="property-name">Shape</span><span class="property-desc">Things look like what they do. A button looks like something you press. A link looks like something you click.</span></div>
+        <div class="property-item"><span class="property-name">Balance</span><span class="property-desc">The design feels organized. Nothing feels out of place.</span></div>
+        <div class="property-item"><span class="property-name">Contrast</span><span class="property-desc">Differences in size, color, and weight make it clear what is most important and what is secondary.</span></div>
+        <div class="property-item"><span class="property-name">Consistency</span><span class="property-desc">The same types of elements always look and behave the same way. No surprises.</span></div>
+        <div class="property-item"><span class="property-name">Layers</span><span class="property-desc">Information is revealed gradually. You are not hit with everything at once.</span></div>
+        <div class="property-item"><span class="property-name">Simplicity</span><span class="property-desc">Nothing unnecessary is included. Every element earns its place.</span></div>
+        <div class="property-item"><span class="property-name">Flow</span><span class="property-desc">Moving from one screen or step to the next feels smooth and natural.</span></div>
+        <div class="property-item"><span class="property-name">Calm</span><span class="property-desc">The overall experience feels focused, not cluttered.</span></div>
+        <div class="property-item"><span class="property-name">Character</span><span class="property-desc">The design feels intentional, not thrown together.</span></div>
+        <div class="property-item"><span class="property-name">Belonging</span><span class="property-desc">The design feels like it fits naturally into the context where it is used.</span></div>
+      </div>
+
+      <div class="reading-content">
+
+        <p>To go deeper into patterns and read how Alexander described them in terms of building architecture, visit <a href="https://www.tkwa.com/fifteen-properties" target="_blank">tkwa.com/fifteen-properties</a> or search for Christopher Alexander's A Pattern Language.</p>
+
+        <div class="section-label">When to use patterns</div>
+
+        <p>The goal of patterns in your designs is clarity and efficiency. If users of your design need to navigate, search, filter, submit, confirm, or complete a task of any kind, patterns make it easy.</p>
+
+        <p>Use patterns that are familiar. Never be clever, because introducing something new is not creative. It is a distraction that makes a design harder than it needs to be.</p>
+
+        <div class="callout">
+          A pattern that users recognize instantly is always better than one they have to figure out.
+        </div>
+
+        <p>If you apply these properties to your designs you will have created something that has what Alexander called the quality that cannot be named — the feeling of being alive, present, and connected.</p>
+
+        <div class="section-label">Pattern libraries and style guides</div>
+
+        <div class="sub-section-label">Pattern libraries</div>
+
+        <p>As you design, you will build up a collection of the patterns that you can put into a pattern library. A pattern library is a set of reusable design solutions — buttons, forms, navigation components, cards, input fields, colors, typography, spacing, and so on — that defines how an interface looks, works, and feels.</p>
+
+        <p>Use pattern libraries when designing and wireframing. They ensure consistency and they save time by giving you proven patterns for your designs rather than inventing patterns from scratch.</p>
+
+        <div class="sub-section-label">Style guides</div>
+
+        <p>Style guides are for documenting all of your design decisions when a design is complete, to be shared with developers and others to ensure that what gets built matches what was designed. Style guides are like blueprints, containing detailed descriptions of colors, sizing, fonts, spacing, and any number of things that show someone building your design exactly what it should look and act like.</p>
+
+        <p>Pattern libraries and style guides are living documents, meaning as your designs evolve, both should be updated to reflect those changes.</p>
+
+        <div class="section-label">Summary</div>
+
+        <p>Patterns are proven solutions to recurring design problems. They work because they match how users already think and behave when engaging with them. Using familiar patterns is not a lack of creativity. It is the very definition of good design.</p>
+
+        <p>The best designers know which patterns to use and which ones not to. That judgment comes from experience, but it starts with learning to see the patterns that are all around you.</p>
+
+        <p>In the next module we will look at the visual design fundamentals you need to bring these patterns to life in your own work.</p>
+
+      </div>
+
+      <div class="block-checklist">
+        <h4>Before you move on</h4>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I can explain what a design pattern is and why patterns exist</label>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I understand the connection between patterns and mental models</label>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I know when to use existing patterns versus creating something new</label>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I understand the difference between a pattern library and a style guide</label>
+        </div>
+      </div>
+
+      <div class="lesson-nav">
+        <a class="nav-btn" href="lesson-3-3.html">← Lesson 3.3</a>
+        <button class="mark-done" onclick="markDone()">✓ Mark complete</button>
+        <a class="nav-btn next" href="project-3.html">Module 3 Project →</a>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="nav.js"></script>
+<script src="airtable.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  buildNav('lesson-3-4.html');
+  var student = requireStudent();
+  var initials = student.name.split(' ').map(function(n) { return n[0]; }).join('').toUpperCase().slice(0,2);
+  document.getElementById('avatar-initials').textContent = initials;
+  document.getElementById('student-greeting').textContent = 'Logged in as ' + student.name;
+});
+
+function resetStudent() {
+  if (confirm('Log out of this device?')) {
+    localStorage.removeItem('ux_student_name');
+    localStorage.removeItem('ux_student_email');
+    window.location.href = 'welcome.html';
+  }
+}
+
+function toggleCheck(item) {
+  var cb = item.querySelector('input');
+  cb.checked = !cb.checked;
+  item.classList.toggle('checked', cb.checked);
+}
+
+function markDone() {
+  window.location.href = 'project-3.html';
+}
+</script>
+</body>
+</html>
