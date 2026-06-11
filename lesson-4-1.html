@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>4.1 — Color | UX That Decides</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.unit-meta { display: flex; gap: 1rem; align-items: center; font-size: 13px; color: var(--ink-3); margin-bottom: 1.75rem; flex-wrap: wrap; }
+.learning-goals { background: var(--accent-light); border-left: 4px solid var(--accent); border-radius: 0 var(--radius-lg) var(--radius-lg) 0; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+.learning-goals h4 { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.6rem; }
+.learning-goals ul { padding-left: 1.2rem; }
+.learning-goals li { font-size: 14px; color: var(--ink-2); line-height: 1.7; margin-bottom: 0.2rem; }
+.section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); margin: 2.5rem 0 0.75rem; display: flex; align-items: center; gap: 0.75rem; }
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+.block-checklist { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; margin: 2rem 0; }
+.block-checklist h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 0.85rem; }
+.check-item { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.6rem; cursor: pointer; padding: 0.4rem 0; border-bottom: 1px solid var(--rule); }
+.check-item:last-child { border-bottom: none; margin-bottom: 0; }
+.check-item input[type="checkbox"] { margin-top: 2px; flex-shrink: 0; width: 16px; height: 16px; accent-color: var(--accent); cursor: pointer; }
+.check-item label { font-size: 14px; color: var(--ink-2); line-height: 1.5; cursor: pointer; }
+.check-item.checked label { color: var(--ink-3); text-decoration: line-through; }
+.student-bar { background: var(--accent-light); border-radius: var(--radius); padding: 0.5rem 1rem; font-size: 12px; color: var(--accent); margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+.student-bar a { color: var(--accent); font-size: 11px; cursor: pointer; }
+.color-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 1.25rem 0; }
+.color-card { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); padding: 0.85rem 1rem; }
+.color-card strong { display: block; font-size: 12px; font-weight: 600; color: var(--ink); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.35rem; }
+.color-card p { font-size: 13px; color: var(--ink-2); line-height: 1.6; margin: 0; }
+.when-list { display: flex; flex-direction: column; gap: 0.75rem; margin: 1.25rem 0; }
+.when-item { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); padding: 0.85rem 1rem; }
+.when-item strong { display: block; font-size: 12px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.35rem; }
+.when-item p { font-size: 13px; color: var(--ink-2); line-height: 1.6; margin: 0; }
+.color-system { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.75rem; margin: 1.25rem 0; }
+.color-system-item { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); padding: 0.85rem 1rem; text-align: center; }
+.color-system-item strong { display: block; font-size: 12px; font-weight: 600; color: var(--ink); margin-bottom: 0.35rem; }
+.color-system-item p { font-size: 12px; color: var(--ink-2); line-height: 1.5; margin: 0; }
+.resource-list { display: flex; flex-direction: column; gap: 0.5rem; margin: 1rem 0; }
+.resource-card { display: flex; align-items: center; gap: 1rem; background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); padding: 0.75rem 1rem; text-decoration: none; }
+.resource-card:hover { border-color: var(--accent); }
+.resource-icon { width: 32px; height: 32px; border-radius: var(--radius); background: var(--accent-light); display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+.resource-text { flex: 1; }
+.resource-title { font-size: 13px; font-weight: 600; color: var(--ink); }
+.resource-meta { font-size: 12px; color: var(--ink-3); }
+.resource-arrow { font-size: 14px; color: var(--ink-3); }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <header class="topbar">
+    <a class="topbar-logo" href="index.html">UX That <span>Decides</span></a>
+    <div class="topbar-progress">
+      <div class="progress-label"><span>Course progress</span><span>41% complete</span></div>
+      <div class="progress-bar"><div class="progress-fill" style="width:41%"></div></div>
+    </div>
+    <div class="topbar-actions">
+      <a class="topbar-btn notif" href="feedback.html">💬 Feedback</a>
+      <a class="topbar-btn primary" href="schedule.html">📅 Book call</a>
+      <a class="avatar" href="index.html" id="avatar-initials">?</a>
+    </div>
+  </header>
+
+  <aside class="sidebar"></aside>
+
+  <main class="main">
+    <div class="content-area">
+
+      <div class="student-bar">
+        <span id="student-greeting">Loading...</span>
+        <a onclick="resetStudent()">Log out</a>
+      </div>
+
+      <div class="unit-meta">
+        <span>📖 Reading</span>
+        <span>Module 4 · Lesson 1 of 4</span>
+      </div>
+
+      <div class="lesson-header">
+        <div class="lesson-tag">Module 4 — Visual Design and Wireframing</div>
+        <h1 class="lesson-title">Color</h1>
+        <div class="lesson-byline"><span>Scott Faranello</span></div>
+      </div>
+
+      <div class="video-stage">
+        <div class="video-placeholder">
+          <div class="play-btn"><div class="play-triangle"></div></div>
+          <p>Lesson 4.1 — Color</p>
+          <small>Video coming soon</small>
+        </div>
+      </div>
+
+      <div class="learning-goals">
+        <h4>By the end of this lesson you will be able to</h4>
+        <ul>
+          <li>Explain why black and white is the right place to start</li>
+          <li>Describe what color communicates beyond aesthetics</li>
+          <li>Identify when and why to add color to a design</li>
+          <li>Make simple, confident color decisions</li>
+        </ul>
+      </div>
+
+      <div class="reading-content">
+
+        <p>When talking about interaction design or user interface (UI) design, we are not talking about art. We are talking about communication and direction. Every decision you make about how something looks tells the viewer something before they ever take a step.</p>
+
+        <p>In this module we look at the visual design fundamentals every UX practitioner needs to know to make intentional, defensible design decisions that guide users to a pre-determined destination. We start with color because it is the most misused tool in a UI designer's kit and immediately reveals to someone viewing your work how much you understand about design.</p>
+
+        <div class="section-label">Start in black and white</div>
+
+        <p>The single most useful habit you can develop when designing is to work in black and white. Not because color is unimportant. On the contrary, color is so important and so powerful that it can create more problems than it solves if used incorrectly.</p>
+
+        <p>Done well, color is a guide. Done poorly, color is a distraction that can lead users in directions you never intended. Strip the color away and the real design is revealed — the hierarchy, the spacing, the layout, the clarity of the information.</p>
+
+        <div class="callout">
+          It is easy to mistake a visually appealing design for a well-structured one. If your design does not work in black and white, color will not fix it.
+        </div>
+
+        <p>Working in black and white forces you to solve the right problems first. It forces you to ask: is the hierarchy clear? Is the most important thing the most prominent thing? Can a user understand what to do next without any color or visual decoration helping them along?</p>
+
+        <p>When the answer to those questions is yes, you have earned the right to add color. And when you do, every color decision will have a reason behind it.</p>
+
+        <div class="section-label">Color patterns and what they communicate</div>
+
+        <p>Colors are patterns. They communicate information before the brain processes language. It is one of the fastest signals the eye sends to the brain, which makes it so powerful that it is easy to misuse.</p>
+
+        <p>Here is what color communicates at the most practical level. You have likely seen all of them in use and are very familiar with them.</p>
+
+      </div>
+
+      <div class="color-grid">
+        <div class="color-card">
+          <strong>Trust and stability</strong>
+          <p>Blues and neutral tones communicate reliability and calm. This is why banks, healthcare companies, and enterprise software tend toward blue. It is not arbitrary. It is sending a signal.</p>
+        </div>
+        <div class="color-card">
+          <strong>Urgency and action</strong>
+          <p>Reds communicate urgency and energy. A red button or a red notification badge demands attention. Use it sparingly or it loses its power.</p>
+        </div>
+        <div class="color-card">
+          <strong>Warmth and approachability</strong>
+          <p>Warmer tones create a feeling of friendliness and accessibility. Cooler tones feel more formal and distant.</p>
+        </div>
+        <div class="color-card">
+          <strong>Success and safety</strong>
+          <p>Green communicates that something worked. A green confirmation message, a green checkmark, a green progress indicator.</p>
+        </div>
+        <div class="color-card">
+          <strong>Warning and caution</strong>
+          <p>Yellow signals that something needs attention without the alarm of red. Use it for warnings that require action but not panic.</p>
+        </div>
+        <div class="color-card">
+          <strong>Neutrality and space</strong>
+          <p>White, light grey, and off-white are not the absence of color. They are active design decisions that create space for separate content while letting other elements speak.</p>
+        </div>
+      </div>
+
+      <div class="reading-content">
+
+        <div class="section-label">When to add color</div>
+
+        <p>Color earns its place in a design when it is doing its specific job. Here are the triggers that justify adding color to an otherwise colorless interface:</p>
+
+      </div>
+
+      <div class="when-list">
+        <div class="when-item">
+          <strong>To signal state</strong>
+          <p>A button changes color when hovered over or clicked. An error field turns red. A success message turns green. Color tells the user something changed.</p>
+        </div>
+        <div class="when-item">
+          <strong>To create hierarchy</strong>
+          <p>One color used consistently for primary actions, like a call to action, a link, anything that tells users where to focus at any given moment.</p>
+        </div>
+        <div class="when-item">
+          <strong>To reinforce brand</strong>
+          <p>A single brand color applied consistently creates recognition and trust. It does not need to appear everywhere, only in the right places.</p>
+        </div>
+        <div class="when-item">
+          <strong>To communicate meaning</strong>
+          <p>Color used consistently to mean the same thing throughout a design — red always means error or alert, green always means success. This consistency is a visual language that users rely on and expect.</p>
+        </div>
+      </div>
+
+      <div class="reading-content">
+
+        <p>If color is not doing one of these things it is decoration. Decoration is noise. Noise is a distraction. Distraction is bad design.</p>
+
+        <div class="callout">
+          Do not use color to create a "mood." Explaining that you chose a color because you wanted the user to "feel" something is not the job of a UI designer. That is the job of the branding and marketing department. Your job is to guide users and help them make decisions quickly.
+        </div>
+
+        <div class="section-label">How to match colors simply</div>
+
+        <p>You do not need to be a visual designer or color expert to make good color decisions. You need a simple system and the discipline to stick to it.</p>
+
+        <p>Here is the simplest system that works:</p>
+
+      </div>
+
+      <div class="color-system">
+        <div class="color-system-item">
+          <strong>One primary color</strong>
+          <p>Your brand color or dominant color. Used for primary actions, key headings, and brand moments.</p>
+        </div>
+        <div class="color-system-item">
+          <strong>One accent color</strong>
+          <p>A complementary color used sparingly. If primary is blue, accent might be warm orange or yellow. Intentionally paired.</p>
+        </div>
+        <div class="color-system-item">
+          <strong>Neutrals for everything else</strong>
+          <p>Black, white, and two or three shades of grey. Text, backgrounds, borders, dividers. This is where most of your design lives.</p>
+        </div>
+      </div>
+
+      <div class="reading-content">
+
+        <p>That is three decisions. One primary, one accent, and neutrals. Most well-designed products use this system or a variation of it. It is not limiting. It is freeing, because it removes the temptation to keep adding colors until the design becomes a distraction.</p>
+
+        <div class="callout">
+          Avoid bright colors. Pinks, pastels, any color that does not convey specific information is a distraction and should be avoided.
+        </div>
+
+        <div class="section-label">What over-use of color signals</div>
+
+        <p>When a design uses many colors without clear intention, it signals one of three things to a client or stakeholder: either the designer does not understand visual hierarchy, they are using color to compensate for a design that is not working structurally, or they have mistaken UI design for branding and marketing.</p>
+
+        <p>Either way, it undermines confidence in the work.</p>
+
+        <p>A design that uses color sparingly and intentionally signals the opposite. It says the designer made deliberate choices. It says every element is there for a reason. It says the designer understands that restraint is a skill, not a limitation.</p>
+
+        <p>For a UI designer, the goal is never to impress with color. It is to have control over color so that information is clear and conveyed so that the viewer can make quick decisions and complete the tasks that you intended.</p>
+
+        <div class="section-label">Summary</div>
+
+        <p>Start in black and white. Solve the design problems first. Add color only when it is doing specific work. A simple system of one primary color, one accent, and neutrals is enough for almost any design. More than that requires justification. Restraint is not a lack of creativity. It is evidence of it.</p>
+
+        <p>In the next lesson we will look at typography and how it is used to communicate information.</p>
+
+      </div>
+
+      <div class="block-checklist">
+        <h4>Before you move on</h4>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I understand why starting in black and white produces better designs</label>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I can describe what different colors communicate at a practical level</label>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I know the specific triggers that justify adding color to a design</label>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I can make simple, intentional color decisions using a primary, accent, and neutral system</label>
+        </div>
+      </div>
+
+      <div style="margin-bottom: 2rem;">
+        <div class="section-label">Resources</div>
+        <div class="resource-list">
+          <a class="resource-card" href="https://coolors.co" target="_blank">
+            <div class="resource-icon">🎨</div>
+            <div class="resource-text"><div class="resource-title">Coolors</div><div class="resource-meta">Generate and explore color palettes</div></div>
+            <div class="resource-arrow">↗</div>
+          </a>
+          <a class="resource-card" href="https://color.adobe.com" target="_blank">
+            <div class="resource-icon">🎨</div>
+            <div class="resource-text"><div class="resource-title">Adobe Color</div><div class="resource-meta">Color wheel and palette tools</div></div>
+            <div class="resource-arrow">↗</div>
+          </a>
+          <a class="resource-card" href="https://material.io/design/color" target="_blank">
+            <div class="resource-icon">🔗</div>
+            <div class="resource-text"><div class="resource-title">Material Design Color System</div><div class="resource-meta">Google's practical guide to color in UI design</div></div>
+            <div class="resource-arrow">↗</div>
+          </a>
+          <a class="resource-card" href="https://webaim.org/resources/contrastchecker" target="_blank">
+            <div class="resource-icon">✓</div>
+            <div class="resource-text"><div class="resource-title">Contrast Checker</div><div class="resource-meta">Check that your color combinations are accessible</div></div>
+            <div class="resource-arrow">↗</div>
+          </a>
+        </div>
+      </div>
+
+      <div class="lesson-nav">
+        <a class="nav-btn" href="lesson-3-4.html">← Lesson 3.4</a>
+        <button class="mark-done" onclick="markDone()">✓ Mark complete</button>
+        <a class="nav-btn next" href="lesson-4-2.html">Lesson 4.2 →</a>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="nav.js"></script>
+<script src="airtable.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  buildNav('lesson-4-1.html');
+  var student = requireStudent();
+  var initials = student.name.split(' ').map(function(n) { return n[0]; }).join('').toUpperCase().slice(0,2);
+  document.getElementById('avatar-initials').textContent = initials;
+  document.getElementById('student-greeting').textContent = 'Logged in as ' + student.name;
+});
+
+function resetStudent() {
+  if (confirm('Log out of this device?')) {
+    localStorage.removeItem('ux_student_name');
+    localStorage.removeItem('ux_student_email');
+    window.location.href = 'welcome.html';
+  }
+}
+
+function toggleCheck(item) {
+  var cb = item.querySelector('input');
+  cb.checked = !cb.checked;
+  item.classList.toggle('checked', cb.checked);
+}
+
+function markDone() {
+  window.location.href = 'lesson-4-2.html';
+}
+</script>
+</body>
+</html>
