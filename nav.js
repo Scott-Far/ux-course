@@ -40,12 +40,12 @@ var COURSE_NAV = [
     ]
   },
   {
-    label: 'Module 4 — Design Patterns',
+    label: 'Module 4 — Visual Design and Wireframing',
     items: [
-      { type: 'lesson', href: 'lesson-4-1.html', label: '4.1 Wholeness and patterns in UX design' },
-      { type: 'lesson', href: 'lesson-4-2.html', label: '4.2 Scale, hierarchy, and structure' },
-      { type: 'lesson', href: 'lesson-4-3.html', label: '4.3 Space, rhythm, and consistency' },
-      { type: 'lesson', href: 'lesson-4-4.html', label: '4.4 Simplicity and wholeness' },
+      { type: 'lesson', href: 'lesson-4-1.html', label: '4.1 Color' },
+      { type: 'lesson', href: 'lesson-4-2.html', label: '4.2 Typography' },
+      { type: 'lesson', href: 'lesson-4-3.html', label: '4.3 Layout, alignment, and spacing' },
+      { type: 'lesson', href: 'lesson-4-4.html', label: '4.4 Wireframing' },
       { type: 'project', href: 'project-4.html', label: '★ Module 4 Project' }
     ]
   },
