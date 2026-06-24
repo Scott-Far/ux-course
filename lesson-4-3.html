@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>4.3 — Layout, Alignment, and Spacing | UX That Decides</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.unit-meta { display: flex; gap: 1rem; align-items: center; font-size: 13px; color: var(--ink-3); margin-bottom: 1.75rem; flex-wrap: wrap; }
+.learning-goals { background: var(--accent-light); border-left: 4px solid var(--accent); border-radius: 0 var(--radius-lg) var(--radius-lg) 0; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+.learning-goals h4 { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.6rem; }
+.learning-goals ul { padding-left: 1.2rem; }
+.learning-goals li { font-size: 14px; color: var(--ink-2); line-height: 1.7; margin-bottom: 0.2rem; }
+.section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); margin: 2.5rem 0 0.75rem; display: flex; align-items: center; gap: 0.75rem; }
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+.block-checklist { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; margin: 2rem 0; }
+.block-checklist h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 0.85rem; }
+.check-item { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.6rem; cursor: pointer; padding: 0.4rem 0; border-bottom: 1px solid var(--rule); }
+.check-item:last-child { border-bottom: none; margin-bottom: 0; }
+.check-item input[type="checkbox"] { margin-top: 2px; flex-shrink: 0; width: 16px; height: 16px; accent-color: var(--accent); cursor: pointer; }
+.check-item label { font-size: 14px; color: var(--ink-2); line-height: 1.5; cursor: pointer; }
+.check-item.checked label { color: var(--ink-3); text-decoration: line-through; }
+.student-bar { background: var(--accent-light); border-radius: var(--radius); padding: 0.5rem 1rem; font-size: 12px; color: var(--accent); margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+.student-bar a { color: var(--accent); font-size: 11px; cursor: pointer; }
+.spacing-list { display: flex; flex-direction: column; gap: 0.6rem; margin: 1.25rem 0; }
+.spacing-item { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); padding: 0.85rem 1rem; }
+.spacing-item strong { display: block; font-size: 12px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.35rem; }
+.spacing-item p { font-size: 13px; color: var(--ink-2); line-height: 1.6; margin: 0; }
+.pattern-connection { background: var(--accent-light); border: 1px solid rgba(30,77,140,0.15); border-radius: var(--radius); padding: 1rem 1.25rem; margin: 1rem 0; font-size: 13px; color: var(--ink-2); line-height: 1.65; }
+.pattern-connection strong { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <header class="topbar">
+    <a class="topbar-logo" href="index.html">UX That <span>Decides</span></a>
+    <div class="topbar-progress">
+      <div class="progress-label"><span>Course progress</span><span>47% complete</span></div>
+      <div class="progress-bar"><div class="progress-fill" style="width:47%"></div></div>
+    </div>
+    <div class="topbar-actions">
+      <a class="topbar-btn notif" href="feedback.html">💬 Feedback</a>
+      <a class="topbar-btn primary" href="schedule.html">📅 Book call</a>
+      <a class="avatar" href="index.html" id="avatar-initials">?</a>
+    </div>
+  </header>
+
+  <aside class="sidebar"></aside>
+
+  <main class="main">
+    <div class="content-area">
+
+      <div class="student-bar">
+        <span id="student-greeting">Loading...</span>
+        <a onclick="resetStudent()">Log out</a>
+      </div>
+
+      <div class="unit-meta">
+        <span>📖 Reading</span>
+        <span>Module 4 · Lesson 3 of 4</span>
+      </div>
+
+      <div class="lesson-header">
+        <div class="lesson-tag">Module 4 — Visual Design and Wireframing</div>
+        <h1 class="lesson-title">Layout, alignment, and spacing</h1>
+        <div class="lesson-byline"><span>Scott Faranello</span></div>
+      </div>
+
+      <div class="video-stage">
+        <div class="video-placeholder">
+          <div class="play-btn"><div class="play-triangle"></div></div>
+          <p>Lesson 4.3 — Layout, alignment, and spacing</p>
+          <small>Video coming soon</small>
+        </div>
+      </div>
+
+      <div class="learning-goals">
+        <h4>By the end of this lesson you will be able to</h4>
+        <ul>
+          <li>Explain how layout guides the eye through a design</li>
+          <li>Use alignment to create order and intention</li>
+          <li>Use spacing as an active design tool</li>
+          <li>Recognize the difference between intentional and accidental layout decisions</li>
+        </ul>
+      </div>
+
+      <div class="reading-content">
+
+        <p>In the last two lessons we looked at color and typography — two of the most powerful communication tools in a designer's kit. In this lesson we look at how those elements are arranged on the page. Layout, alignment, and spacing are what holds a design together. Get them right and the design feels effortless. Get them wrong and your design not only looks unprofessional, it will distract users in ways you never intended.</p>
+
+        <div class="section-label">How layout guides the eye</div>
+
+        <p>Every design is a journey. The user arrives at a page with a goal and the layout is what guides them toward it. A good layout anticipates where the eye will go first, second, and third, and places the most important information along that path.</p>
+
+        <p>The eye does not move randomly. Research shows that in most Western cultures users scan pages in predictable patterns. The most common is an F-shaped pattern, where users read across the top, then scan down the left side, occasionally moving right when something catches their attention.</p>
+
+        <p>Another common pattern is the Z-shape where the eye moves across the top, then diagonally to the bottom left, then across again.</p>
+
+        <p>You do not need to design rigidly around these patterns. What matters is understanding that they exist and are prevalent in a lot of the designs you encounter every day. It is also important to understand that users — including yourself — scan before reading, and layout is what determines what will be seen during that scan.</p>
+
+        <p>The most important content should always be at the top and to the left. Secondary content follows. Everything else steps back.</p>
+
+        <div class="section-label">Alignment</div>
+
+        <p>Alignment is one of the most powerful and most overlooked tools in visual design. When elements on a page share an invisible line, be it a left edge, a right edge, or a center line, the layout feels ordered and intentional. When elements are placed without consistent alignment, the design feels random, unplanned, and sloppy, even if the content is strong.</p>
+
+        <p>Think of alignment as an invisible grid that is always there. When it is there, nothing feels out of place. When it is absent, everything feels slightly wrong, even if you cannot explain why. Alignment, like all of the other patterns we have discussed, is guiding us in ways we are not fully aware of, and it is powerful and cannot be ignored.</p>
+
+        <p>Here is the simplest rule for alignment: pick one and stick to it. Left-align your text and left-align your other elements to the same edge. If you center something, center it deliberately and consistently. Mixing alignment without intention is one of the most common mistakes a designer can make and luckily, it is one of the easiest to fix.</p>
+
+        <div class="callout">
+          The best way to align elements on a page is to either have guides turned on in whatever application you are designing in, or zoom in really close.
+        </div>
+
+        <p>Oftentimes, what may look aligned can be off even by a single pixel if you are not careful and it can make more of a difference than you might be able to see. Don't guess when it comes to alignment. Make it intentional and your users will thank you for it. Maybe not consciously, but they will know nevertheless.</p>
+
+        <div class="pattern-connection"><strong>Alignment connects directly to the Balance and Boundaries patterns from Module 3.</strong> Alignment creates invisible boundaries that separate and organize content. When those boundaries are consistent, the design feels balanced. When they shift or are out of alignment without reason, balance breaks for your design and in the subconscious of your users.</div>
+
+        <div class="section-label">Spacing</div>
+
+        <p>Spacing is not just to create empty space. It is an active design decision that communicates relationships between elements. Elements that are close together feel related. Elements that are far apart feel separate. This is known as proximity and it is one of the fundamental principles of visual perception.</p>
+
+        <p>As a designer, every space you leave between elements is telling the user something. Are these two things part of the same group? Is this heading introducing the paragraph below it or finishing the section above it? Spacing answers these questions without words.</p>
+
+        <p>Here are the spacing decisions that matter most:</p>
+
+      </div>
+
+      <div class="spacing-list">
+        <div class="spacing-item">
+          <strong>Space between sections</strong>
+          <p>Large space between sections tells the user that a new topic is beginning. It is like a visual chapter break. Insufficient space between sections makes the design feel compressed, hard to take in and navigate.</p>
+        </div>
+        <div class="spacing-item">
+          <strong>Space between a heading and its content</strong>
+          <p>A heading should be closer to the content it introduces than to the content above it. If the space above and below a heading is equal, users cannot tell what the heading belongs to.</p>
+        </div>
+        <div class="spacing-item">
+          <strong>Space around interactive elements</strong>
+          <p>Buttons, links, and form fields need enough space around them that they feel clickable or tappable. Crowded interactive elements create anxiety and increase the risk of user error.</p>
+        </div>
+        <div class="spacing-item">
+          <strong>Consistent spacing</strong>
+          <p>The most important thing about spacing is consistency. If you use 16px between elements in one part of the design, use 16px everywhere that calls for the same relationship. Inconsistent spacing creates a design that feels unfinished and unbalanced.</p>
+        </div>
+      </div>
+
+      <div class="reading-content">
+
+        <p>There is no rule of thumb when it comes to proper spacing. Designers new to layout design almost always use too little or too much space, creating designs that feel too crowded or too disconnected. Adding too much space can also create unnecessary scrolling if you are designing a website or mobile app. But using too little space to avoid scrolling can also cause problems.</p>
+
+        <div class="callout">
+          Proper spacing can be subjective, but through trial and error, and by looking at examples of good spacing in design, you will start to see and feel what is right. This can take time to improve, but the first step, which you now have, is noticing.
+        </div>
+
+        <div class="pattern-connection"><strong>Spacing connects to the Space and Calm patterns from Module 3</strong> where positive space is not the absence of something. It is actually an active element in design that makes the content around it more important and easier to understand.</div>
+
+        <div class="section-label">A note on grids</div>
+
+        <p>Many designers work with grid systems, which are formal structures that provide a consistent framework for placing elements. Grids are useful and many well-designed products use them.</p>
+
+        <p>That said, what a grid is actually doing is enforcing consistent alignment and spacing. Those are the underlying principles. If you understand alignment and spacing deeply enough, you can create designs that feel as ordered and intentional as any grid-based design without formally using a grid system.</p>
+
+        <p>If you want to explore grids further, Figma has built-in grid tools and the Material Design system provides excellent guidance on grid-based layout for digital products. But do not let the absence of a formal grid become a reason not to design with discipline.</p>
+
+        <p>The discipline comes first. The tool is just a way to enforce it.</p>
+
+        <div class="section-label">Putting it together</div>
+
+        <p>Color, typography, layout, alignment, and spacing are not separate disciplines. Each one affects the others. Strong typography placed with poor alignment feels wrong. Perfect spacing around the wrong typography makes your design harder to read. Colors applied to a poorly structured layout cannot fix the layout.</p>
+
+        <p>These are not a series of isolated techniques. They are a complete system with each element working together to create an experience that feels whole, intentional, and effortless.</p>
+
+        <div class="section-label">Summary</div>
+
+        <p>The most common mistakes made in layouts are not about a lack of creativity. They are about inconsistency, with elements that are almost aligned, spacing that is almost consistent, sections that are almost separated.</p>
+
+        <p>In design, "almost" is not good enough. Good design is a commitment to making principled decisions across multiple elements that are equally important and applying them consistently throughout your entire design. Now that you are aware of these elements and their connection to one another, you are well on your way to becoming a strong designer.</p>
+
+        <p>In the next lesson we will put all of these elements to work.</p>
+
+      </div>
+
+      <div class="block-checklist">
+        <h4>Before you move on</h4>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I understand how layout guides the eye through a design</label>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I can use alignment to create order and intention</label>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I understand spacing as an active communication tool</label>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I can see the connection between layout principles and the patterns we covered in Module 3</label>
+        </div>
+      </div>
+
+      <div class="lesson-nav">
+        <a class="nav-btn" href="lesson-4-2.html">← Lesson 4.2</a>
+        <button class="mark-done" onclick="markDone()">✓ Mark complete</button>
+        <a class="nav-btn next" href="lesson-4-4.html">Lesson 4.4 →</a>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="nav.js"></script>
+<script src="airtable.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  buildNav('lesson-4-3.html');
+  var student = requireStudent();
+  var initials = student.name.split(' ').map(function(n) { return n[0]; }).join('').toUpperCase().slice(0,2);
+  document.getElementById('avatar-initials').textContent = initials;
+  document.getElementById('student-greeting').textContent = 'Logged in as ' + student.name;
+});
+
+function resetStudent() {
+  if (confirm('Log out of this device?')) {
+    localStorage.removeItem('ux_student_name');
+    localStorage.removeItem('ux_student_email');
+    window.location.href = 'welcome.html';
+  }
+}
+
+function toggleCheck(item) {
+  var cb = item.querySelector('input');
+  cb.checked = !cb.checked;
+  item.classList.toggle('checked', cb.checked);
+}
+
+function markDone() {
+  window.location.href = 'lesson-4-4.html';
+}
+</script>
+</body>
+</html>
