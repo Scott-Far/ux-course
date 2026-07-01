@@ -50,13 +50,51 @@ var COURSE_NAV = [
     ]
   },
   {
-    label: 'Modules 5–9',
+    label: 'Module 5 — Midpoint Project',
     items: [
-      { type: 'coming', label: 'Module 5 — Wireframing and Prototyping' },
-      { type: 'coming', label: 'Module 6 — Usability Testing' },
-      { type: 'coming', label: 'Module 7 — Research Methods' },
-      { type: 'coming', label: 'Module 8 — Building a Portfolio' },
-      { type: 'coming', label: 'Module 9 — Preparing for the Job Market' }
+      { type: 'coming', label: '★ Midpoint Project' }
+    ]
+  },
+  {
+    label: 'Module 6 — UX Research',
+    items: [
+      { type: 'lesson', href: 'lesson-6-1.html', label: '6.1 What UX research is and why it matters' },
+      { type: 'coming', label: '6.2 Research methodologies overview' },
+      { type: 'coming', label: '6.3 Primary research' },
+      { type: 'coming', label: '6.4 Secondary and competitive research' },
+      { type: 'coming', label: '6.5 Personas and synthesis' },
+      { type: 'coming', label: '6.6 Choosing the right methods' },
+      { type: 'coming', label: '★ Module 6 Project' }
+    ]
+  },
+  {
+    label: 'Module 7 — The Big Project',
+    items: [
+      { type: 'coming', label: '★ The Big Project' }
+    ]
+  },
+  {
+    label: 'Module 8 — Writing a Case Study',
+    items: [
+      { type: 'coming', label: '8.1 What a case study is and why it matters' },
+      { type: 'coming', label: '8.2 What goes in a case study' },
+      { type: 'coming', label: '8.3 Writing and structuring your case study' },
+      { type: 'coming', label: '★ Module 8 Project' }
+    ]
+  },
+  {
+    label: 'Module 9 — Building Your Portfolio',
+    items: [
+      { type: 'coming', label: '9.1 Choosing a portfolio tool' },
+      { type: 'coming', label: '9.2 Setting up your portfolio' },
+      { type: 'coming', label: '9.3 Presenting your work' },
+      { type: 'coming', label: '★ Module 9 Project' }
+    ]
+  },
+  {
+    label: 'Module 10 — Additional Projects',
+    items: [
+      { type: 'coming', label: 'Coming soon' }
     ]
   }
 ];
