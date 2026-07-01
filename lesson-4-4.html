@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>4.4 — Wireframing | UX That Decides</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.unit-meta { display: flex; gap: 1rem; align-items: center; font-size: 13px; color: var(--ink-3); margin-bottom: 1.75rem; flex-wrap: wrap; }
+.learning-goals { background: var(--accent-light); border-left: 4px solid var(--accent); border-radius: 0 var(--radius-lg) var(--radius-lg) 0; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+.learning-goals h4 { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.6rem; }
+.learning-goals ul { padding-left: 1.2rem; }
+.learning-goals li { font-size: 14px; color: var(--ink-2); line-height: 1.7; margin-bottom: 0.2rem; }
+.section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); margin: 2.5rem 0 0.75rem; display: flex; align-items: center; gap: 0.75rem; }
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+.block-checklist { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; margin: 2rem 0; }
+.block-checklist h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 0.85rem; }
+.check-item { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.6rem; cursor: pointer; padding: 0.4rem 0; border-bottom: 1px solid var(--rule); }
+.check-item:last-child { border-bottom: none; margin-bottom: 0; }
+.check-item input[type="checkbox"] { margin-top: 2px; flex-shrink: 0; width: 16px; height: 16px; accent-color: var(--accent); cursor: pointer; }
+.check-item label { font-size: 14px; color: var(--ink-2); line-height: 1.5; cursor: pointer; }
+.check-item.checked label { color: var(--ink-3); text-decoration: line-through; }
+.student-bar { background: var(--accent-light); border-radius: var(--radius); padding: 0.5rem 1rem; font-size: 12px; color: var(--accent); margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+.student-bar a { color: var(--accent); font-size: 11px; cursor: pointer; }
+.fidelity-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+.fidelity-card { border-radius: var(--radius-lg); padding: 1.25rem; border: 1px solid var(--rule); }
+.fidelity-card.lofi { background: #f8f8f8; }
+.fidelity-card.midfi { background: var(--accent-light); border-color: rgba(30,77,140,0.2); }
+.fidelity-card h4 { font-size: 13px; font-weight: 600; margin-bottom: 0.5rem; }
+.fidelity-card.lofi h4 { color: var(--ink); }
+.fidelity-card.midfi h4 { color: var(--accent); }
+.fidelity-card p { font-size: 13px; color: var(--ink-2); line-height: 1.65; margin: 0; }
+.belongs-list { display: flex; flex-direction: column; gap: 0.6rem; margin: 1.25rem 0; }
+.belongs-item { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); padding: 0.85rem 1rem; }
+.belongs-item strong { display: block; font-size: 12px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.35rem; }
+.belongs-item p { font-size: 13px; color: var(--ink-2); line-height: 1.6; margin: 0; }
+.not-belongs-list { display: flex; flex-direction: column; gap: 0.6rem; margin: 1.25rem 0; }
+.not-belongs-item { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); padding: 0.85rem 1rem; display: flex; gap: 0.75rem; align-items: flex-start; }
+.not-belongs-item::before { content: '✗'; color: #c0392b; font-weight: 700; font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+.not-belongs-item div strong { display: block; font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 0.2rem; }
+.not-belongs-item div p { font-size: 13px; color: var(--ink-2); line-height: 1.6; margin: 0; }
+.figma-note { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+.figma-note h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 0.5rem; }
+.figma-note p { font-size: 13px; color: var(--ink-2); line-height: 1.65; margin-bottom: 0.5rem; }
+.figma-note p:last-child { margin-bottom: 0; }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <header class="topbar">
+    <a class="topbar-logo" href="index.html">UX That <span>Decides</span></a>
+    <div class="topbar-progress">
+      <div class="progress-label"><span>Course progress</span><span>50% complete</span></div>
+      <div class="progress-bar"><div class="progress-fill" style="width:50%"></div></div>
+    </div>
+    <div class="topbar-actions">
+      <a class="topbar-btn notif" href="feedback.html">💬 Feedback</a>
+      <a class="topbar-btn primary" href="schedule.html">📅 Book call</a>
+      <a class="avatar" href="index.html" id="avatar-initials">?</a>
+    </div>
+  </header>
+
+  <aside class="sidebar"></aside>
+
+  <main class="main">
+    <div class="content-area">
+
+      <div class="student-bar">
+        <span id="student-greeting">Loading...</span>
+        <a onclick="resetStudent()">Log out</a>
+      </div>
+
+      <div class="unit-meta">
+        <span>📖 Reading</span>
+        <span>Module 4 · Lesson 4 of 4</span>
+      </div>
+
+      <div class="lesson-header">
+        <div class="lesson-tag">Module 4 — Visual Design and Wireframing</div>
+        <h1 class="lesson-title">Wireframing</h1>
+        <div class="lesson-byline"><span>Scott Faranello</span></div>
+      </div>
+
+      <div class="video-stage">
+        <div class="video-placeholder">
+          <div class="play-btn"><div class="play-triangle"></div></div>
+          <p>Lesson 4.4 — Wireframing</p>
+          <small>Video coming soon</small>
+        </div>
+      </div>
+
+      <div class="learning-goals">
+        <h4>By the end of this lesson you will be able to</h4>
+        <ul>
+          <li>Explain what a wireframe is and why you wireframe before you design</li>
+          <li>Understand why lo-fi and mid-fi wireframes are where you should focus right now</li>
+          <li>Apply color, typography, and layout principles from this module to a wireframe</li>
+          <li>Know what belongs in a wireframe and what does not</li>
+        </ul>
+      </div>
+
+      <div class="reading-content">
+
+        <p>In the last three lessons we covered color, typography, and layout — the communication tools every designer uses. In this lesson we put them to work in the form everyone in this industry actually uses to think through a design before it is built: the wireframe.</p>
+
+        <div class="section-label">What is a wireframe?</div>
+
+        <p>A wireframe is a simplified representation of a screen that shows what content exists and how it is organized, without the distraction of final colors, images, or polish. Think of it as the skeleton of a design. It shows the bones — structure, hierarchy, and flow — before any of the muscle and skin gets added.</p>
+
+        <p>Wireframes exist because designing structure and designing appearance are two different problems, and solving them at the same time makes both harder. When you wireframe first, you are forced to answer the real questions before you get distracted by how something looks:</p>
+
+        <ul>
+          <li>What goes where?</li>
+          <li>What is most important on this screen?</li>
+          <li>What does the user need to see first, and what can wait?</li>
+        </ul>
+
+        <p>If the structure does not work in a wireframe, no amount of color or polish will fix it later. This is the same idea we covered in Lesson 4.1 about starting in black and white, applied to an entire screen rather than just a color decision.</p>
+
+        <div class="section-label">Why lo-fi and mid-fi, not hi-fi</div>
+
+        <p>You will see plenty of UX programs that rush students straight into high-fidelity, polished, final-looking designs. This is a mistake, and it is worth understanding why.</p>
+
+        <p>Becoming a skilled visual designer who can make a screen look genuinely professional, with refined color, custom imagery, and polished detail takes deliberate practice. This can take years, depending on how proficient you want to be. It is a real craft with its own learning curve, the same way photography or illustration is a craft.</p>
+
+        <p>You cannot shortcut that timeline in a few weeks, and trying to will produce work that looks amateurish, which can seriously undermine your confidence at exactly the moment you are trying to build it.</p>
+
+        <p>Lo-fi and mid-fi wireframes sidestep this problem entirely. They let you practice exactly what matters most at this stage of your development: hierarchy, typography as communication, color used with intention, and layout that guides the eye. None of that requires visual design mastery. It requires clear thinking, which is what this entire course has been building toward.</p>
+
+        <p>This is also a more honest reflection of how UX actually works in practice. Wireframes are a thinking tool. They are meant to be rough. Polish comes later, often from a different person on the team entirely. Learning to wireframe well is learning to think clearly about structure, and is a skill that will serve you for your entire career regardless of how your visual design abilities develop.</p>
+
+        <div class="section-label">Lo-fi and mid-fi compared</div>
+
+      </div>
+
+      <div class="fidelity-grid">
+        <div class="fidelity-card lofi">
+          <h4>Lo-fi wireframe</h4>
+          <p>Basic shapes, lines, and placeholder text only. Square boxes represent images. Lines represent text blocks. Buttons are simple rectangles with labels. Black, white, and grey only. No real content. Fast to make and easy to change. The goal is speed and clarity of structure.</p>
+        </div>
+        <div class="fidelity-card midfi">
+          <h4>Mid-fi wireframe</h4>
+          <p>Real or near-real content. Basic typography hierarchy. A simple color system — primary, accent, and neutrals. No final imagery or polish. This is where you apply color, type, and layout as communication tools. The screen feels like a real product in progress. This is your target for the Module 4 Project.</p>
+        </div>
+      </div>
+
+      <div class="reading-content">
+
+        <div class="section-label">What belongs in a wireframe</div>
+
+        <p>As you build your wireframe, focus on these decisions:</p>
+
+      </div>
+
+      <div class="belongs-list">
+        <div class="belongs-item">
+          <strong>Structure</strong>
+          <p>What sections exist on this screen and in what order? This is your information architecture from Module 3 made visible.</p>
+        </div>
+        <div class="belongs-item">
+          <strong>Hierarchy</strong>
+          <p>What is the most important thing on this screen? Is it the largest, boldest, or most prominent element? If everything looks equally important, nothing is.</p>
+        </div>
+        <div class="belongs-item">
+          <strong>Typography</strong>
+          <p>Are you using consistent type sizes for the same kind of content across the screen? Is your hierarchy clear using size and weight alone, even before color is added?</p>
+        </div>
+        <div class="belongs-item">
+          <strong>Color with intention</strong>
+          <p>If you introduce color in a mid-fi wireframe, is it doing one of the jobs from Lesson 4.1 — signaling state, creating hierarchy, reinforcing brand, or communicating meaning? If it is doing anything more than this, leave it out.</p>
+        </div>
+        <div class="belongs-item">
+          <strong>Layout and spacing</strong>
+          <p>Are elements aligned consistently? Is spacing used to show which things belong together and which things are separate?</p>
+        </div>
+      </div>
+
+      <div class="reading-content">
+
+        <div class="section-label">What does not belong yet</div>
+
+        <div class="callout">
+          Good design is just as much about what to show as it is about what not to show.
+        </div>
+
+      </div>
+
+      <div class="not-belongs-list">
+        <div class="not-belongs-item">
+          <div><strong>Imagery</strong><p>Use placeholder boxes, not real photos or illustrations. Now is not the time to look for those things. Great looking images are not necessary at this stage and will take up too much time better spent elsewhere.</p></div>
+        </div>
+        <div class="not-belongs-item">
+          <div><strong>Custom illustration or iconography</strong><p>Use simple, generic icons if needed. Do not spend time designing custom visuals.</p></div>
+        </div>
+        <div class="not-belongs-item">
+          <div><strong>Brand polish</strong><p>Save logos, custom fonts, and any refined visual styling for later. In a real project setting, there may be someone to do all of that for you. If not, return to it after your wireframe has been reviewed and approved.</p></div>
+        </div>
+        <div class="not-belongs-item">
+          <div><strong>Perfectionism</strong><p>A wireframe that took ten hours to make beautiful misses the point. Speed and clarity of your ideas matters more than visual polish at this stage.</p></div>
+        </div>
+      </div>
+
+      <div class="reading-content">
+
+        <div class="section-label">Getting started in Figma</div>
+
+        <div class="figma-note">
+          <h4>Already know Figma?</h4>
+          <p>Skip ahead to the project brief and get started.</p>
+        </div>
+
+        <p>For the Module 4 Project you will build your wireframe in Figma, the industry standard tool for this kind of work.</p>
+
+        <p>If you are new to Figma, that is okay because it is pretty intuitive to use and this project will use some of the more basic tools. For this project you will use frames, basic shapes, text, and simple components. You do not need to learn everything Figma can do. That takes time and is best saved for when you actually need to learn it. For now, you need to learn enough to build the wireframe this project requires.</p>
+
+        <div class="section-label">Summary</div>
+
+        <p>A wireframe is where thinking becomes visible. Lo-fi gets your structure right quickly. Mid-fi lets you make typography, color, and layout decisions while staying focused on communicating your ideas rather than polishing them. Hi-fidelity visual design is a craft you can pursue later.</p>
+
+        <p>The goal of this module was not to make you a visual designer. It was to teach you how to organize and communicate design ideas clearly, simply, and with just the right amount of fidelity so that the viewer can easily understand. Any more than that is a distraction from what a wireframe is supposed to be.</p>
+
+        <p>You now have everything you need to make your first wireframe. Have fun!</p>
+
+      </div>
+
+      <div class="block-checklist">
+        <h4>Before you move on</h4>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I understand what a wireframe is and why it comes before visual design</label>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I understand why lo-fi and mid-fi are the right level of fidelity at this stage, not hi-fi</label>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I know what belongs in a wireframe and what to leave out</label>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I am ready to begin the Module 4 Project</label>
+        </div>
+      </div>
+
+      <div class="lesson-nav">
+        <a class="nav-btn" href="lesson-4-3.html">← Lesson 4.3</a>
+        <button class="mark-done" onclick="markDone()">✓ Mark complete</button>
+        <a class="nav-btn next" href="project-4.html">Module 4 Project →</a>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="nav.js"></script>
+<script src="airtable.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  buildNav('lesson-4-4.html');
+  var student = requireStudent();
+  var initials = student.name.split(' ').map(function(n) { return n[0]; }).join('').toUpperCase().slice(0,2);
+  document.getElementById('avatar-initials').textContent = initials;
+  document.getElementById('student-greeting').textContent = 'Logged in as ' + student.name;
+});
+
+function resetStudent() {
+  if (confirm('Log out of this device?')) {
+    localStorage.removeItem('ux_student_name');
+    localStorage.removeItem('ux_student_email');
+    window.location.href = 'welcome.html';
+  }
+}
+
+function toggleCheck(item) {
+  var cb = item.querySelector('input');
+  cb.checked = !cb.checked;
+  item.classList.toggle('checked', cb.checked);
+}
+
+function markDone() {
+  window.location.href = 'project-4.html';
+}
+</script>
+</body>
+</html>
