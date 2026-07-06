@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6.1 — What UX Research Is and Why It Matters | UX That Decides</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.unit-meta { display: flex; gap: 1rem; align-items: center; font-size: 13px; color: var(--ink-3); margin-bottom: 1.75rem; flex-wrap: wrap; }
+.learning-goals { background: var(--accent-light); border-left: 4px solid var(--accent); border-radius: 0 var(--radius-lg) var(--radius-lg) 0; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+.learning-goals h4 { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.6rem; }
+.learning-goals ul { padding-left: 1.2rem; }
+.learning-goals li { font-size: 14px; color: var(--ink-2); line-height: 1.7; margin-bottom: 0.2rem; }
+.section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); margin: 2.5rem 0 0.75rem; display: flex; align-items: center; gap: 0.75rem; }
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+.block-checklist { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; margin: 2rem 0; }
+.block-checklist h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 0.85rem; }
+.check-item { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.6rem; cursor: pointer; padding: 0.4rem 0; border-bottom: 1px solid var(--rule); }
+.check-item:last-child { border-bottom: none; margin-bottom: 0; }
+.check-item input[type="checkbox"] { margin-top: 2px; flex-shrink: 0; width: 16px; height: 16px; accent-color: var(--accent); cursor: pointer; }
+.check-item label { font-size: 14px; color: var(--ink-2); line-height: 1.5; cursor: pointer; }
+.check-item.checked label { color: var(--ink-3); text-decoration: line-through; }
+.student-bar { background: var(--accent-light); border-radius: var(--radius); padding: 0.5rem 1rem; font-size: 12px; color: var(--accent); margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+.student-bar a { color: var(--accent); font-size: 11px; cursor: pointer; }
+.not-research-list { display: flex; flex-direction: column; gap: 0.75rem; margin: 1.25rem 0; }
+.not-research-item { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); padding: 0.85rem 1rem; }
+.not-research-item strong { display: block; font-size: 12px; font-weight: 600; color: #c0392b; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.4rem; }
+.not-research-item p { font-size: 13px; color: var(--ink-2); line-height: 1.65; margin: 0; }
+.assumption-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.25rem 0; }
+.assumption-card { border-radius: var(--radius); padding: 1.1rem; }
+.assumption-card.bad { background: #fef9f0; border: 1px solid rgba(176,104,32,0.25); }
+.assumption-card.good { background: var(--accent-light); border: 1px solid rgba(30,77,140,0.2); }
+.assumption-card .card-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 0.5rem; }
+.assumption-card.bad .card-label { color: var(--amber); }
+.assumption-card.good .card-label { color: var(--accent); }
+.assumption-card p { font-size: 13px; color: var(--ink-2); line-height: 1.65; margin: 0; }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <header class="topbar">
+    <a class="topbar-logo" href="index.html">UX That <span>Decides</span></a>
+    <div class="topbar-progress">
+      <div class="progress-label"><span>Course progress</span><span>53% complete</span></div>
+      <div class="progress-bar"><div class="progress-fill" style="width:53%"></div></div>
+    </div>
+    <div class="topbar-actions">
+      <a class="topbar-btn notif" href="feedback.html">💬 Feedback</a>
+      <a class="topbar-btn primary" href="schedule.html">📅 Book call</a>
+      <a class="avatar" href="index.html" id="avatar-initials">?</a>
+    </div>
+  </header>
+
+  <aside class="sidebar"></aside>
+
+  <main class="main">
+    <div class="content-area">
+
+      <div class="student-bar">
+        <span id="student-greeting">Loading...</span>
+        <a onclick="resetStudent()">Log out</a>
+      </div>
+
+      <div class="unit-meta">
+        <span>📖 Reading</span>
+        <span>Module 6 · Lesson 1 of 6</span>
+      </div>
+
+      <div class="lesson-header">
+        <div class="lesson-tag">Module 6 — UX Research</div>
+        <h1 class="lesson-title">What UX research is and why it matters</h1>
+        <div class="lesson-byline"><span>Scott Faranello</span></div>
+      </div>
+
+      <div class="video-stage">
+        <div class="video-placeholder">
+          <div class="play-btn"><div class="play-triangle"></div></div>
+          <p>Lesson 6.1 — What UX research is and why it matters</p>
+          <small>Video coming soon</small>
+        </div>
+      </div>
+
+      <div class="learning-goals">
+        <h4>By the end of this lesson you will be able to</h4>
+        <ul>
+          <li>Explain what UX research is and what it is not</li>
+          <li>Describe why research is the foundation of good design</li>
+          <li>Understand the difference between assumptions and evidence</li>
+          <li>Recognize the most common ways research gets ignored or done wrong in practice</li>
+        </ul>
+      </div>
+
+      <div class="reading-content">
+
+        <p>Everything we have covered so far — the UX mindset, good design, information architecture, visual design, wireframing — has been building toward one thing: designing the right solution to the right problem. But getting to a solution is not based on a guess or intuition. It is something that can only happen when you know what is needed based on evidence, and the only way to do that is through research.</p>
+
+        <div class="section-label">What UX research is not</div>
+
+        <p>Before we get into what UX research is, it helps to be clear about what it is not — because a lot of what passes for research in most organizations is not research at all.</p>
+
+      </div>
+
+      <div class="not-research-list">
+        <div class="not-research-item">
+          <strong>Not stakeholder opinion</strong>
+          <p>When a VP of product says "our users want X" based on their own intuition or experience, that is not research. It is an assumption dressed up as knowledge. Assumptions are the enemy of good design. They feel like certainty but they end up producing faster horses.</p>
+        </div>
+        <div class="not-research-item">
+          <strong>Not analytics alone</strong>
+          <p>Web analytics tell you what users did. They do not tell you why. Knowing that 70 percent of users drop off at a certain screen is useful information. Knowing why they drop off requires talking to people.</p>
+        </div>
+        <div class="not-research-item">
+          <strong>Not a survey sent to existing customers</strong>
+          <p>Surveys have their place, but they are a specific tool used for a specific purpose. They tell you what people say they do, but often not what they actually do. They only reach people who are already using your product — not people who tried it and left, or people who need it but have never heard of it. And they do not allow for follow-up questions.</p>
+        </div>
+        <div class="not-research-item">
+          <strong>Not a usability test conducted after the product is built</strong>
+          <p>Testing a finished product for usability problems has its place in design, but it is not research. It is quality assurance. Research happens before you build, when what you learn can still change the direction of the work.</p>
+        </div>
+        <div class="not-research-item">
+          <strong>Not asking users what they want</strong>
+          <p>Users may be experts in their own problems. They are not experts in solutions to those problems. Your job as a researcher is to understand their problem deeply enough to design a solution they would not have thought to ask for or knew how to design themselves.</p>
+        </div>
+      </div>
+
+      <div class="reading-content">
+
+        <p>In actuality, the goal of UX research is to engage with people, environments, and evidence to understand the reasons behind cause and effect at the root level. It is about studying how people engage with products and processes, how they solve problems in those environments when nobody is watching or there to help, and learning what they need to solve those problems on their own, easily and quickly.</p>
+
+        <div class="section-label">What UX research is</div>
+
+        <p>UX research is about knowing where, when, and how problems form, why they exist, and what to do about it.</p>
+
+        <p>UX research answers questions like:</p>
+
+        <ul>
+          <li>What are people trying to accomplish with a product or process?</li>
+          <li>What problems are they experiencing that need to be solved?</li>
+          <li>Where does an existing design fail and why?</li>
+          <li>How do you know your solution is correct?</li>
+        </ul>
+
+        <p>These are not questions to answer on your own or from a conversation with other designers or stakeholders. They require going to the source of the problem and immersing yourself in that environment — observing, listening, experiencing — and using that evidence to find root causes, design potential solutions, and test them to be sure.</p>
+
+        <div class="section-label">Assumptions versus evidence</div>
+
+        <p>Assumptions and evidence are easy to confuse. Every research project starts as an assumption. You assume you know who the user is. You assume you understand their problem. You assume your solution will work. Assumptions are not bad. They are inevitable. You cannot research something or design a solution without making them. It is a natural response to problems that we are often not even aware we are doing. The problem is when we treat assumptions as facts before testing them.</p>
+
+        <p>Here is the difference:</p>
+
+      </div>
+
+      <div class="assumption-compare">
+        <div class="assumption-card bad">
+          <div class="card-label">Assumption</div>
+          <p>"Our users are busy professionals who do not have time to read long instructions."</p>
+        </div>
+        <div class="assumption-card good">
+          <div class="card-label">Evidence</div>
+          <p>"In five interviews with current users, four said they skipped the instructions and tried to figure the product out on their own. Three were confused by the dashboard within the first two minutes and failed to complete the next step in the flow."</p>
+        </div>
+      </div>
+
+      <div class="reading-content">
+
+        <p>The assumption tells you that making the instructions shorter will help users complete their tasks. The evidence tells you that users failed to complete the next step because the dashboard is confusing. These are two distinct problems that you can design around. Both might be valid, but one may be more important to focus on than the other.</p>
+
+        <p>Ask yourself: is a better solution to write shorter instructions so users can accomplish a complicated task, or to make the complicated task easier so users would not need instructions at all — since most may not read them regardless?</p>
+
+        <div class="section-label">Why research gets ignored</div>
+
+        <p>Despite the importance of research, the harsh reality is that it is often done poorly or skipped entirely. In practice, research gets shortchanged for a few predictable reasons.</p>
+
+        <p><strong>Time and budget.</strong> Research takes time and projects are always under pressure to deliver on time and on budget. Most of the time, these constraints were created by teams whose priorities did not include research — not because they did not think it would help, but because it simply was not something they thought about. Their approach is to design now, deliver quickly, and find out later whether it worked. This is almost always more expensive in the long run, but in the short term, pressure to deliver always wins.</p>
+
+        <p><strong>Confidence without evidence.</strong> Experienced designers, product managers, and executives often believe they already know what users need based on their own experience or instinct. Sometimes they are right. Often they are not. Most of the time they never truly know either way, because once a project is finished they move on to what is next — or they talk to users months later and add new features based on complaints, without validating whether those features are actually needed or whether the complaints are the result of deeper design flaws that were never addressed or tested early in the process.</p>
+
+        <p><strong>Fear of what research might reveal.</strong> When research is conducted, it is often done too late — after the design is complete, after development has already started, or long after the product is already in use. At that point, learning that months or years of work have been spent solving the wrong problem is a difficult and career-threatening finding. It is much easier not to ask.</p>
+
+        <div class="section-label">The cost of skipping research</div>
+
+        <p>Every project that ships without research is placing a bet that its assumptions are correct. Sometimes that bet pays off. Products built on instinct occasionally succeed, but not without an increased risk of failure. Projects that succeed consistently are the ones where research raised the odds and provided the evidence to back them up.</p>
+
+        <p>Most businesses do not launch without researching their market, having a business plan, and validating viability. Restaurants test their menus before opening. Pharmaceutical companies run clinical trials before releasing a drug. Car manufacturers crash test vehicles before putting them on the road. The corporate technology world, however, remains oddly comfortable launching products without the same rigor — even though the cost of getting it wrong compounds quickly in development time, rework, support, and lost users.</p>
+
+        <p>Research is not a cost center. It is risk reduction. Every hour spent understanding users before you build saves multiples of that in rework, support, and failure after you build.</p>
+
+        <div class="section-label">Research as a mindset, not just a method</div>
+
+        <p>The most important thing to understand about UX research is that it is not a phase in a project. It is a mindset. And the reason it is so often undervalued is that it is viewed as a cost rather than a risk reduction strategy — and the risk a company is willing to take says a lot about how it operates.</p>
+
+        <p>It is the same mindset we covered in Module 1. Ford immersed himself in the real conditions his customers were living in. MacCready questioned the assumption that defined the problem. Research is what that mindset looks like when applied systematically to a design problem.</p>
+
+        <p>Researchers and companies with a research mindset are not always the ones with the most sophisticated methods or always right. They are the ones who are genuinely curious about people. They listen without an agenda. They notice what users do more than what they say. They are comfortable with findings that contradict what they expected.</p>
+
+        <p>I wish it were true that research was held in the highest regard in the corporate world and that every product out there was the result of that rigor. Sadly, that is not the case. However, the need for research exists, and it is important to learn how to provide that value and lower that risk — so that when you find opportunities to use these skills, you will be well prepared. In the lessons that follow we will look at the specific methods researchers use, and it all starts with a commitment to understanding people before designing for them.</p>
+
+        <div class="section-label">Summary</div>
+
+        <p>UX research is how you find out whether you are solving the right problem in the right way for the right people. It replaces assumptions with evidence. It shifts design decisions from opinion to observation. And it is the single most effective way to reduce the risk of building the wrong solution.</p>
+
+        <p>In the next lesson we will look at research methods and how and when to use them.</p>
+
+      </div>
+
+      <div class="block-checklist">
+        <h4>Before you move on</h4>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I can explain what UX research is and what it is not</label>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I understand the difference between assumptions and evidence and why it matters</label>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I can describe the most common reasons research gets skipped and why that is a problem</label>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I understand research as a mindset, not just a method</label>
+        </div>
+      </div>
+
+      <div class="lesson-nav">
+        <a class="nav-btn" href="project-4.html">← Module 4 Project</a>
+        <button class="mark-done" onclick="markDone()">✓ Mark complete</button>
+        <a class="nav-btn next" href="lesson-6-2.html">Lesson 6.2 →</a>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="nav.js"></script>
+<script src="airtable.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  buildNav('lesson-6-1.html');
+  var student = requireStudent();
+  var initials = student.name.split(' ').map(function(n) { return n[0]; }).join('').toUpperCase().slice(0,2);
+  document.getElementById('avatar-initials').textContent = initials;
+  document.getElementById('student-greeting').textContent = 'Logged in as ' + student.name;
+});
+
+function resetStudent() {
+  if (confirm('Log out of this device?')) {
+    localStorage.removeItem('ux_student_name');
+    localStorage.removeItem('ux_student_email');
+    window.location.href = 'welcome.html';
+  }
+}
+
+function toggleCheck(item) {
+  var cb = item.querySelector('input');
+  cb.checked = !cb.checked;
+  item.classList.toggle('checked', cb.checked);
+}
+
+function markDone() {
+  window.location.href = 'lesson-6-2.html';
+}
+</script>
+</body>
+</html>
