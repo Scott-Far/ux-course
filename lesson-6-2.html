@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6.2 — Research Methodologies Overview | UX That Decides</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.unit-meta { display: flex; gap: 1rem; align-items: center; font-size: 13px; color: var(--ink-3); margin-bottom: 1.75rem; flex-wrap: wrap; }
+.learning-goals { background: var(--accent-light); border-left: 4px solid var(--accent); border-radius: 0 var(--radius-lg) var(--radius-lg) 0; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+.learning-goals h4 { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.6rem; }
+.learning-goals ul { padding-left: 1.2rem; }
+.learning-goals li { font-size: 14px; color: var(--ink-2); line-height: 1.7; margin-bottom: 0.2rem; }
+.section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); margin: 2.5rem 0 0.75rem; display: flex; align-items: center; gap: 0.75rem; }
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+.block-checklist { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; margin: 2rem 0; }
+.block-checklist h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 0.85rem; }
+.check-item { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.6rem; cursor: pointer; padding: 0.4rem 0; border-bottom: 1px solid var(--rule); }
+.check-item:last-child { border-bottom: none; margin-bottom: 0; }
+.check-item input[type="checkbox"] { margin-top: 2px; flex-shrink: 0; width: 16px; height: 16px; accent-color: var(--accent); cursor: pointer; }
+.check-item label { font-size: 14px; color: var(--ink-2); line-height: 1.5; cursor: pointer; }
+.check-item.checked label { color: var(--ink-3); text-decoration: line-through; }
+.student-bar { background: var(--accent-light); border-radius: var(--radius); padding: 0.5rem 1rem; font-size: 12px; color: var(--accent); margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+.student-bar a { color: var(--accent); font-size: 11px; cursor: pointer; }
+.qual-quant { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.25rem 0; }
+.qual-quant-card { border-radius: var(--radius-lg); padding: 1.25rem; border: 1px solid var(--rule); }
+.qual-quant-card.qual { background: var(--accent-light); border-color: rgba(30,77,140,0.2); }
+.qual-quant-card.quant { background: var(--surface); }
+.qual-quant-card h4 { font-size: 13px; font-weight: 600; margin-bottom: 0.5rem; }
+.qual-quant-card.qual h4 { color: var(--accent); }
+.qual-quant-card.quant h4 { color: var(--ink); }
+.qual-quant-card p { font-size: 13px; color: var(--ink-2); line-height: 1.65; margin-bottom: 0.5rem; }
+.qual-quant-card p:last-child { margin-bottom: 0; }
+.method-block { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 1.25rem; }
+.method-block-header { background: var(--accent); color: #fff; padding: 0.75rem 1.25rem; }
+.method-block-header h3 { font-size: 14px; font-weight: 600; }
+.method-block-body { padding: 1.25rem; }
+.method-block-body p { font-size: 14px; color: var(--ink-2); line-height: 1.7; margin-bottom: 0.75rem; }
+.method-block-body p:last-child { margin-bottom: 0; }
+.method-tag { display: inline-block; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; padding: 0.2rem 0.6rem; border-radius: 999px; margin-right: 0.4rem; margin-bottom: 0.75rem; }
+.method-tag.gen { background: var(--accent-light); color: var(--accent); }
+.method-tag.eval { background: #f0f0f0; color: var(--ink-3); }
+.method-tag.qual { background: #eef7ee; color: #2e7d32; }
+.method-tag.quant { background: #fff3e0; color: #e65100; }
+.note-callout { background: var(--accent-light); border-left: 3px solid var(--accent); border-radius: 0 var(--radius) var(--radius) 0; padding: 0.75rem 1rem; margin: 0.75rem 0; font-size: 13px; color: var(--ink-2); line-height: 1.6; }
+.note-callout strong { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <header class="topbar">
+    <a class="topbar-logo" href="index.html">UX That <span>Decides</span></a>
+    <div class="topbar-progress">
+      <div class="progress-label"><span>Course progress</span><span>56% complete</span></div>
+      <div class="progress-bar"><div class="progress-fill" style="width:56%"></div></div>
+    </div>
+    <div class="topbar-actions">
+      <a class="topbar-btn notif" href="feedback.html">💬 Feedback</a>
+      <a class="topbar-btn primary" href="schedule.html">📅 Book call</a>
+      <a class="avatar" href="index.html" id="avatar-initials">?</a>
+    </div>
+  </header>
+
+  <aside class="sidebar"></aside>
+
+  <main class="main">
+    <div class="content-area">
+
+      <div class="student-bar">
+        <span id="student-greeting">Loading...</span>
+        <a onclick="resetStudent()">Log out</a>
+      </div>
+
+      <div class="unit-meta">
+        <span>📖 Reading</span>
+        <span>Module 6 · Lesson 2 of 6</span>
+      </div>
+
+      <div class="lesson-header">
+        <div class="lesson-tag">Module 6 — UX Research</div>
+        <h1 class="lesson-title">Research methodologies overview</h1>
+        <div class="lesson-byline"><span>Scott Faranello</span></div>
+      </div>
+
+      <div class="video-stage">
+        <div class="video-placeholder">
+          <div class="play-btn"><div class="play-triangle"></div></div>
+          <p>Lesson 6.2 — Research methodologies overview</p>
+          <small>Video coming soon</small>
+        </div>
+      </div>
+
+      <div class="learning-goals">
+        <h4>By the end of this lesson you will be able to</h4>
+        <ul>
+          <li>Describe the difference between qualitative and quantitative research</li>
+          <li>Explain the difference between generative and evaluative research</li>
+          <li>Name the primary research methods used in UX and when each is appropriate</li>
+          <li>Understand why no single method is enough on its own</li>
+        </ul>
+      </div>
+
+      <div class="reading-content">
+
+        <p>In the last lesson we established what UX research is and why it matters. In this lesson we look at research methods, how they differ, and how to choose the right ones on any given project.</p>
+
+        <p>Research methods are tools, and they are not what drives a research project. There are no requirements that you must use one method or another or that you have to use them in a specific order. Just like tools used to build a house, you pick the right one for the job at hand. Research methods are not too difficult to learn and use, but some require a certain kind of experience and finesse to get the most out of them.</p>
+
+        <div class="section-label">Two fundamental distinctions</div>
+
+        <p>Before looking at the different research methods, there are two distinctions that will shape every research decision you make.</p>
+
+        <p><strong>Qualitative versus quantitative research</strong></p>
+
+      </div>
+
+      <div class="qual-quant">
+        <div class="qual-quant-card qual">
+          <h4>Qualitative</h4>
+          <p>About depth of understanding. Deals in observations and meaning. Tells you what is happening and why. Produces insight, not statistics.</p>
+          <p><strong>Includes:</strong> Interviews, observations, usability tests</p>
+        </div>
+        <div class="qual-quant-card quant">
+          <h4>Quantitative</h4>
+          <p>About measuring. Deals in numbers. Tells you how often something happens, how many people experience a problem, or how performance changes over time.</p>
+          <p><strong>Includes:</strong> Surveys, analytics, benchmark studies</p>
+        </div>
+      </div>
+
+      <div class="reading-content">
+
+        <p>Quantitative research can tell you that a problem exists but not why. Qualitative research can tell you why problems exist, but can be very subjective, especially if you have only asked a small number of people. These two methods work best together to produce a complete picture. However, there are also times when that is not necessary or not practical, and we will discuss those situations as well.</p>
+
+        <p><strong>Generative versus evaluative research</strong></p>
+
+        <p>Within qualitative and quantitative research, there is another distinction that determines what kind of information you are actually after.</p>
+
+        <p>Generative research is about discovery. You use it at the beginning of a project when you are still trying to understand the problem space. You do not yet know what you are building. You are looking for insights that will point you in the right direction. Most qualitative methods — interviews, contextual inquiry, card sorting — are used generatively.</p>
+
+        <p>Evaluative research is about assessment. You use it after you have designed something and need to know whether it works. You already have a direction. Now you are testing it. Usability testing is the most common evaluative method, but surveys can be evaluative too when used to measure performance against a baseline.</p>
+
+        <p>Most projects use a combination of both. Generative research at the start to make sure you are building the right thing. Evaluative research at the end to make sure your solution is right. Later, we will look at how these same methods can be used interchangeably at different stages of a project for different purposes.</p>
+
+        <div class="section-label">The primary research methods</div>
+
+        <p>What follows is an overview of the methods you will use most often as a UX researcher. Each one will be covered in more depth in the lessons that follow. For now the goal is to understand what each method is, what it is good for, and when it belongs in a project.</p>
+
+      </div>
+
+      <div class="method-block">
+        <div class="method-block-header"><h3>User interviews</h3></div>
+        <div class="method-block-body">
+          <span class="method-tag gen">Generative</span>
+          <span class="method-tag qual">Qualitative</span>
+          <p>User interviews are one-on-one conversations with users or potential users of the product and problem you are working to understand and ultimately solve. They are the most powerful generative research tool available. Done well, they surface real problems real people experience and how they think about and perform in different situations, in their own words.</p>
+          <p>User interviews are guided by the researcher — the moderator — using open-ended questions that invite participants to speak openly and honestly about real situations and real problems. The goal is threefold: to discover what you did not know, to understand how people are experiencing a situation along with their motivations and needs, and to gather enough feedback to identify root causes of a problem and make valid recommendations about what to do to improve it.</p>
+          <p>Where real skill comes into play is not about following what participants tell you they want, but determining what they actually need based on what they say and did not say. More on that later.</p>
+        </div>
+      </div>
+
+      <div class="method-block">
+        <div class="method-block-header"><h3>Surveys</h3></div>
+        <div class="method-block-body">
+          <span class="method-tag eval">Evaluative</span>
+          <span class="method-tag quant">Quantitative</span>
+          <p>Surveys are questionnaires sent to large groups of people who fit the description of the kinds of end users your problem is solving for. Unlike interviews, surveys let you ask the same questions to more people than you have time to talk to individually. Surveys should not be used in place of interviews, however, because unlike interviews, you cannot easily follow up on how people responded. You have to work with what you received back, usually in the form of frequency levels and scales.</p>
+          <p>Surveys can be generative and are best used for validating something you already learned from interviews across a broader population. The most important thing to understand about surveys is that they measure how people responded to your questions, which can differ significantly from what a follow-up conversation might reveal. They are a complement to interviews, not a replacement.</p>
+        </div>
+      </div>
+
+      <div class="method-block">
+        <div class="method-block-header"><h3>Usability testing</h3></div>
+        <div class="method-block-body">
+          <span class="method-tag eval">Evaluative</span>
+          <span class="method-tag qual">Qualitative</span>
+          <p>Usability testing is used for observing users as they attempt to complete specific tasks with a design. The researcher watches, listens, and takes notes. They do not help. They do not explain. They observe.</p>
+          <p>Usability testing is the most direct form of evaluative research. It reveals exactly where a design fails based on what users actually do more than what they say. If a user cannot find the submit button or complete a specific task in your design, usability testing shows you exactly where problems exist and the exact moment they occur.</p>
+        </div>
+      </div>
+
+      <div class="method-block">
+        <div class="method-block-header"><h3>Contextual inquiry</h3></div>
+        <div class="method-block-body">
+          <span class="method-tag gen">Generative</span>
+          <span class="method-tag qual">Qualitative</span>
+          <p>Contextual inquiry is used when you want to observe users as they do real work in their natural environment. The researcher goes to where the work happens and watches users interact with products and processes in context, often asking questions as they observe.</p>
+          <p>Contextual inquiry is one of the most underused methods, mostly for practical reasons of meeting people where they work, but it is also one of the most revealing. Usability testing often happens in a controlled environment where the user comes to you and does what you have instructed them to do. Contextual inquiry allows you to go to them and watch in real time as they actually interact with a product they already use in their actual environment. You see the workflows. You see the environment the product and the person actually work in.</p>
+        </div>
+      </div>
+
+      <div class="method-block">
+        <div class="method-block-header"><h3>Card sorting</h3></div>
+        <div class="method-block-body">
+          <span class="method-tag gen">Generative</span>
+          <span class="method-tag qual">Qualitative</span>
+          <p>Card sorting is a method used for understanding how people think about information that will be included in your design and how it should be organized. It is particularly useful when designing navigation for a website or mobile app and you want to know how people think about where information should be found and what categories they would look for it under.</p>
+          <p>There are generally two kinds of card sorting: open and closed.</p>
+          <p><strong>Closed card sorting</strong> is where a researcher provides participants with a set of cards, each with a word on it, and another set of cards with various categories. Participants place each word card under the category card they feel it belongs to until no word cards remain.</p>
+          <p><strong>Open card sorting</strong> also uses word cards, but with no predetermined categories. Participants are asked to place word cards into groups they create themselves and name those groups.</p>
+          <p>Card sorting is a direct input into information architecture. It tells you how users think about the relationships between pieces of content, which things belong together, which things are distinct, and how users think about and describe categories.</p>
+          <div class="note-callout"><strong>Note:</strong> This connects directly to the mental models and taxonomy work covered in Module 3.</div>
+        </div>
+      </div>
+
+      <div class="method-block">
+        <div class="method-block-header"><h3>Competitive research</h3></div>
+        <div class="method-block-body">
+          <span class="method-tag gen">Generative</span>
+          <span class="method-tag qual">Qualitative</span>
+          <p>Competitive research tells you what already exists in the market — what is working, what users are already familiar with, and where there may be gaps your product can fill.</p>
+          <p>This is not about copying competitors. It is about understanding the landscape your product will live in and the expectations users already have from using similar products. Those expectations become your baseline for measuring against when you launch your own product.</p>
+        </div>
+      </div>
+
+      <div class="method-block">
+        <div class="method-block-header"><h3>Secondary research</h3></div>
+        <div class="method-block-body">
+          <span class="method-tag gen">Generative</span>
+          <span class="method-tag qual">Qualitative</span>
+          <p>Secondary research is where most projects should start. Before you talk to a single user, find out what is already known about this problem space, this population, or this domain. You do this by reviewing existing research, published studies, industry reports, and any other sources that build understanding before conducting primary research.</p>
+          <p>Secondary research saves time because it helps you avoid asking questions you may already know the answers to. It also helps you ask better primary research questions during interviews, contextual inquiries, and surveys because you arrive with existing knowledge that makes your questions more informed and more useful.</p>
+          <p>Of course, not every project has secondary research to leverage, but before you begin a project it is always helpful to know that before you start.</p>
+        </div>
+      </div>
+
+      <div class="reading-content">
+
+        <div class="section-label">Mixed methods</div>
+
+        <p>The most rigorous and useful research combines multiple methods. A typical research project might begin with secondary research to understand the landscape, move to user interviews to understand the specific problem, use card sorting to inform the information architecture, build a prototype, and then evaluate it with usability testing.</p>
+
+        <p>Each method answers a different question. Together they produce a much more complete and reliable picture than any single method could on its own. Remember though that these methods are not all meant to be used on every project. Each project is different and it will be up to the researcher to decide the best way to get to the information needed to design the right solution.</p>
+
+        <p>In the module that follows this one, you will notice that the project you are assigned does not prescribe a specific set of methods to follow. It simply asks you to choose the methods that fit the problem you are researching. That is how research works in real-world practice. Questions come first. Methods follow.</p>
+
+        <div class="section-label">Summary</div>
+
+        <p>Research methods fall into two fundamental categories: qualitative methods that help you understand, and quantitative methods that help you measure. They are also either generative — used to discover problems and needs — or evaluative — used to assess solutions.</p>
+
+        <p>The methods you have to choose from at this point in the course — user interviews, surveys, usability testing, contextual inquiry, card sorting, competitive research, and secondary research — each have a specific purpose. Knowing them allows you to choose the right method to understand and solve the problem at hand.</p>
+
+        <p>In the next lesson we will go deeper into primary research methods, starting with user interviews, the most often used method in your toolkit.</p>
+
+      </div>
+
+      <div class="block-checklist">
+        <h4>Before you move on</h4>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I understand the difference between qualitative and quantitative research and when each is appropriate</label>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I understand the difference between generative and evaluative research</label>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I can name the primary UX research methods and describe what each one is best for</label>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I understand why no single method is enough on its own</label>
+        </div>
+      </div>
+
+      <div class="lesson-nav">
+        <a class="nav-btn" href="lesson-6-1.html">← Lesson 6.1</a>
+        <button class="mark-done" onclick="markDone()">✓ Mark complete</button>
+        <a class="nav-btn next" href="lesson-6-3.html">Lesson 6.3 →</a>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="nav.js"></script>
+<script src="airtable.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  buildNav('lesson-6-2.html');
+  var student = requireStudent();
+  var initials = student.name.split(' ').map(function(n) { return n[0]; }).join('').toUpperCase().slice(0,2);
+  document.getElementById('avatar-initials').textContent = initials;
+  document.getElementById('student-greeting').textContent = 'Logged in as ' + student.name;
+});
+
+function resetStudent() {
+  if (confirm('Log out of this device?')) {
+    localStorage.removeItem('ux_student_name');
+    localStorage.removeItem('ux_student_email');
+    window.location.href = 'welcome.html';
+  }
+}
+
+function toggleCheck(item) {
+  var cb = item.querySelector('input');
+  cb.checked = !cb.checked;
+  item.classList.toggle('checked', cb.checked);
+}
+
+function markDone() {
+  window.location.href = 'lesson-6-3.html';
+}
+</script>
+</body>
+</html>
