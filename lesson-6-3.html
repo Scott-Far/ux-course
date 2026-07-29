@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6.3 — Primary Research | UX That Decides</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.unit-meta { display: flex; gap: 1rem; align-items: center; font-size: 13px; color: var(--ink-3); margin-bottom: 1.75rem; flex-wrap: wrap; }
+.learning-goals { background: var(--accent-light); border-left: 4px solid var(--accent); border-radius: 0 var(--radius-lg) var(--radius-lg) 0; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+.learning-goals h4 { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.6rem; }
+.learning-goals ul { padding-left: 1.2rem; }
+.learning-goals li { font-size: 14px; color: var(--ink-2); line-height: 1.7; margin-bottom: 0.2rem; }
+.section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); margin: 2.5rem 0 0.75rem; display: flex; align-items: center; gap: 0.75rem; }
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+.block-checklist { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; margin: 2rem 0; }
+.block-checklist h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 0.85rem; }
+.check-item { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.6rem; cursor: pointer; padding: 0.4rem 0; border-bottom: 1px solid var(--rule); }
+.check-item:last-child { border-bottom: none; margin-bottom: 0; }
+.check-item input[type="checkbox"] { margin-top: 2px; flex-shrink: 0; width: 16px; height: 16px; accent-color: var(--accent); cursor: pointer; }
+.check-item label { font-size: 14px; color: var(--ink-2); line-height: 1.5; cursor: pointer; }
+.check-item.checked label { color: var(--ink-3); text-decoration: line-through; }
+.student-bar { background: var(--accent-light); border-radius: var(--radius); padding: 0.5rem 1rem; font-size: 12px; color: var(--accent); margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+.student-bar a { color: var(--accent); font-size: 11px; cursor: pointer; }
+.question-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 1rem 0 1.5rem; }
+.question-card { border-radius: var(--radius); padding: 1rem; }
+.question-card.bad { background: #fff5f5; border: 1px solid rgba(192,57,43,0.2); }
+.question-card.good { background: var(--accent-light); border: 1px solid rgba(30,77,140,0.2); }
+.question-card .card-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 0.4rem; }
+.question-card.bad .card-label { color: #c0392b; }
+.question-card.good .card-label { color: var(--accent); }
+.question-card p { font-size: 13px; color: var(--ink-2); line-height: 1.6; margin: 0; font-style: italic; }
+.during-list { display: flex; flex-direction: column; gap: 0.75rem; margin: 1.25rem 0; }
+.during-item { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); padding: 0.85rem 1rem; }
+.during-item strong { display: block; font-size: 12px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.4rem; }
+.during-item p { font-size: 13px; color: var(--ink-2); line-height: 1.65; margin: 0 0 0.5rem; }
+.during-item p:last-child { margin-bottom: 0; }
+.probing-list { list-style: none; padding: 0; margin: 0.75rem 0 0; }
+.probing-list li { font-size: 13px; color: var(--ink-2); padding: 0.3rem 0; border-bottom: 1px solid var(--rule); font-style: italic; }
+.probing-list li:last-child { border-bottom: none; }
+.signals-list { display: flex; flex-direction: column; gap: 0.6rem; margin: 1.25rem 0; }
+.signal-item { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); padding: 0.85rem 1rem; display: flex; gap: 1rem; align-items: flex-start; }
+.signal-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 5px; }
+.signal-item div strong { font-size: 13px; font-weight: 600; color: var(--ink); display: block; margin-bottom: 0.2rem; }
+.signal-item div p { font-size: 13px; color: var(--ink-2); line-height: 1.6; margin: 0; }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <header class="topbar">
+    <a class="topbar-logo" href="index.html">UX That <span>Decides</span></a>
+    <div class="topbar-progress">
+      <div class="progress-label"><span>Course progress</span><span>59% complete</span></div>
+      <div class="progress-bar"><div class="progress-fill" style="width:59%"></div></div>
+    </div>
+    <div class="topbar-actions">
+      <a class="topbar-btn notif" href="feedback.html">💬 Feedback</a>
+      <a class="topbar-btn primary" href="schedule.html">📅 Book call</a>
+      <a class="avatar" href="index.html" id="avatar-initials">?</a>
+    </div>
+  </header>
+
+  <aside class="sidebar"></aside>
+
+  <main class="main">
+    <div class="content-area">
+
+      <div class="student-bar">
+        <span id="student-greeting">Loading...</span>
+        <a onclick="resetStudent()">Log out</a>
+      </div>
+
+      <div class="unit-meta">
+        <span>📖 Reading</span>
+        <span>Module 6 · Lesson 3 of 6</span>
+      </div>
+
+      <div class="lesson-header">
+        <div class="lesson-tag">Module 6 — UX Research</div>
+        <h1 class="lesson-title">Primary research</h1>
+        <div class="lesson-byline"><span>Scott Faranello</span></div>
+      </div>
+
+      <div class="video-stage">
+        <div class="video-placeholder">
+          <div class="play-btn"><div class="play-triangle"></div></div>
+          <p>Lesson 6.3 — Primary research</p>
+          <small>Video coming soon</small>
+        </div>
+      </div>
+
+      <div class="learning-goals">
+        <h4>By the end of this lesson you will be able to</h4>
+        <ul>
+          <li>Explain what primary research is and why it comes before everything else</li>
+          <li>Plan and prepare for a user interview</li>
+          <li>Write an effective interview guide</li>
+          <li>Conduct an interview that produces useful findings</li>
+          <li>Know what to listen for and what to avoid during an interview</li>
+        </ul>
+      </div>
+
+      <div class="reading-content">
+
+        <p>Primary research is when you go directly to the source. You are not reading about someone else's users. You are not analyzing data someone else collected. You are talking to real people, observing real behavior, and forming your own understanding of a problem based on direct evidence.</p>
+
+        <p>Of all the primary research methods available, user interviews are the most used and often the most valuable. They are also the most misunderstood. The simple act of interviewing someone does not mean you are doing good primary research. Sometimes interviews produce nothing useful, but a good interview produces insights that no other method can replicate.</p>
+
+        <p>The difference between these two outcomes is preparation, discipline, and honest, authentic interest and curiosity about the topic you are learning about.</p>
+
+        <div class="section-label">What makes a good interview</div>
+
+        <p>A good user interview is more than just a conversation around a series of questions. There is structure. There is a plan. There is a goal.</p>
+
+        <p>The most common mistakes new researchers make are poor listening, poor questions, lack of interest in what the interviewee is saying, fear of silence, and talking too much. The interviewer asks a question, the participant gives an answer. Then, rather than wait to see if the interviewee is finished, the researcher jumps in — either to stop the uncomfortable silence or to ask the next question. This kills interviews. Interview participants do not always get to the most useful thing they have to say in the first sentence. Often the most valuable insight comes after a pause, after the participant has had a moment to think more deeply.</p>
+
+        <p>The skill of a good interviewer shows up in those moments.</p>
+
+        <div class="section-label">Before the interview — preparation</div>
+
+        <p>Good interviews start before you sit down with a participant. Here is what needs to happen first.</p>
+
+        <p><strong>Define your research questions</strong></p>
+
+        <p>An interview question is not a research question. A research question is the underlying question your research is trying to answer. Before you can write a single interview question, you must know what you are trying to learn.</p>
+
+        <p>For example:</p>
+        <ul>
+          <li>Why do users abandon the checkout flow before completing a purchase?</li>
+          <li>What problems are users experiencing with a current system?</li>
+          <li>Where does that process break down?</li>
+        </ul>
+
+        <p>These are research questions, not interview questions. Research questions define the goal of the research. Your interview questions flow from them.</p>
+
+        <p>For example:</p>
+        <ul>
+          <li><strong>Research question:</strong> Why do users abandon the checkout flow before completing a purchase?</li>
+          <li><strong>Interview question:</strong> Have you ever abandoned a checkout flow before completing a purchase? If yes, tell me why and what happened.</li>
+        </ul>
+
+        <p><strong>Define your participants</strong></p>
+
+        <p>Who you interview matters as much as what you ask. If you talk to the wrong people, even the best interview questions can produce useless findings.</p>
+
+        <p>Define your participants based on your research questions. Who is most likely to experience the problem you are investigating? Who uses the product or process you are studying? Who would benefit most from the solution you eventually design?</p>
+
+        <p>Be specific. "Adults who use mobile banking" is not specific enough. "Adults between 25 and 45 who use a mobile banking app at least three times per week and have experienced a problem completing a transfer in the last six months" is the specificity you are looking for.</p>
+
+        <p>How many participants do you need? For qualitative research, five to eight participants is typically enough to identify the most significant patterns. During those interviews you will often hear the same things repeatedly. That repetition is a signal that you have enough data to draw meaningful conclusions. Continuing to conduct interviews after hearing common patterns repeatedly diminishes the return on your interviewing efforts. An exception is if you are researching across a diverse population of users who approach the same problem from different perspectives. More on this later.</p>
+
+        <p><strong>Write your interview guide</strong></p>
+
+        <p>An interview guide is not a script or a questionnaire. It is a flexible framework that keeps the interview on track without making it feel like a questionnaire.</p>
+
+        <p>A good interview guide has three parts:</p>
+        <ul>
+          <li>An introduction that puts the participant at ease, explains the purpose of the session, clarifies that there are no right or wrong answers, and asks for permission to record if applicable.</li>
+          <li>A core set of open-ended questions organized around your research questions and what you want to learn from the interview.</li>
+          <li>A set of probing questions you can use when a participant's answer is interesting but incomplete. These are not always pre-planned. Another skill of a good researcher is flexibility and spontaneity — listening for incomplete answers and being ready with follow-up questions to go deeper.</li>
+        </ul>
+
+        <div class="section-label">Writing good interview questions</div>
+
+        <p>The quality of your interview questions determines the quality of your findings. Here is what separates good questions from bad ones.</p>
+
+        <p><strong>Open-ended vs. closed-ended</strong></p>
+        <p>Open-ended questions produce responses. Closed-ended questions produce yes or no answers.</p>
+
+      </div>
+
+      <div class="question-compare">
+        <div class="question-card bad">
+          <div class="card-label">Closed-ended</div>
+          <p>"Do you find the checkout process confusing?"</p>
+        </div>
+        <div class="question-card good">
+          <div class="card-label">Open-ended</div>
+          <p>"Walk me through the last time you tried to complete a purchase online. What happened?"</p>
+        </div>
+      </div>
+
+      <div class="reading-content">
+
+        <p>The closed question tells the participant what to think about and limits their answer. The open question invites the participant to tell a story in their own words.</p>
+
+        <p><strong>Behavior, not opinion</strong></p>
+        <p>People's opinions about what they would do are less reliable than their accounts of what they actually did. Design your interview questions for behavior, not intent.</p>
+
+      </div>
+
+      <div class="question-compare">
+        <div class="question-card bad">
+          <div class="card-label">Opinion</div>
+          <p>"How would you feel if we added a progress bar to the checkout flow?"</p>
+        </div>
+        <div class="question-card good">
+          <div class="card-label">Behavior</div>
+          <p>"Tell me about a time when you were not sure how far along you were in a process. What did you do?"</p>
+        </div>
+      </div>
+
+      <div class="reading-content">
+
+        <p>The opinion question asks the participant to predict their future behavior, which is highly subjective and not very reliable. The behavior question focuses the conversation on real past experience.</p>
+
+        <p><strong>Rooted in the past, not hypotheticals</strong></p>
+        <p>Hypothetical questions produce hypothetical answers. Always ask about what people have actually done rather than what they think they might do in a given situation.</p>
+
+      </div>
+
+      <div class="question-compare">
+        <div class="question-card bad">
+          <div class="card-label">Hypothetical</div>
+          <p>"If we redesigned this feature, would you use it more?"</p>
+        </div>
+        <div class="question-card good">
+          <div class="card-label">Rooted in the past</div>
+          <p>"How often do you use this feature today, and what is the reason you use it?"</p>
+        </div>
+      </div>
+
+      <div class="reading-content">
+
+        <p><strong>Non-leading</strong></p>
+        <p>A leading question tells the participant what answer you are looking for. It is one of the most common mistakes in interviews and one of the hardest to avoid because leading questions feel natural in conversation.</p>
+
+      </div>
+
+      <div class="question-compare">
+        <div class="question-card bad">
+          <div class="card-label">Leading</div>
+          <p>"Would you say the navigation is confusing?"</p>
+        </div>
+        <div class="question-card good">
+          <div class="card-label">Non-leading</div>
+          <p>"Tell me about your experience navigating through the app."</p>
+        </div>
+      </div>
+
+      <div class="reading-content">
+
+        <p>The leading question plants the word "confusing" in the participant's mind. The non-leading question lets them describe their experience without any framing from you.</p>
+
+        <div class="section-label">During the interview</div>
+
+      </div>
+
+      <div class="during-list">
+
+        <div class="during-item">
+          <strong>Listen more. Talk less.</strong>
+          <p>As a rule, the participant should be speaking at least 80 percent of the time. If you are talking more than that, something is wrong.</p>
+        </div>
+
+        <div class="during-item">
+          <strong>Follow the participant, not the guide</strong>
+          <p>The interview guide is a safety net, not a script. If a participant says something unexpected and interesting, follow their train of thought. You can always come back to the guide. You cannot recreate a moment of genuine insight that you talked over or failed to listen to.</p>
+        </div>
+
+        <div class="during-item">
+          <strong>Use silence</strong>
+          <p>Silence is one of the most powerful tools in an interview. When a participant finishes answering a question, wait before you speak. Count to three silently. Most of the time the participant will keep talking, and what they say next might be the most valuable thing in the interview.</p>
+          <p>New researchers — and people in general — are uncomfortable with silence. We often rush to fill it. Learning to be comfortable with silence is one of the most important skills you can develop as an interviewer.</p>
+        </div>
+
+        <div class="during-item">
+          <strong>Use probing questions</strong>
+          <p>When a participant says something interesting, go deeper. Probing questions help you get past surface answers to the real insight underneath.</p>
+          <ul class="probing-list">
+            <li>"Tell me more about that."</li>
+            <li>"What did you mean when you said...?"</li>
+            <li>"What happened next?"</li>
+            <li>"How did that make you feel?"</li>
+            <li>"Can you give me an example?"</li>
+            <li>"Why was that important to you?"</li>
+          </ul>
+        </div>
+
+        <div class="during-item">
+          <strong>Do not react</strong>
+          <p>Your job during an interview is to be neutral. Do not nod enthusiastically when you hear something you agree with. Do not frown when you hear something you do not agree with. Do not say "great" or "interesting" after every answer. These reactions can be an unconscious signal to the participant that they are saying what you want to hear, and they will continue giving it to you, whether it is true or not.</p>
+          <p>Stay neutral. Stay curious. Stay quiet.</p>
+        </div>
+
+        <div class="during-item">
+          <strong>Do not explain or defend</strong>
+          <p>If a participant criticizes a product you designed, do not defend it. Do not explain why decisions were made. Do not say "that was intentional" or "most users find that easy." Your feelings about the design are irrelevant in this context. The participant's experience is the only thing that matters.</p>
+        </div>
+
+        <div class="during-item">
+          <strong>Take notes or record</strong>
+          <p>You cannot listen fully and take detailed notes at the same time. If possible, record the session with the participant's permission and review it afterward.</p>
+          <div class="callout" style="margin-top:0.75rem;">Most interview applications like Zoom and Descript provide transcription. If you do not want to sit through the entire recording again, read the transcript. Later in the course we will look at how to use AI to do this faster.</div>
+          <p style="margin-top:0.75rem;">If you decide to take notes during the interview, make them high-level and expand on them immediately after the interview is over while the conversation is still fresh. Never rely on memory alone. Details that seem vivid immediately after an interview fade quickly.</p>
+        </div>
+
+      </div>
+
+      <div class="reading-content">
+
+        <div class="section-label">After the interview</div>
+
+        <p>The interview itself is only half the work. What you do with it afterward determines whether it produces anything useful.</p>
+
+        <p>Immediately after each interview, write down your initial impressions. What surprised you? What confirmed something you already suspected? What do you want to explore further in the next interview? Are you asking the right questions or do they need to be modified? Do you need to remove any questions or add new ones?</p>
+
+        <p>Whatever you write down, remember that these notes are not analysis. They are raw observations that you will use later when you synthesize findings across all your interviews. We will cover synthesis in Lesson 6.5.</p>
+
+        <div class="section-label">What to listen for</div>
+
+        <p>During and after your interviews, these are the signals that matter most:</p>
+
+      </div>
+
+      <div class="signals-list">
+        <div class="signal-item">
+          <div class="signal-dot"></div>
+          <div><strong>Patterns</strong><p>Things that come up repeatedly across multiple participants. If five out of six participants mention the same frustration, that is a finding. If only one participant mentions it, it may be an outlier.</p></div>
+        </div>
+        <div class="signal-item">
+          <div class="signal-dot"></div>
+          <div><strong>Workarounds</strong><p>When participants tell you about problems they solved outside of your product because your product could not solve them, that is a significant finding. Workarounds tell you exactly where the design is failing.</p></div>
+        </div>
+        <div class="signal-item">
+          <div class="signal-dot"></div>
+          <div><strong>Emotion</strong><p>Pay attention to how people feel about their experience, not just what they do. Strong emotions — frustration, confusion, embarrassment, relief — are important to notice and address.</p></div>
+        </div>
+        <div class="signal-item">
+          <div class="signal-dot"></div>
+          <div><strong>What people say vs. what they do</strong><p>Participants often describe their behavior inaccurately, not because they are dishonest but because they rationalize after the fact. When what someone says they do conflicts with what you have observed or what other participants described, that gap is worth investigating further.</p></div>
+        </div>
+        <div class="signal-item">
+          <div class="signal-dot"></div>
+          <div><strong>Unsolicited detail</strong><p>When a participant volunteers information you did not ask for, pay attention. It means that something is important enough to them that they brought it up without prompting. Those moments are often where the most significant findings live.</p></div>
+        </div>
+      </div>
+
+      <div class="reading-content">
+
+        <div class="section-label">Summary</div>
+
+        <p>Primary research means going directly to the source. User interviews are the most powerful tool available for understanding the real problems behind the stated problem, the mental models users bring to a situation, and the gaps between what users say and what they do.</p>
+
+        <p>Good interviews require clear research questions, well-defined participants, and a thoughtful interview guide. They require listening more than talking, using silence, and following the lead of the participant rather than the script. They also require your attention afterward, when your analysis and synthesis of what you heard begins.</p>
+
+        <p>In the next lesson we will look at secondary and competitive research.</p>
+
+      </div>
+
+      <div class="block-checklist">
+        <h4>Before you move on</h4>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I can explain the difference between a research question and an interview question</label>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I understand how to write open-ended, behavior-focused, non-leading interview questions</label>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I know what to do during an interview to get the most useful information</label>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I understand what to listen for — patterns, workarounds, emotion, and the gap between what people say and do</label>
+        </div>
+      </div>
+
+      <div class="lesson-nav">
+        <a class="nav-btn" href="lesson-6-2.html">← Lesson 6.2</a>
+        <button class="mark-done" onclick="markDone()">✓ Mark complete</button>
+        <a class="nav-btn next" href="lesson-6-4.html">Lesson 6.4 →</a>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="nav.js"></script>
+<script src="airtable.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  buildNav('lesson-6-3.html');
+  var student = requireStudent();
+  var initials = student.name.split(' ').map(function(n) { return n[0]; }).join('').toUpperCase().slice(0,2);
+  document.getElementById('avatar-initials').textContent = initials;
+  document.getElementById('student-greeting').textContent = 'Logged in as ' + student.name;
+});
+
+function resetStudent() {
+  if (confirm('Log out of this device?')) {
+    localStorage.removeItem('ux_student_name');
+    localStorage.removeItem('ux_student_email');
+    window.location.href = 'welcome.html';
+  }
+}
+
+function toggleCheck(item) {
+  var cb = item.querySelector('input');
+  cb.checked = !cb.checked;
+  item.classList.toggle('checked', cb.checked);
+}
+
+function markDone() {
+  window.location.href = 'lesson-6-4.html';
+}
+</script>
+</body>
+</html>
