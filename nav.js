@@ -59,9 +59,9 @@ var COURSE_NAV = [
     label: 'Module 6 — UX Research',
     items: [
       { type: 'lesson', href: 'lesson-6-1.html', label: '6.1 What UX research is and why it matters' },
-      { type: 'coming', label: '6.2 Research methodologies overview' },
-      { type: 'coming', label: '6.3 Primary research' },
-      { type: 'coming', label: '6.4 Secondary and competitive research' },
+      { type: 'lesson', href: 'lesson-6-2.html', label: '6.2 Research methodologies overview' },
+      { type: 'lesson', href: 'lesson-6-3.html', label: '6.3 Primary research' },
+      { type: 'lesson', href: 'lesson-6-4.html', label: '6.4 Secondary and competitive research' },
       { type: 'coming', label: '6.5 Personas and synthesis' },
       { type: 'coming', label: '6.6 Choosing the right methods' },
       { type: 'coming', label: '★ Module 6 Project' }
