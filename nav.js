@@ -62,8 +62,9 @@ var COURSE_NAV = [
       { type: 'lesson', href: 'lesson-6-2.html', label: '6.2 Research methodologies overview' },
       { type: 'lesson', href: 'lesson-6-3.html', label: '6.3 Primary research' },
       { type: 'lesson', href: 'lesson-6-4.html', label: '6.4 Secondary and competitive research' },
-      { type: 'coming', label: '6.5 Personas and synthesis' },
-      { type: 'coming', label: '6.6 Choosing the right methods' },
+      { type: 'lesson', href: 'lesson-6-5.html', label: '6.5 Research synthesis' },
+      { type: 'coming', label: '6.6 Personas' },
+      { type: 'coming', label: '6.7 Choosing the right methods' },
       { type: 'coming', label: '★ Module 6 Project' }
     ]
   },

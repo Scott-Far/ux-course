@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6.5 — Research Synthesis | UX That Decides</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.unit-meta { display: flex; gap: 1rem; align-items: center; font-size: 13px; color: var(--ink-3); margin-bottom: 1.75rem; flex-wrap: wrap; }
+.learning-goals { background: var(--accent-light); border-left: 4px solid var(--accent); border-radius: 0 var(--radius-lg) var(--radius-lg) 0; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+.learning-goals h4 { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.6rem; }
+.learning-goals ul { padding-left: 1.2rem; }
+.learning-goals li { font-size: 14px; color: var(--ink-2); line-height: 1.7; margin-bottom: 0.2rem; }
+.section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); margin: 2.5rem 0 0.75rem; display: flex; align-items: center; gap: 0.75rem; }
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+.block-checklist { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; margin: 2rem 0; }
+.block-checklist h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 0.85rem; }
+.check-item { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.6rem; cursor: pointer; padding: 0.4rem 0; border-bottom: 1px solid var(--rule); }
+.check-item:last-child { border-bottom: none; margin-bottom: 0; }
+.check-item input[type="checkbox"] { margin-top: 2px; flex-shrink: 0; width: 16px; height: 16px; accent-color: var(--accent); cursor: pointer; }
+.check-item label { font-size: 14px; color: var(--ink-2); line-height: 1.5; cursor: pointer; }
+.check-item.checked label { color: var(--ink-3); text-decoration: line-through; }
+.student-bar { background: var(--accent-light); border-radius: var(--radius); padding: 0.5rem 1rem; font-size: 12px; color: var(--accent); margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+.student-bar a { color: var(--accent); font-size: 11px; cursor: pointer; }
+.step-block { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 1rem; }
+.step-block-header { background: var(--accent); color: #fff; padding: 0.65rem 1.25rem; display: flex; align-items: center; gap: 0.75rem; }
+.step-num { background: rgba(255,255,255,0.25); width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+.step-block-header h3 { font-size: 13px; font-weight: 600; }
+.step-block-body { padding: 1.1rem 1.25rem; }
+.step-block-body p { font-size: 14px; color: var(--ink-2); line-height: 1.7; margin-bottom: 0.75rem; }
+.step-block-body p:last-child { margin-bottom: 0; }
+.example-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 0.75rem 0; }
+.example-card { border-radius: var(--radius); padding: 0.85rem; }
+.example-card.bad { background: #fff5f5; border: 1px solid rgba(192,57,43,0.2); }
+.example-card.good { background: var(--accent-light); border: 1px solid rgba(30,77,140,0.2); }
+.example-card .card-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 0.4rem; }
+.example-card.bad .card-label { color: #c0392b; }
+.example-card.good .card-label { color: var(--accent); }
+.example-card p { font-size: 13px; color: var(--ink-2); line-height: 1.6; margin: 0; font-style: italic; }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <header class="topbar">
+    <a class="topbar-logo" href="index.html">UX That <span>Decides</span></a>
+    <div class="topbar-progress">
+      <div class="progress-label"><span>Course progress</span><span>65% complete</span></div>
+      <div class="progress-bar"><div class="progress-fill" style="width:65%"></div></div>
+    </div>
+    <div class="topbar-actions">
+      <a class="topbar-btn notif" href="feedback.html">💬 Feedback</a>
+      <a class="topbar-btn primary" href="schedule.html">📅 Book call</a>
+      <a class="avatar" href="index.html" id="avatar-initials">?</a>
+    </div>
+  </header>
+
+  <aside class="sidebar"></aside>
+
+  <main class="main">
+    <div class="content-area">
+
+      <div class="student-bar">
+        <span id="student-greeting">Loading...</span>
+        <a onclick="resetStudent()">Log out</a>
+      </div>
+
+      <div class="unit-meta">
+        <span>📖 Reading</span>
+        <span>Module 6 · Lesson 5 of 6</span>
+      </div>
+
+      <div class="lesson-header">
+        <div class="lesson-tag">Module 6 — UX Research</div>
+        <h1 class="lesson-title">Research synthesis</h1>
+        <div class="lesson-byline"><span>Scott Faranello</span></div>
+      </div>
+
+      <div class="video-stage">
+        <div class="video-placeholder">
+          <div class="play-btn"><div class="play-triangle"></div></div>
+          <p>Lesson 6.5 — Research synthesis</p>
+          <small>Video coming soon</small>
+        </div>
+      </div>
+
+      <div class="learning-goals">
+        <h4>By the end of this lesson you will be able to</h4>
+        <ul>
+          <li>Explain what synthesis is and why it matters</li>
+          <li>Describe how to identify patterns across research sessions</li>
+          <li>Turn raw observations into actionable findings and recommendations</li>
+        </ul>
+      </div>
+
+      <div class="reading-content">
+
+        <p>You have done your research. You have conducted interviews, reviewed secondary sources, analyzed competitors, and have made many observations. Now comes the most challenging and the most satisfying part of the process: making sense of it all.</p>
+
+        <div class="section-label">What is synthesis?</div>
+
+        <p>Synthesis is the process of turning raw research feedback into actionable insights. It is where individual observations become patterns, patterns become findings, and findings become recommendations.</p>
+
+        <p>Synthesis is not a summary of what you heard and learned from your research. Synthesis is finding the meaning behind it and determining what is worth acting on.</p>
+
+        <div class="section-label">How to synthesize research findings</div>
+
+      </div>
+
+      <div class="step-block">
+        <div class="step-block-header">
+          <div class="step-num">1</div>
+          <h3>Gather your raw feedback</h3>
+        </div>
+        <div class="step-block-body">
+          <p>Before you can synthesize your research findings, you need everything in one place. This means interview notes, recordings, transcripts, competitive analysis, secondary research, and any other material you collected.</p>
+          <p>Now go over all of it and start looking for patterns. If you conducted interviews and remembered to record them, you will have transcripts of the entire conversation. This is vital because taking notes during an interview can be a distraction — causing you to miss important information because you are frantically writing things down. Transcripts allow you to be more engaged and have better follow-up questions because you are truly listening.</p>
+          <p>As you read through the transcripts, highlight moments that surprised you, things that came up repeatedly, anything that contradicts what you expected to find, and direct quotes from participants.</p>
+        </div>
+      </div>
+
+      <div class="step-block">
+        <div class="step-block-header">
+          <div class="step-num">2</div>
+          <h3>Create observation notes</h3>
+        </div>
+        <div class="step-block-body">
+          <p>After reviewing all of your research findings and interview transcripts, write down everything you found to be significant. Be specific.</p>
+          <div class="example-compare">
+            <div class="example-card bad">
+              <div class="card-label">Too vague</div>
+              <p>"Users seem frustrated with the app in general."</p>
+            </div>
+            <div class="example-card good">
+              <div class="card-label">Specific and useful</div>
+              <p>"Participant 3 said she always calls customer support after trying to transfer money because she is never sure the transfer went through."</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-block">
+        <div class="step-block-header">
+          <div class="step-num">3</div>
+          <h3>Look for patterns</h3>
+        </div>
+        <div class="step-block-body">
+          <p>Once your observations are noted, look for patterns where you see similar comments describing the same experience, the same frustration, the same workaround, or the same moment of confusion.</p>
+          <p>This process is often called affinity mapping or affinity diagramming. It is one of the most common synthesis methods in UX research because it is visual, collaborative, and does not require any special tools. It can be done on paper or you can use an application like Miro as your digital workspace to document your notes. We will take a closer look at Miro in a later lesson.</p>
+        </div>
+      </div>
+
+      <div class="step-block">
+        <div class="step-block-header">
+          <div class="step-num">4</div>
+          <h3>Name your patterns</h3>
+        </div>
+        <div class="step-block-body">
+          <p>Once you have groups of related notes, give each group a name that describes the pattern — not what the observations say, but what they mean.</p>
+          <p>For example, feedback about users having to check their bank account three times after a transfer because the system does not update, having to take screenshots of a deposit confirmation because they cannot easily find it again, and having to call customer support because they could not figure it out on their own, might be named: "Users do not trust the system to tell them the transfer succeeded."</p>
+          <p>What you call your groupings is up to you, but whatever you call it, that is the synthesis of your finding based on that feedback. It is something you can act on and it points directly to a provable design problem.</p>
+        </div>
+      </div>
+
+      <div class="step-block">
+        <div class="step-block-header">
+          <div class="step-num">5</div>
+          <h3>Identify your key findings</h3>
+        </div>
+        <div class="step-block-body">
+          <p>Not all of your findings will have equal weight. Some point to problems that affect almost every user. Others affect a small minority. Some are easy to solve. Others are structural and require significant work to fix. Some are important to the business. Others are not.</p>
+          <p>The general rule for prioritizing research findings is based on two factors: how frequently the problem occurs across participants, and how significantly it affects the user's ability to accomplish their goal. Problems that are both frequent and significant are your highest priority findings.</p>
+          <div class="callout">There is a caveat worth knowing. When you work for a company, what you think is a high priority might not be for the company. That may sound backwards, but in business, project size, effort, cost, and time to market are as important to a project team as pain points are to you. We will talk more about this in a later module.</div>
+        </div>
+      </div>
+
+      <div class="step-block">
+        <div class="step-block-header">
+          <div class="step-num">6</div>
+          <h3>Connect findings to recommendations</h3>
+        </div>
+        <div class="step-block-body">
+          <p>A research finding without a recommendation is incomplete. For each key finding, ask: what does this mean for the design? How will this improve a business goal? What will improve as a result of knowing this? Be specific.</p>
+          <div class="example-compare">
+            <div class="example-card bad">
+              <div class="card-label">Not a recommendation</div>
+              <p>"Improve the confirmation experience."</p>
+            </div>
+            <div class="example-card good">
+              <div class="card-label">A real recommendation</div>
+              <p>"Add a persistent success message that remains visible for at least five seconds after a transfer completes, and send a push notification confirming the transfer amount to the recipient."</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reading-content">
+
+        <div class="section-label">Summary</div>
+
+        <p>Synthesis is the process of turning raw research observations into patterns, patterns into findings, and findings into recommendations. It is the most important step in a research project.</p>
+
+        <p>In the next lesson we will look at how to choose the right methods for any research project.</p>
+
+      </div>
+
+      <div class="block-checklist">
+        <h4>Before you move on</h4>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I understand what synthesis is and how it differs from summarizing</label>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I can describe the steps of affinity mapping and why it is useful</label>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I can turn raw observations into specific, actionable findings and recommendations</label>
+        </div>
+      </div>
+
+      <div class="lesson-nav">
+        <a class="nav-btn" href="lesson-6-4.html">← Lesson 6.4</a>
+        <button class="mark-done" onclick="markDone()">✓ Mark complete</button>
+        <a class="nav-btn next" href="lesson-6-6.html">Lesson 6.6 →</a>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="nav.js"></script>
+<script src="airtable.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  buildNav('lesson-6-5.html');
+  var student = requireStudent();
+  var initials = student.name.split(' ').map(function(n) { return n[0]; }).join('').toUpperCase().slice(0,2);
+  document.getElementById('avatar-initials').textContent = initials;
+  document.getElementById('student-greeting').textContent = 'Logged in as ' + student.name;
+});
+
+function resetStudent() {
+  if (confirm('Log out of this device?')) {
+    localStorage.removeItem('ux_student_name');
+    localStorage.removeItem('ux_student_email');
+    window.location.href = 'welcome.html';
+  }
+}
+
+function toggleCheck(item) {
+  var cb = item.querySelector('input');
+  cb.checked = !cb.checked;
+  item.classList.toggle('checked', cb.checked);
+}
+
+function markDone() {
+  window.location.href = 'lesson-6-6.html';
+}
+</script>
+</body>
+</html>
