@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6.6 — Personas | UX That Decides</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.unit-meta { display: flex; gap: 1rem; align-items: center; font-size: 13px; color: var(--ink-3); margin-bottom: 1.75rem; flex-wrap: wrap; }
+.learning-goals { background: var(--accent-light); border-left: 4px solid var(--accent); border-radius: 0 var(--radius-lg) var(--radius-lg) 0; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+.learning-goals h4 { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.6rem; }
+.learning-goals ul { padding-left: 1.2rem; }
+.learning-goals li { font-size: 14px; color: var(--ink-2); line-height: 1.7; margin-bottom: 0.2rem; }
+.section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); margin: 2.5rem 0 0.75rem; display: flex; align-items: center; gap: 0.75rem; }
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+.block-checklist { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; margin: 2rem 0; }
+.block-checklist h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 0.85rem; }
+.check-item { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.6rem; cursor: pointer; padding: 0.4rem 0; border-bottom: 1px solid var(--rule); }
+.check-item:last-child { border-bottom: none; margin-bottom: 0; }
+.check-item input[type="checkbox"] { margin-top: 2px; flex-shrink: 0; width: 16px; height: 16px; accent-color: var(--accent); cursor: pointer; }
+.check-item label { font-size: 14px; color: var(--ink-2); line-height: 1.5; cursor: pointer; }
+.check-item.checked label { color: var(--ink-3); text-decoration: line-through; }
+.student-bar { background: var(--accent-light); border-radius: var(--radius); padding: 0.5rem 1rem; font-size: 12px; color: var(--accent); margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+.student-bar a { color: var(--accent); font-size: 11px; cursor: pointer; }
+.when-block { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 1rem; }
+.when-block-header { background: var(--accent); color: #fff; padding: 0.65rem 1.25rem; }
+.when-block-header h3 { font-size: 13px; font-weight: 600; }
+.when-block-body { padding: 1.1rem 1.25rem; }
+.when-block-body p { font-size: 14px; color: var(--ink-2); line-height: 1.7; margin-bottom: 0.75rem; }
+.when-block-body p:last-child { margin-bottom: 0; }
+.context-list { display: flex; flex-direction: column; gap: 0.6rem; margin: 1.25rem 0; }
+.context-item { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); padding: 0.85rem 1rem; display: flex; gap: 1rem; align-items: flex-start; }
+.context-item strong { font-size: 12px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; min-width: 120px; flex-shrink: 0; padding-top: 1px; }
+.context-item span { font-size: 13px; color: var(--ink-2); line-height: 1.6; }
+.persona-template { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius-lg); overflow: hidden; margin: 1.5rem 0; }
+.persona-template-header { background: var(--ink); color: #fff; padding: 0.75rem 1.25rem; font-size: 13px; font-weight: 600; letter-spacing: 0.03em; }
+.persona-template-body { padding: 1.25rem; display: flex; flex-direction: column; gap: 0.75rem; }
+.persona-field { border-bottom: 1px solid var(--rule); padding-bottom: 0.75rem; }
+.persona-field:last-child { border-bottom: none; padding-bottom: 0; }
+.persona-field strong { display: block; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: var(--accent); margin-bottom: 0.3rem; }
+.persona-field p { font-size: 13px; color: var(--ink-3); line-height: 1.6; margin: 0; font-style: italic; }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <header class="topbar">
+    <a class="topbar-logo" href="index.html">UX That <span>Decides</span></a>
+    <div class="topbar-progress">
+      <div class="progress-label"><span>Course progress</span><span>68% complete</span></div>
+      <div class="progress-bar"><div class="progress-fill" style="width:68%"></div></div>
+    </div>
+    <div class="topbar-actions">
+      <a class="topbar-btn notif" href="feedback.html">💬 Feedback</a>
+      <a class="topbar-btn primary" href="schedule.html">📅 Book call</a>
+      <a class="avatar" href="index.html" id="avatar-initials">?</a>
+    </div>
+  </header>
+
+  <aside class="sidebar"></aside>
+
+  <main class="main">
+    <div class="content-area">
+
+      <div class="student-bar">
+        <span id="student-greeting">Loading...</span>
+        <a onclick="resetStudent()">Log out</a>
+      </div>
+
+      <div class="unit-meta">
+        <span>📖 Reading</span>
+        <span>Module 6 · Lesson 6 of 7</span>
+      </div>
+
+      <div class="lesson-header">
+        <div class="lesson-tag">Module 6 — UX Research</div>
+        <h1 class="lesson-title">Personas</h1>
+        <div class="lesson-byline"><span>Scott Faranello</span></div>
+      </div>
+
+      <div class="video-stage">
+        <div class="video-placeholder">
+          <div class="play-btn"><div class="play-triangle"></div></div>
+          <p>Lesson 6.6 — Personas</p>
+          <small>Video coming soon</small>
+        </div>
+      </div>
+
+      <div class="learning-goals">
+        <h4>By the end of this lesson you will be able to</h4>
+        <ul>
+          <li>Explain what a persona is and what it is not</li>
+          <li>Understand why most personas are over-engineered and how to avoid that trap</li>
+          <li>Create a persona that is actually useful for design decisions</li>
+          <li>Know when one persona is enough and when more are needed</li>
+        </ul>
+      </div>
+
+      <div class="reading-content">
+
+        <p>Personas have been a staple of UX practice for decades. They are also one of the most misunderstood and misused tools in the field.</p>
+
+        <p>Walk into most design teams and you will find personas that look like marketing brochures. They have names, photos, ages, job titles, income brackets, personality types, hobbies, and favorite social media platforms. They might tell you that "Sarah, 34, is a busy working mother who loves yoga and shops online between meetings."</p>
+
+        <p>None of that helps you design a better checkout flow.</p>
+
+        <p>This lesson is about what personas actually are, what they are actually for, and how to make them useful instead of decorative.</p>
+
+        <div class="section-label">Where personas went wrong</div>
+
+        <p>The persona as most people know it was borrowed from marketing. In marketing, knowing who your customer means knowing their demographics, their lifestyle, their values — because that helps craft messaging that resonates with consumers. A campaign aimed at a 28-year-old urban professional looks different from one aimed at a 55-year-old suburban parent.</p>
+
+        <p>When UX adopted personas, it imported the marketing version without questioning whether demographics were actually relevant to design decisions. In most cases they are not.</p>
+
+        <p>Good design does not care about who you are or your background. A well-designed navigation is supposed to work equally well for everyone who encounters it. A form should be clear and easy to complete for everyone who fills it out. A button that is easy to find is easy to find regardless of who is looking for it. If your design only works for a specific demographic, that is not good design. That is exclusive design.</p>
+
+        <p>In UX, the most important persona is the human being. Everything else is context, and noise that distracts from your design's purpose.</p>
+
+        <div class="section-label">The one persona rule</div>
+
+        <p>In most projects there is only one persona: the human being who will use what you are designing.</p>
+
+        <p>That persona is not defined by age, gender, income, or lifestyle. It is defined by what the person is trying to accomplish, what gets in their way, and what the design needs to do to help them succeed.</p>
+
+        <p>This is not a radical idea. It is what good design has always been about. Ford did not design the Model T for a specific demographic. He designed it for anyone who needed to get somewhere. Apple did not design the iPhone for a specific type of user. They designed it for anyone who wanted to use it. The universality of the solution is what made it great.</p>
+
+        <p>When you catch yourself adding demographic detail to a persona, ask yourself one question: does this change anything about my design? If the answer is no, leave it out.</p>
+
+        <div class="section-label">When you need more than one persona</div>
+
+        <p>There are specific situations where more than one persona is genuinely useful. In each case, the reason for a second persona is not demographic difference. It is a meaningful difference in how the product is used or what the design needs to do based on who is using it and when.</p>
+
+      </div>
+
+      <div class="when-block">
+        <div class="when-block-header"><h3>When safety is a factor</h3></div>
+        <div class="when-block-body">
+          <p>If both children and adults will use a product, that is a legitimate reason for two personas. Not because children and adults are demographically different, but because the design requirements can be different. Content needs to be age-appropriate. Safety considerations change. Interaction patterns that are second nature to an adult may be confusing or unsafe for a child. The design must account for this, and a second persona helps the design team keep those different requirements top of mind.</p>
+        </div>
+      </div>
+
+      <div class="when-block">
+        <div class="when-block-header"><h3>When accessibility changes the design</h3></div>
+        <div class="when-block-body">
+          <p>If people with visual, motor, cognitive, or hearing impairments will use your product, their needs may genuinely require different design decisions — larger text, higher contrast, keyboard navigation, screen reader compatibility, simplified language. A persona that represents an impaired user is not about their disability as a characteristic. It is about what the design needs to do differently to serve them.</p>
+          <div class="callout">Accessibility should never be treated as an edge case. Designing for impaired users almost always produces a better experience for everyone. The curb cut is a great example. You probably do not even notice them, but curb cuts in sidewalks were originally designed to accommodate wheelchair users. Since then they have benefited parents with strollers, delivery workers with hand trucks, cyclists, and anyone who might have a hard time stepping up or down a curb.</div>
+        </div>
+      </div>
+
+      <div class="when-block">
+        <div class="when-block-header"><h3>When the content or experience changes based on the user</h3></div>
+        <div class="when-block-body">
+          <p>If the person using your product requires it to change what they see or how they interact with it, a second persona may be warranted. A healthcare app used by both patients and clinicians is a clear example. The patient sees their own health data and appointment history. The clinician sees their entire patient panel, clinical decision support tools, and documentation workflows. The underlying system may be the same. The experience is not. Two personas. Two sets of design requirements.</p>
+          <p>If none of these conditions apply, one human persona is enough.</p>
+        </div>
+      </div>
+
+      <div class="reading-content">
+
+        <div class="section-label">Context of use — the thing demographics cannot tell you</div>
+
+        <p>A nurse using a medication dosing app at a quiet desk during a planning session is operating under very different conditions than the same nurse using the same app in a noisy emergency room while managing multiple patients under time pressure. Same person. Same demographics. Completely different design requirements.</p>
+
+        <p>Context of use asks:</p>
+
+      </div>
+
+      <div class="context-list">
+        <div class="context-item">
+          <strong>Where</strong>
+          <span>Will people use this at a desk, on the go, in a loud environment, in low light, with one hand, while doing something else simultaneously — like driving?</span>
+        </div>
+        <div class="context-item">
+          <strong>When</strong>
+          <span>Will they use it casually, under time pressure, in a crisis, routinely, or only occasionally?</span>
+        </div>
+        <div class="context-item">
+          <strong>What else</strong>
+          <span>What is competing for their attention? Distractions, interruptions, stress, fatigue?</span>
+        </div>
+        <div class="context-item">
+          <strong>How familiar</strong>
+          <span>First-time users have different needs than people who use the same product every day — not because they are different types of people, but because their relationship to the system is different.</span>
+        </div>
+      </div>
+
+      <div class="reading-content">
+
+        <p>These contextual factors change design decisions in ways that demographics never do. A product used in high-stress, time-pressured environments needs larger tap targets, simpler flows, fewer steps, and stronger error prevention. A product used at leisure, when the user is at full attention, can afford more complexity and more choices.</p>
+
+        <p>Consider GPS. Next time you are driving, think about how the design works in that situation. Is it easy to use? Does it require your full attention? Are you able to look at it while driving without getting into an accident? Hopefully you answered yes to that last question.</p>
+
+        <div class="section-label">What a useful persona looks like</div>
+
+        <p>A useful persona should be short. It should fit on one page and contain very few details:</p>
+
+      </div>
+
+      <div class="persona-template">
+        <div class="persona-template-header">Persona template</div>
+        <div class="persona-template-body">
+          <div class="persona-field">
+            <strong>Who they are in context</strong>
+            <p>A brief description in relation to the problem you are solving. Not a biography. Not a demographic profile. Just enough to make them feel real and specific.</p>
+          </div>
+          <div class="persona-field">
+            <strong>What they are trying to do</strong>
+            <p>Their goal in using this product. What does success look like for them? What are they trying to accomplish?</p>
+          </div>
+          <div class="persona-field">
+            <strong>What gets in their way</strong>
+            <p>The frustrations, obstacles, and failure points your research uncovered. These should come directly from your findings, not from assumption.</p>
+          </div>
+          <div class="persona-field">
+            <strong>Context of use</strong>
+            <p>Where, when, and under what conditions will they use this product? What else is competing for their attention? Is their lack of attention or distraction creating an unsafe environment?</p>
+          </div>
+          <div class="persona-field">
+            <strong>What they already know</strong>
+            <p>Their mental model. What patterns and conventions do they bring from other products they have used? What do they expect your design to do in relation to what they are familiar with?</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="reading-content">
+
+        <p>That is it. No photo. No age. No income bracket. No personality type. No quote about how they love hiking and hate Mondays — unless any of those things would change something about your design. If that is true, include those details. Otherwise, leave them out.</p>
+
+        <div class="section-label">Summary</div>
+
+        <p>Most personas are marketing documents dressed up as design tools. They describe who people are rather than what they need and where they struggle.</p>
+
+        <p>A useful UX persona describes one thing: a human being in context. Who are they in relation to this problem? What are they trying to do? What gets in their way? What conditions will they be operating under?</p>
+
+        <p>In most projects, one persona is enough. More are warranted only when safety, accessibility, or a genuinely different use case requires the design to behave differently for different people.</p>
+
+        <p>Keep personas grounded in research. Keep them short. Keep them focused on what changes the design. Leave out everything else.</p>
+
+      </div>
+
+      <div class="block-checklist">
+        <h4>Before you move on</h4>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I understand why most personas are over-engineered and what to leave out</label>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I know when one persona is enough and when more are genuinely needed</label>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I understand what context of use is and why it matters more than demographics</label>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I can create a persona that is grounded in research and focused on design decisions</label>
+        </div>
+      </div>
+
+      <div class="lesson-nav">
+        <a class="nav-btn" href="lesson-6-5.html">← Lesson 6.5</a>
+        <button class="mark-done" onclick="markDone()">✓ Mark complete</button>
+        <a class="nav-btn next" href="lesson-6-7.html">Lesson 6.7 →</a>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="nav.js"></script>
+<script src="airtable.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  buildNav('lesson-6-6.html');
+  var student = requireStudent();
+  var initials = student.name.split(' ').map(function(n) { return n[0]; }).join('').toUpperCase().slice(0,2);
+  document.getElementById('avatar-initials').textContent = initials;
+  document.getElementById('student-greeting').textContent = 'Logged in as ' + student.name;
+});
+
+function resetStudent() {
+  if (confirm('Log out of this device?')) {
+    localStorage.removeItem('ux_student_name');
+    localStorage.removeItem('ux_student_email');
+    window.location.href = 'welcome.html';
+  }
+}
+
+function toggleCheck(item) {
+  var cb = item.querySelector('input');
+  cb.checked = !cb.checked;
+  item.classList.toggle('checked', cb.checked);
+}
+
+function markDone() {
+  window.location.href = 'lesson-6-7.html';
+}
+</script>
+</body>
+</html>
