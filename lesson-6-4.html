@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6.4 — Secondary and Competitive Research | UX That Decides</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.unit-meta { display: flex; gap: 1rem; align-items: center; font-size: 13px; color: var(--ink-3); margin-bottom: 1.75rem; flex-wrap: wrap; }
+.learning-goals { background: var(--accent-light); border-left: 4px solid var(--accent); border-radius: 0 var(--radius-lg) var(--radius-lg) 0; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+.learning-goals h4 { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.6rem; }
+.learning-goals ul { padding-left: 1.2rem; }
+.learning-goals li { font-size: 14px; color: var(--ink-2); line-height: 1.7; margin-bottom: 0.2rem; }
+.section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); margin: 2.5rem 0 0.75rem; display: flex; align-items: center; gap: 0.75rem; }
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+.block-checklist { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; margin: 2rem 0; }
+.block-checklist h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 0.85rem; }
+.check-item { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.6rem; cursor: pointer; padding: 0.4rem 0; border-bottom: 1px solid var(--rule); }
+.check-item:last-child { border-bottom: none; margin-bottom: 0; }
+.check-item input[type="checkbox"] { margin-top: 2px; flex-shrink: 0; width: 16px; height: 16px; accent-color: var(--accent); cursor: pointer; }
+.check-item label { font-size: 14px; color: var(--ink-2); line-height: 1.5; cursor: pointer; }
+.check-item.checked label { color: var(--ink-3); text-decoration: line-through; }
+.student-bar { background: var(--accent-light); border-radius: var(--radius); padding: 0.5rem 1rem; font-size: 12px; color: var(--accent); margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+.student-bar a { color: var(--accent); font-size: 11px; cursor: pointer; }
+.sub-section { font-size: 12px; font-weight: 700; color: var(--ink); text-transform: uppercase; letter-spacing: 0.06em; margin: 1.5rem 0 0.5rem; }
+.sources-list { display: flex; flex-direction: column; gap: 0.6rem; margin: 1rem 0; }
+.source-item { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); padding: 0.85rem 1rem; }
+.source-item strong { display: block; font-size: 12px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.35rem; }
+.source-item p { font-size: 13px; color: var(--ink-2); line-height: 1.6; margin: 0; }
+.synthesis-questions { list-style: none; padding: 0; margin: 1rem 0; }
+.synthesis-questions li { font-size: 14px; color: var(--ink-2); line-height: 1.65; padding: 0.5rem 0; border-bottom: 1px solid var(--rule); display: flex; gap: 0.75rem; }
+.synthesis-questions li:last-child { border-bottom: none; }
+.synthesis-questions li::before { content: '→'; color: var(--accent); font-weight: 700; flex-shrink: 0; }
+.criteria-list { display: flex; flex-direction: column; gap: 0.5rem; margin: 1rem 0; }
+.criteria-item { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); padding: 0.75rem 1rem; display: flex; gap: 1rem; align-items: flex-start; }
+.criteria-item strong { font-size: 13px; font-weight: 600; color: var(--ink); min-width: 140px; flex-shrink: 0; }
+.criteria-item span { font-size: 13px; color: var(--ink-2); line-height: 1.6; }
+.pattern-block { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); padding: 0.85rem 1rem; margin-bottom: 0.6rem; }
+.pattern-block strong { display: block; font-size: 12px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.35rem; }
+.pattern-block p { font-size: 13px; color: var(--ink-2); line-height: 1.6; margin: 0; }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <header class="topbar">
+    <a class="topbar-logo" href="index.html">UX That <span>Decides</span></a>
+    <div class="topbar-progress">
+      <div class="progress-label"><span>Course progress</span><span>62% complete</span></div>
+      <div class="progress-bar"><div class="progress-fill" style="width:62%"></div></div>
+    </div>
+    <div class="topbar-actions">
+      <a class="topbar-btn notif" href="feedback.html">💬 Feedback</a>
+      <a class="topbar-btn primary" href="schedule.html">📅 Book call</a>
+      <a class="avatar" href="index.html" id="avatar-initials">?</a>
+    </div>
+  </header>
+
+  <aside class="sidebar"></aside>
+
+  <main class="main">
+    <div class="content-area">
+
+      <div class="student-bar">
+        <span id="student-greeting">Loading...</span>
+        <a onclick="resetStudent()">Log out</a>
+      </div>
+
+      <div class="unit-meta">
+        <span>📖 Reading</span>
+        <span>Module 6 · Lesson 4 of 6</span>
+      </div>
+
+      <div class="lesson-header">
+        <div class="lesson-tag">Module 6 — UX Research</div>
+        <h1 class="lesson-title">Secondary and competitive research</h1>
+        <div class="lesson-byline"><span>Scott Faranello</span></div>
+      </div>
+
+      <div class="video-stage">
+        <div class="video-placeholder">
+          <div class="play-btn"><div class="play-triangle"></div></div>
+          <p>Lesson 6.4 — Secondary and competitive research</p>
+          <small>Video coming soon</small>
+        </div>
+      </div>
+
+      <div class="learning-goals">
+        <h4>By the end of this lesson you will be able to</h4>
+        <ul>
+          <li>Explain what secondary research is and when to use it</li>
+          <li>Describe what competitive research is and what it reveals</li>
+          <li>Conduct a basic competitive analysis</li>
+          <li>Use secondary and competitive research to inform better primary research</li>
+        </ul>
+      </div>
+
+      <div class="reading-content">
+
+        <p>Secondary and competitive research are the foundation of a well-prepared research project. They tell you what is already known, what already exists, and what questions are worth asking.</p>
+
+        <p>Secondary and competitive research are not one and the same. They are separate methods that serve different purposes, but they work well together.</p>
+
+        <div class="section-label">Secondary research</div>
+
+        <div class="sub-section">What it is</div>
+
+        <p>Secondary research is existing information that helps to provide context and build understanding of whatever you are hoping to learn about, before conducting any research of your own. This can include previous primary or secondary research, completed studies, industry reports, news articles, government data, white papers, and any other source that contains something relevant to the problem you are investigating.</p>
+
+        <p>It is called secondary research because the information was collected by someone else, either for a similar project or for a different purpose. You are essentially the second person to use it. Primary research, by contrast, is information you collected before anyone else has used it for their project. You are the source.</p>
+
+        <div class="sub-section">Why it matters</div>
+
+        <p>Secondary research is important for a few reasons.</p>
+
+        <p><strong>It saves time.</strong> If a study has already established that 68 percent of mobile banking users abandon a transaction when asked to re-enter their password, you do not need to conduct research to discover that. You need to understand it, factor it into your design decisions, and focus your primary research on the questions that have not already been answered.</p>
+
+        <div class="callout">This is not to say that secondary research is always correct or complete. Maybe you learned that mobile banking users abandon a transaction 68 percent of the time, but the research report was not clear enough about why. That would be something worth investigating further during primary research.</div>
+
+        <p><strong>It improves your primary research.</strong> Researchers who walk into user interviews without any background knowledge have to ask simpler questions to get context. If secondary research exists, it may help you avoid that step and go into an interview with much deeper questions because you already understand the surface level.</p>
+
+        <p><strong>It grounds your recommendations.</strong> When you eventually present your findings to stakeholders, secondary research gives you a foundation of credibility. You are not just reporting what five people told you. You are contextualizing their experiences within a broader body of knowledge.</p>
+
+        <div class="sub-section">Where to look</div>
+
+      </div>
+
+      <div class="sources-list">
+        <div class="source-item">
+          <strong>Industry reports</strong>
+          <p>Research firms like Nielsen Norman Group, Forrester, and Gartner publish regular reports on user behavior, technology adoption, and industry trends. Some are free. Many require a subscription or purchase. Most offer summaries or executive briefs, which can be useful.</p>
+        </div>
+        <div class="source-item">
+          <strong>Academic research</strong>
+          <p>Google Scholar is a free resource for finding peer-reviewed studies on many topics. Not all academic research is directly applicable to UX work, but studies on human behavior, decision-making, cognitive load, and technology adoption often are.</p>
+        </div>
+        <div class="source-item">
+          <strong>News and trade publications</strong>
+          <p>Industry-specific publications are often the fastest way to understand what is happening in a market. What are competitors doing? What problems are being reported? What are users complaining about in reviews and forums?</p>
+        </div>
+        <div class="source-item">
+          <strong>Product reviews and app stores</strong>
+          <p>User reviews of existing products in your problem space are a form of secondary research. They are unfiltered, direct expressions of what users like, dislike, and wish were different. They are not statistically significant because it is usually a small sample, but they can be directionally useful.</p>
+        </div>
+        <div class="source-item">
+          <strong>Internal data</strong>
+          <p>If you are working on an existing product, the company may have data you can learn from — customer support logs, analytics, previous research reports, NPS scores, or user feedback that was collected and never acted on or never analyzed properly.</p>
+        </div>
+      </div>
+
+      <div class="reading-content">
+
+        <div class="sub-section">What to do with it</div>
+
+        <p>Secondary research is more than just reading material. It can be analyzed and synthesized into a story that you bring into your primary research. As you review secondary research, try to answer these questions before creating your primary research approach:</p>
+
+      </div>
+
+      <ul class="synthesis-questions">
+        <li>What is already known about this problem or user population?</li>
+        <li>What do users in this space consistently struggle with?</li>
+        <li>What solutions already exist and how well are they working?</li>
+        <li>What gaps in knowledge still exist that your primary research could fill?</li>
+        <li>What assumptions in your own thinking does this research confirm or challenge?</li>
+      </ul>
+
+      <div class="reading-content">
+
+        <p>Document what you find and keep notes as a resource to refer back to when you have completed your primary research and are writing your research report or case study.</p>
+
+        <div class="section-label">Competitive research</div>
+
+        <div class="sub-section">What it is</div>
+
+        <p>Competitive research is similar to secondary research in that it already exists in some form. The difference is that competitive research looks at a product or process that is already in use by another company in the same space as the one you are designing for.</p>
+
+        <p>In many cases you might be designing a product similar to a competing company and you want to understand what they are already doing, how the product works, what their customers like and dislike about it, and how it is designed so you can identify opportunities to improve it and avoid copying it.</p>
+
+        <div class="sub-section">Why it matters</div>
+
+        <p>Users do not usually arrive at a product without a reason and without context. We bring expectations to every product we use, shaped by our experience using something similar that solves the same problem. For example, there are many different models of cars, but they all follow the same basic patterns: round steering wheel, horn in the middle, gas pedal on the right, brake pedal on the left. Driving might feel different in a Porsche versus a Kia, but the patterns do not change. There are certain expectations that must be met or you risk alienating users on a large scale. Knowing those patterns is essential to making sure your product meets those basic expectations. The challenge for the researcher and designer is knowing what to improve upon and why.</p>
+
+        <p>Competitive research tells you what those patterns are, what baseline your design needs to meet before users will trust it, and where there are genuine gaps that competitors have not solved or have solved poorly — which represents an opportunity for your design to stand out.</p>
+
+        <p>This is not about copying. It is about knowing the patterns, problems, and challenges before you dive in.</p>
+
+        <div class="sub-section">How to conduct a competitive analysis</div>
+
+        <p>A competitive analysis does not need to be complicated. Here is a practical approach that works for most projects.</p>
+
+        <p><strong>Identify your competitors.</strong> Start by identifying three to five products that solve the same or a similar problem as the one you are designing for. These can be products targeting the same users with the same solution, or products targeting the same users with a different approach.</p>
+
+        <p>If you are designing a mobile banking app, your direct competitors are other mobile banking apps. Your indirect competitors might include personal finance apps that handle money differently, like budgeting tools or payment apps.</p>
+
+        <p><strong>Define your evaluation criteria.</strong> Useful criteria for most UX competitive analyses:</p>
+
+      </div>
+
+      <div class="criteria-list">
+        <div class="criteria-item"><strong>Onboarding</strong><span>How easy is it to get started?</span></div>
+        <div class="criteria-item"><strong>Navigation</strong><span>How is information organized and how easy is it to find what you need?</span></div>
+        <div class="criteria-item"><strong>Core task completion</strong><span>How well does the product support the primary task a user comes to accomplish?</span></div>
+        <div class="criteria-item"><strong>Error handling</strong><span>What happens when something goes wrong?</span></div>
+        <div class="criteria-item"><strong>Visual design</strong><span>Does the design feel trustworthy, clear, and appropriate for the audience?</span></div>
+        <div class="criteria-item"><strong>Accessibility</strong><span>Does the product accommodate users with different abilities?</span></div>
+      </div>
+
+      <div class="reading-content">
+
+        <p><strong>Evaluate each competitor.</strong> Go through each product as a user would. Complete the core tasks. Get lost. Make mistakes. Notice what is easy and what is not. Take screenshots. Take notes. Compare them to your product.</p>
+
+        <div class="callout">Sometimes it is not possible to use a competitor's product because of a subscription requirement or because the product is proprietary, like a healthcare app where personal information would be exposed. In those cases, go as far as you can, then design based on what you know is best and, if possible, test it with users of your competitor's product.</div>
+
+        <p><strong>Look for patterns and gaps.</strong> After evaluating your competitors, look for:</p>
+
+      </div>
+
+      <div class="pattern-block">
+        <strong>Conventions</strong>
+        <p>Things that every competitor does the same way. Users expect them. Deviating from them requires a very good reason.</p>
+      </div>
+      <div class="pattern-block">
+        <strong>Gaps</strong>
+        <p>Things that every competitor does poorly or does not do at all. These are opportunities. If users consistently struggle with the same thing across all existing products, solving that problem is a genuine differentiator.</p>
+      </div>
+      <div class="pattern-block">
+        <strong>Strengths</strong>
+        <p>Things that specific competitors do exceptionally well. These are benchmarks. Your design should meet or exceed them in areas that matter to users.</p>
+      </div>
+
+      <div class="reading-content">
+
+        <div class="callout">This does not mean copying what your competitors do. Like with the car example, there are certain features that have to match existing conventions because they are basic to how people use apps in general. But be careful about copying things that are outside of normal conventions.</div>
+
+        <p><strong>Document your findings.</strong> A competitive analysis, like any other research reporting, should be concise and easy for the reader to understand. Often the best way to do this is with an executive summary that covers the most important findings so that stakeholders and designers can make clear decisions about what to do next.</p>
+
+        <div class="section-label">How secondary and competitive research work together</div>
+
+        <p>Secondary research tells you what is known about the problem and the people experiencing it. Competitive research tells you what already exists to solve it. Together they give you a complete picture of the landscape before you start designing.</p>
+
+        <p>They also make your primary research sharper. When you walk into a user interview having done your secondary and competitive research, you know what questions have already been answered. You know what solutions already exist. You know what the baseline is. And you have deeper questions that address what you still need to know in order to meet the business objectives.</p>
+
+        <div class="callout">Many times you might find that secondary research does not exist or is not informative enough for what you need. You might also be working on a product that has few or no competitors. In those cases, your primary research is all you have to go on. That is okay too. Just make sure you have looked before skipping this step altogether.</div>
+
+        <div class="section-label">Summary</div>
+
+        <p>Secondary research uses existing information to build understanding before you begin your own research. Competitive research analyzes existing products to understand what is out there and the landscape your design will live in.</p>
+
+        <p>Both methods belong at the start of every project. They make your primary research more efficient, your questions sharper, and your recommendations more credible.</p>
+
+        <p>In the next lesson we will look at how to make sense of everything you have collected by synthesizing findings from multiple sources into clear, actionable insights.</p>
+
+      </div>
+
+      <div class="block-checklist">
+        <h4>Before you move on</h4>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I can explain what secondary research is and where to find relevant sources</label>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I understand what competitive research reveals and why it matters before you design anything</label>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I know how to conduct a basic competitive analysis</label>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"><label>I understand how secondary and competitive research make primary research more effective</label>
+        </div>
+      </div>
+
+      <div class="lesson-nav">
+        <a class="nav-btn" href="lesson-6-3.html">← Lesson 6.3</a>
+        <button class="mark-done" onclick="markDone()">✓ Mark complete</button>
+        <a class="nav-btn next" href="lesson-6-5.html">Lesson 6.5 →</a>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="nav.js"></script>
+<script src="airtable.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  buildNav('lesson-6-4.html');
+  var student = requireStudent();
+  var initials = student.name.split(' ').map(function(n) { return n[0]; }).join('').toUpperCase().slice(0,2);
+  document.getElementById('avatar-initials').textContent = initials;
+  document.getElementById('student-greeting').textContent = 'Logged in as ' + student.name;
+});
+
+function resetStudent() {
+  if (confirm('Log out of this device?')) {
+    localStorage.removeItem('ux_student_name');
+    localStorage.removeItem('ux_student_email');
+    window.location.href = 'welcome.html';
+  }
+}
+
+function toggleCheck(item) {
+  var cb = item.querySelector('input');
+  cb.checked = !cb.checked;
+  item.classList.toggle('checked', cb.checked);
+}
+
+function markDone() {
+  window.location.href = 'lesson-6-5.html';
+}
+</script>
+</body>
+</html>
